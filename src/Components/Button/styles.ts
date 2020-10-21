@@ -12,6 +12,7 @@ const handleColorType = (color: string) => {
 };
 
 export const Btn = styled.button<{ type2: string }>`
+  font-weight: bold;
   background: var(--primary);
   padding: 17px;
   border: none;

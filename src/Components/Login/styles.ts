@@ -24,6 +24,7 @@ export const Bottom = styled.div`
   justify-content: center;
   align-items: center;
   > button {
+    font-weight: bold;
     padding: 15px 0;
     background: none;
     border: none;

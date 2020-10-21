@@ -41,8 +41,9 @@ export const Bottom = styled.div`
   align-items: center;
 
   > span {
+    font-weight: regular;
     text-align: center;
-    font-size: 10px;
+    font-size: 11px;
     color: var(--gray2);
   }
 `;

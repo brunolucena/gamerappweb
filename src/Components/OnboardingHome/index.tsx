@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Main, Background, Bottom, Header, LogoReaper } from './styles';
-// import LogoSrc from './gamerlogo.png';
 import ControlSrc from './controls.png';
 import Button from '../Button/';
 import Logo from '../Logo/';

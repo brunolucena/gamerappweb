@@ -2,7 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&family=PT+Serif:wght@700&display=swap');
+
 *{
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
 }
