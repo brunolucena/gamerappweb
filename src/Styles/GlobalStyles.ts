@@ -28,6 +28,8 @@ html {
   }
 
 .input-text {
-text-align: center;
+    input {
+        text-align: center;
+    }
 }
 `;

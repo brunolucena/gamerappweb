@@ -1,4 +1,4 @@
-import CreateAccount01 from './Components/CreateAccount/CreateAccount01';
+import CreateAccountNavigation from './Components/CreateAccount/CreateAccountNavigation';
 import GlobalStyles from './Styles/GlobalStyles';
 import Login from './Components/Login';
 import OnboardingHome from './Components/OnboardingHome';
@@ -17,7 +17,7 @@ function App() {
         <GlobalStyles />
 
         <Switch>
-          <Route path='/esqueci-senha'>
+          <Route path='/forgot-password'>
             <PasswordRecovery01 />
           </Route>
 
@@ -25,8 +25,8 @@ function App() {
             <Login />
           </Route>
 
-          <Route path='/criar-conta'>
-            <CreateAccount01 />
+          <Route path='/signup'>
+            <CreateAccountNavigation />
           </Route>
 
           <Route path='/'>{isLoggedIn ? <div>logado</div> : <OnboardingHome />}</Route>

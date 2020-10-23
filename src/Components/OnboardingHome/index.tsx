@@ -18,7 +18,7 @@ const OnboardingHome: React.FC = () => {
       <Main>
         <Button to='/login'>Login</Button>
 
-        <Button to='/criar-conta' type='secondary'>
+        <Button to='/signup' type='secondary'>
           Criar conta
         </Button>
       </Main>
