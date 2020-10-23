@@ -13,7 +13,6 @@ export const Main = styled.div`
   padding: 100px;
 
   > b {
-    font-family: 'PT Serif', serif;
     color: var(--primary);
     font-size: 45px;
     padding: 20px;

@@ -12,7 +12,6 @@ export const Main = styled.div`
   text-align: center;
   gap: 10px;
   > b {
-    font-family: 'PT Serif', serif;
     color: var(--primary);
     font-size: 30px;
   }

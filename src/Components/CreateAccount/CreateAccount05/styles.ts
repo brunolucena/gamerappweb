@@ -24,7 +24,6 @@ export const Content = styled.div`
   padding-top: 10px;
   padding-bottom: 90px;
   > b {
-    font-family: 'PT Serif', serif;
     font-size: 55px;
     color: var(--primary);
   }
