@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Input from '@material-ui/core/Input';
-import { Container, Main, Header, Image, Btn, ProgressWrapper } from './styles';
+import { Container, Main, Header, Image, Btn } from './styles';
 import Heart from '../Hearts';
 import Button from '../../Button';
 import BackButton from '../../BackButton';
 
 import './styles.css';
+import Progress from '../../Progress';
 
 const CreateAccount01: React.FC = () => {
-  const [progress, setProgress] = useState('0');
-
-  useEffect(() => {
-    setTimeout(() => {
-      setProgress('20');
-    }, 500);
-  });
-
   return (
     <Container>
       <Header>
@@ -29,9 +22,7 @@ const CreateAccount01: React.FC = () => {
       <Image>
         <Heart />
 
-        <ProgressWrapper>
-          <progress max='100' value={progress}></progress>
-        </ProgressWrapper>
+        <Progress timeout={500} value='20' />
       </Image>
 
       <Main>
