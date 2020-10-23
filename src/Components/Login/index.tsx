@@ -4,11 +4,10 @@ import Logo from '../Logo/';
 
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import BackButton from '../BackButton';
 import Button from '../Button';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +24,8 @@ const Login: React.FC = () => {
   return (
     <Container>
       <Header>
-        <IconButton aria-label='delete' style={{ alignSelf: 'flex-start' }}>
-          <ArrowBackIcon style={{ color: '#FFF' }} />
-        </IconButton>
+        <BackButton iconColor='#ffffff' to='/' />
+
         <Logo />
       </Header>
 

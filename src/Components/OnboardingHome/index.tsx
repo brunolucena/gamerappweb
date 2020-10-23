@@ -16,9 +16,11 @@ const OnboardingHome: React.FC = () => {
       </LogoReaper>
 
       <Main>
-        <Button>Login</Button>
+        <Button to='/login'>Login</Button>
 
-        <Button type='secondary'>Criar conta</Button>
+        <Button to='/criar-conta' type='secondary'>
+          Criar conta
+        </Button>
       </Main>
 
       <Bottom>

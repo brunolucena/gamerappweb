@@ -11,12 +11,15 @@ const handleColorType = (color: string) => {
   }
 };
 
-export const Btn = styled.button<{ type2: string }>`
-  font-weight: bold;
-  background: var(--primary);
-  padding: 17px;
+export const Btn = styled.button`
   border: none;
+  cursor: pointer;
+`;
+
+export const BtnStyles = styled.div<{ type2?: string }>`
+  padding: 17px;
   border-radius: 5px;
+  background: ${({ type2 }) => (type2 ? handleColorType(type2) : 'var(--primary)')};
   color: white;
-  background: ${({ type2 }) => handleColorType(type2)};
+  font-weight: bold;
 `;

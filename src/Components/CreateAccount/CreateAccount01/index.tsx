@@ -1,34 +1,46 @@
-import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import React, { useEffect, useState } from 'react';
 import Input from '@material-ui/core/Input';
-import { Container, Main, Header, Image, Btn } from './styles';
+import { Container, Main, Header, Image, Btn, ProgressWrapper } from './styles';
 import Heart from '../Hearts';
 import Button from '../../Button';
+import BackButton from '../../BackButton';
+
+import './styles.css';
 
 const CreateAccount01: React.FC = () => {
+  const [progress, setProgress] = useState('0');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setProgress('20');
+    }, 500);
+  });
+
   return (
     <Container>
       <Header>
-        <IconButton aria-label='delete' style={{ alignSelf: 'flex-start' }}>
-          <ArrowBackIcon style={{ color: '#0dac3d' }} />
-        </IconButton>
-        <b>Criar conta</b>
+        <BackButton to='/' />
+
+        <strong>Criar conta</strong>
+
         <div></div>
       </Header>
 
       <Image>
         <Heart />
-        <progress max='100' value='20'></progress>
+
+        <ProgressWrapper>
+          <progress max='100' value={progress}></progress>
+        </ProgressWrapper>
       </Image>
 
       <Main>
-        <b>Seja bem vindo(a)!</b>
+        <strong>Seja bem vindo(a)!</strong>
         <span>Pra começar, qual o seu nome?</span>
       </Main>
 
       <Btn>
-        <Input placeholder='Nome' inputProps={{ 'aria-label': 'description' }} />
+        <Input classes={{ input: 'input-text' }} placeholder='Nome' inputProps={{ 'aria-label': 'nome' }} />
         <Button type='secondary'>Próximo</Button>
       </Btn>
     </Container>
