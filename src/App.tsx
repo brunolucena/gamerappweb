@@ -1,25 +1,38 @@
-import React from 'react';
+import CreateAccount01 from './Components/CreateAccount/CreateAccount01';
 import GlobalStyles from './Styles/GlobalStyles';
-import { ThemeProvider } from '@material-ui/core';
-import { theme } from './Styles/MaterialTheme';
+import Login from './Components/Login';
 import OnboardingHome from './Components/OnboardingHome';
 import PasswordRecovery01 from './Components/PasswordRecovery/PasswordRecovery01';
-import PasswordRecovery02 from './Components/PasswordRecovery/PasswordRecovery02';
-import PasswordRecovery03 from './Components/PasswordRecovery/PasswordRecovery03';
-import PasswordRecovery04 from './Components/PasswordRecovery/PasswordRecovery04';
-import CreateAccount01 from './Components/CreateAccount/CreateAccount01';
-import CreateAccount02 from './Components/CreateAccount/CreateAccount02';
-import CreateAccount03 from './Components/CreateAccount/CreateAccount03';
-import CreateAccount04 from './Components/CreateAccount/CreateAccount04';
-import CreateAccount05 from './Components/CreateAccount/CreateAccount05';
-import Login from './Components/Login';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { theme } from './Styles/MaterialTheme';
+import { ThemeProvider } from '@material-ui/core';
 
 function App() {
+  const isLoggedIn = false;
+
   return (
-    <ThemeProvider theme={theme}>
-      <PasswordRecovery01 />
-      <GlobalStyles />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+
+        <Switch>
+          <Route path='/esqueci-senha'>
+            <PasswordRecovery01 />
+          </Route>
+
+          <Route path='/login'>
+            <Login />
+          </Route>
+
+          <Route path='/criar-conta'>
+            <CreateAccount01 />
+          </Route>
+
+          <Route path='/'>{isLoggedIn ? <div>logado</div> : <OnboardingHome />}</Route>
+        </Switch>
+      </ThemeProvider>
+    </Router>
   );
 }
 export default App;
