@@ -27,4 +27,7 @@ html {
     --black: #000000;
   }
 
+.input-text {
+text-align: center;
+}
 `;

@@ -5,7 +5,6 @@ import Heart from '../Hearts';
 import Button from '../../Button';
 import BackButton from '../../BackButton';
 
-import './styles.css';
 import Progress from '../../Progress';
 
 const CreateAccount01: React.FC = () => {
