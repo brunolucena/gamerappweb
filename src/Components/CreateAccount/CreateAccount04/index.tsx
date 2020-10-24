@@ -10,7 +10,7 @@ const CreateAccount04: React.FC = () => {
   return (
     <Container>
       <Header>
-        <BackButton />
+        <BackButton to='signup/email' />
         <strong>Criar conta</strong>
         <div></div>
       </Header>

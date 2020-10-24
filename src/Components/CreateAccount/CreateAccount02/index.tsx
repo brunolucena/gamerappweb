@@ -10,7 +10,7 @@ const CreateAccount02: React.FC = () => {
   return (
     <Container>
       <Header>
-        <BackButton to='/' />
+        <BackButton to='signup/name' />
 
         <strong>Criar conta</strong>
 
