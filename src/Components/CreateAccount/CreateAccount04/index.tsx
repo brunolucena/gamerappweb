@@ -1,7 +1,7 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Input from '@material-ui/core/Input';
+import BackButton from '../../BackButton';
+import Progress from '../../Progress';
+import TextField from '@material-ui/core/TextField';
 import { Container, Main, Header, Image, Btn } from './styles';
 import Heart from '../Hearts';
 import Button from '../../Button';
@@ -10,16 +10,14 @@ const CreateAccount04: React.FC = () => {
   return (
     <Container>
       <Header>
-        <IconButton aria-label='delete' style={{ alignSelf: 'flex-start' }}>
-          <ArrowBackIcon style={{ color: '#0dac3d' }} />
-        </IconButton>
+        <BackButton />
         <b>Criar conta</b>
         <div></div>
       </Header>
 
       <Image>
         <Heart />
-        <progress max='100' value='80'></progress>
+        <Progress initialValue='60' timeout={500} value='80' />
       </Image>
 
       <Main>
@@ -27,7 +25,7 @@ const CreateAccount04: React.FC = () => {
       </Main>
 
       <Btn>
-        <Input type='password' placeholder='Senha' inputProps={{ 'aria-label': 'description' }} />
+        <TextField className='input-text' inputProps={{ 'aria-label': 'password' }} placeholder='Senha' type='password' />
         <Button type='secondary'>Próximo</Button>
         <span>Li e Concordo com os Termos de Uso e Privacidade</span>
       </Btn>
