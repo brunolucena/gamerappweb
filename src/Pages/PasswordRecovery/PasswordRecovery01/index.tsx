@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Main, TextField2 } from './styles';
-import Button from '../../Button';
+import Button from '../../../Components/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import EmailIcon from '@material-ui/icons/Email';

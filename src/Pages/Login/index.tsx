@@ -1,11 +1,10 @@
 import React from 'react';
 import { Container, Main, Bottom, TextField2, Header } from './styles';
-import Logo from '../Logo/';
-
+import Logo from '../../Components/Logo';
+import Button from '../../Components/Button';
+import BackButton from '../../Components/BackButton';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import BackButton from '../BackButton';
-import Button from '../Button';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 

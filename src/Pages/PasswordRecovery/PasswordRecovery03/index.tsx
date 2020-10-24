@@ -2,9 +2,9 @@ import React from 'react';
 import { Container, Main } from './styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Button from '../../Button';
+import Button from '../../../Components/Button';
 
-const PasswordRecovery02: React.FC = () => {
+const PasswordRecovery03: React.FC = () => {
   return (
     <Container>
       <IconButton aria-label='delete' style={{ alignSelf: 'flex-start' }}>
@@ -12,12 +12,12 @@ const PasswordRecovery02: React.FC = () => {
       </IconButton>
 
       <Main>
-        <b>Código</b>
-        <span>Digite o código recebido no seu e-mail para redefinir a sua senha</span>
-        <Button>Validar código</Button>
+        <b>Nova senha</b>
+        <span>Cadastre a sua nova senha</span>
+        <Button>Cadastrar nova senha</Button>
       </Main>
     </Container>
   );
 };
 
-export default PasswordRecovery02;
+export default PasswordRecovery03;

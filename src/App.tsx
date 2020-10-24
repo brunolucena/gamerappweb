@@ -1,8 +1,8 @@
-import CreateAccountNavigation from './Components/CreateAccount/CreateAccountNavigation';
+import CreateAccountNavigation from './Pages/CreateAccount/CreateAccountNavigation';
 import GlobalStyles from './Styles/GlobalStyles';
-import Login from './Components/Login';
-import OnboardingHome from './Components/OnboardingHome';
-import PasswordRecovery01 from './Components/PasswordRecovery/PasswordRecovery01';
+import Login from './Pages/Login';
+import OnboardingHome from './Pages/OnboardingHome';
+import PasswordRecovery01 from './Pages/PasswordRecovery/PasswordRecovery01';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { theme } from './Styles/MaterialTheme';

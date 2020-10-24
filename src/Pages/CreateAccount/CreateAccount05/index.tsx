@@ -1,17 +1,14 @@
 import React from 'react';
 import { Container, Header, Main, Footer, Img, Content } from './styles';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Button from '../../Button';
+import Button from '../../../Components/Button';
+import BackButton from '../../../Components/BackButton';
 import componentSrc from './componente.png';
 
 const CreateAccount05: React.FC = () => {
   return (
     <Container>
       <Header>
-        <IconButton aria-label='delete' style={{ alignSelf: 'flex-start' }}>
-          <ArrowBackIcon style={{ color: '#0dac3d' }} />
-        </IconButton>
+        <BackButton />
       </Header>
 
       <Main>

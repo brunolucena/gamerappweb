@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Container, Main, Header, Image, Btn } from './styles';
 import Heart from '../Hearts';
-import Button from '../../Button';
-import BackButton from '../../BackButton';
+import Button from '../../../Components/Button';
+import BackButton from '../../../Components/BackButton';
 
-import Progress from '../../Progress';
+import Progress from '../Progress';
 import { useHistory } from 'react-router-dom';
 
 const CreateAccount01: React.FC = () => {

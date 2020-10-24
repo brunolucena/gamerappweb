@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Main, Background, Bottom, Header, LogoReaper } from './styles';
 import ControlSrc from './controls.png';
-import Button from '../Button/';
-import Logo from '../Logo/';
+import Logo from '../../Components/Logo';
+import Button from '../../Components/Button';
 
 const OnboardingHome: React.FC = () => {
   return (

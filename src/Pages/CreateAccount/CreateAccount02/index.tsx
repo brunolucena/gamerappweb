@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import BackButton from '../../BackButton';
-import Progress from '../../Progress';
+import Button from '../../../Components/Button';
+import BackButton from '../../../Components/BackButton';
+import Progress from '../Progress';
 import TextField from '@material-ui/core/TextField';
 import { Container, Main, Header, Image, Btn } from './styles';
 import Heart from '../Hearts';
-import Button from '../../Button';
 
 import { useHistory } from 'react-router-dom';
 

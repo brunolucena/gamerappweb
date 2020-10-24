@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Main, PadLock, Image, Bottom } from './styles';
 import PadLockSrc from './padlock.png';
-import Button from '../../Button';
+import Button from '../../../Components/Button';
 
 const PasswordRecovery04: React.FC = () => {
   return (
