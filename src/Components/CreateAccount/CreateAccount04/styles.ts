@@ -8,7 +8,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding-right: 25px;
-  > b {
+  > strong {
     color: var(--primary);
     font-size: 23px;
     text-align: center;

@@ -11,7 +11,7 @@ const CreateAccount03: React.FC = () => {
     <Container>
       <Header>
         <BackButton />
-        <b>Criar conta</b>
+        <strong>Criar conta</strong>
         <div></div>
       </Header>
 

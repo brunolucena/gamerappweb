@@ -23,7 +23,7 @@ export const Content = styled.div`
   text-align: center;
   padding-top: 10px;
   padding-bottom: 90px;
-  > b {
+  > strong {
     font-size: 55px;
     color: var(--primary);
   }

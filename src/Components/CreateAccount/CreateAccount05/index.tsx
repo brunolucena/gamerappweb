@@ -19,7 +19,7 @@ const CreateAccount05: React.FC = () => {
       </Main>
 
       <Content>
-        <b>Parabéns!</b>
+        <strong>Parabéns!</strong>
         <span>Seja muito bem vindo(a) ao GamerApp!</span>
       </Content>
 
