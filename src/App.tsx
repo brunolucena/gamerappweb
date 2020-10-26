@@ -3,6 +3,7 @@ import GlobalStyles from './Styles/GlobalStyles';
 import Login from './Pages/Login';
 import OnboardingHome from './Pages/OnboardingHome';
 import PasswordRecovery01 from './Pages/PasswordRecovery/PasswordRecovery01';
+import Community from './Pages/Community/Welcome';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { theme } from './Styles/MaterialTheme';
@@ -17,6 +18,10 @@ function App() {
         <GlobalStyles />
 
         <Switch>
+          <Route path='/community'>
+            <Community />
+          </Route>
+
           <Route path='/forgot-password'>
             <PasswordRecovery01 />
           </Route>
