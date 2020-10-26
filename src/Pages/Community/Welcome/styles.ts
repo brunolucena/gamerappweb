@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div``;
 
 export const Img = styled.img`
-  height: 190px;
+  height: auto;
+  max-width: 100%;
 `;
 
 export const Main = styled.div`
@@ -11,6 +12,8 @@ export const Main = styled.div`
   justify-content: center;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
+  bottom: 100px;
 `;
 
 export const Baloon = styled.div`
@@ -24,7 +27,7 @@ export const Baloon = styled.div`
   padding-top: 17px;
   padding-left: 17px;
   padding-right: 17px;
-  position: relative;
+
   gap: 10px;
   ::after {
     content: '';
@@ -35,7 +38,7 @@ export const Baloon = styled.div`
     border-right: 5px solid transparent;
     border-top: 20px solid #fff;
     bottom: -17px;
-    left: 60%;
+    left: 55%;
   }
   > strong {
     padding-left: 10px;
@@ -51,4 +54,21 @@ export const Baloon = styled.div`
     margin-left: 10px;
     margin-right: 90px;
   }
+`;
+
+export const Img2 = styled.img`
+  padding-top: 220px;
+  height: 190px;
+  left: 45%;
+  position: absolute;
+  margin: 0;
+`;
+
+export const Footer = styled.div``;
+
+export const Img3 = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
 `;

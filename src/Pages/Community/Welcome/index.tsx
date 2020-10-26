@@ -1,8 +1,9 @@
 import React from 'react';
 import KeySrc from './cloud.png';
-import { Container, Img, Baloon, Main } from './styles';
+import { Container, Img, Baloon, Main, Img2, Img3, Footer } from './styles';
 import Button from '../../../Components/Button';
-import GamerRex from '../../../Components/GamerRex';
+import GamerRexSrc from '../../../Components/GamerRex/rex.png';
+import TerrainSrc from './terrain.png';
 const Welcome: React.FC = () => {
   return (
     <Container>
@@ -17,8 +18,12 @@ const Welcome: React.FC = () => {
           </span>
           <Button type='secondary'>Sim, vamos lá</Button>
         </Baloon>
+        <Img2 src={GamerRexSrc} />
       </Main>
-      {/* <GamerRex /> */}
+
+      <Footer>
+        <Img3 src={TerrainSrc} />
+      </Footer>
     </Container>
   );
 };
