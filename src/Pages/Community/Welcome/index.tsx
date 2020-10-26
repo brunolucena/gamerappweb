@@ -1,6 +1,6 @@
 import React from 'react';
 import KeySrc from './cloud.png';
-import { Container, Img, Baloon, Main, Img2, Img3, Footer } from './styles';
+import { Container, Img, Baloon, Main, Img2, Img3 } from './styles';
 import Button from '../../../Components/Button';
 import GamerRexSrc from '../../../Components/GamerRex/rex.png';
 import TerrainSrc from './terrain.png';
@@ -20,10 +20,7 @@ const Welcome: React.FC = () => {
         </Baloon>
         <Img2 src={GamerRexSrc} />
       </Main>
-
-      <Footer>
-        <Img3 src={TerrainSrc} />
-      </Footer>
+      <Img3 src={TerrainSrc} />
     </Container>
   );
 };

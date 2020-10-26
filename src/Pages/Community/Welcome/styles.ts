@@ -64,8 +64,6 @@ export const Img2 = styled.img`
   margin: 0;
 `;
 
-export const Footer = styled.div``;
-
 export const Img3 = styled.img`
   position: absolute;
   bottom: 0;
