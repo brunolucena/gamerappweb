@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
-export const Header = styled.div``;
+export const Header = styled.div`
+  background: #f0f0f0;
+  z-index: 2;
+  position: sticky;
+  top: 0;
+`;
 
 export const Btn = styled.div`
   text-align: end;
@@ -32,38 +37,37 @@ export const Text = styled.div`
 `;
 
 export const Main = styled.div`
-  z-index: -1;
-  display: grid;
-  padding-top: 20px;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-`;
-
-export const Column = styled.div`
   display: grid;
   grid-template-columns: auto auto;
-  gap: 20px;
 
-  > div {
+  flex-direction: column;
+  max-height: 100%;
+  background: #ffffff;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  gap: 25px;
+  > button {
     border: solid #000;
     border-radius: 7px;
-    padding: 40px 55px;
+    padding: 30px;
     background: none;
   }
 `;
 
-export const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
+export const Bottom = styled.div`
+  text-align: center;
+  background: #fff;
+  min-width: 100%;
+  height: 65px;
+  position: sticky;
   bottom: 0;
-  height: 60px;
-  background: #ffffff;
-  width: 100%;
-  > button {
+  z-index: 2;
+  button {
     background: none;
-    width: 95%;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;

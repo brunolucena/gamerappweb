@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Text, Footer, Main, Column, Btn } from './styles';
+import { Container, Header, Text, Btn, Bottom, Main } from './styles';
 import Button from '../../../Components/Button';
 import nintendo from './nintendo.png';
 
@@ -17,21 +17,19 @@ const ChoosePlatform: React.FC = () => {
       </Header>
 
       <Main>
-        <Column>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </Column>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
       </Main>
 
-      <Footer>
+      <Bottom>
         <Button type='secondary'>Próximo</Button>
-      </Footer>
+      </Bottom>
     </Container>
   );
 };
