@@ -39,8 +39,9 @@ export const Text = styled.div`
 export const Main = styled.div`
   display: grid;
   grid-template-columns: auto auto;
+
   flex-direction: column;
-  min-height: 100%;
+  max-height: 100%;
   background: #ffffff;
   padding-top: 10px;
   padding-left: 10px;
@@ -55,17 +56,13 @@ export const Main = styled.div`
 `;
 
 export const Bottom = styled.div`
-  overflow: hidden;
-  position: sticky;
   text-align: center;
   background: #fff;
   min-width: 100%;
   height: 65px;
+  position: fixed;
   bottom: 0;
   z-index: 2;
-  @media (min-height: 620px) {
-    position: fixed;
-  }
   button {
     background: none;
     width: 100%;
