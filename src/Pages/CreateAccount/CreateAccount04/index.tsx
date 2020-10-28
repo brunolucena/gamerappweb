@@ -35,7 +35,7 @@ const CreateAccount04: React.FC = () => {
   return (
     <Container>
       <Header>
-        <BackButton to='signup/email' />
+        <BackButton to='/signup/email' />
         <strong>Criar conta</strong>
         <div></div>
       </Header>
