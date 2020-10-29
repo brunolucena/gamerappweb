@@ -63,6 +63,9 @@ export const Bottom = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 2;
+  @media (min-height: 620px) {
+    position: fixed;
+  }
   button {
     background: none;
     width: 100%;
