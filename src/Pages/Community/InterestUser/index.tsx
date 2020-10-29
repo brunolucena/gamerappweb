@@ -18,7 +18,10 @@ const InterestUser: React.FC = () => {
       <Main></Main>
 
       <Bottom>
-        <Button type='secondary'>Próximo</Button>
+        <Button type='secondary'>
+          {/* {isSelected ? 'selected' : 'not selected'} */}
+          Próximo
+        </Button>
       </Bottom>
     </Container>
   );

@@ -1,34 +1,46 @@
+import KeySrc from './cloud.png';
 import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  background-image: url(${KeySrc});
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: contain;
+`;
 
 export const Container = styled.div``;
 
 export const Img = styled.img`
   height: auto;
-  max-width: 100%;
+  width: 100%;
 `;
 
 export const Main = styled.div`
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-  position: relative;
-  bottom: 100px;
 `;
 
 export const Baloon = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin: auto;
   background: #fff;
   border-radius: 15px;
-  width: 290px;
+  max-width: 290px;
   height: 165px;
   padding-top: 17px;
-  padding-left: 17px;
-  padding-right: 17px;
-
+  padding-left: 27px;
+  padding-right: 27px;
   gap: 10px;
+
   ::after {
     content: '';
     width: 0;
@@ -40,33 +52,27 @@ export const Baloon = styled.div`
     bottom: -17px;
     left: 55%;
   }
+
   > strong {
-    padding-left: 10px;
     font-size: 27px;
     font-weight: 700;
   }
-  > span {
-    padding-left: 10px;
+
+  > p {
     font-size: 12px;
     color: #606060;
   }
-  > button {
-    margin-left: 10px;
-    margin-right: 90px;
+
+  > a {
+    align-self: flex-start;
   }
 `;
 
 export const Img2 = styled.img`
-  padding-top: 220px;
   height: 190px;
-  left: 45%;
-  position: absolute;
-  margin: 0;
+  margin: 25px 0 0 120px;
 `;
 
 export const Img3 = styled.img`
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  margin: 0;
 `;

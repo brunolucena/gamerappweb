@@ -1,26 +1,34 @@
 import React from 'react';
-import KeySrc from './cloud.png';
-import { Container, Img, Baloon, Main, Img2, Img3 } from './styles';
+import { Container, Img, Baloon, Main, Img2, Img3, Wrapper } from './styles';
 import Button from '../../../Components/Button';
 import GamerRexSrc from '../../../Components/GamerRex/rex.png';
 import TerrainSrc from './terrain.png';
+
 const Welcome: React.FC = () => {
   return (
     <Container>
-      <Img src={KeySrc} />
+      <Wrapper>
+        <div style={{ height: 100 }} />
 
-      <Main>
-        <Baloon>
-          <strong>Bem vindo(a)!</strong>
+        <Main>
+          <Baloon>
+            <strong>Bem vindo(a)!</strong>
 
-          <span>
-            Conheça novos jogadores, troque e compre games, veja reviews, acumule pontos e muito mais! Está preparado(a)?
-          </span>
-          <Button type='secondary'>Sim, vamos lá</Button>
-        </Baloon>
-        <Img2 src={GamerRexSrc} />
-      </Main>
-      <Img3 src={TerrainSrc} />
+            <p>
+              Conheça novos jogadores, troque e <br /> compre games, veja reviews, acumule <br /> pontos e muito mais! Está
+              preparado(a)?
+            </p>
+
+            <Button to='/community/chooseplatform' type='secondary'>
+              Sim, vamos lá
+            </Button>
+          </Baloon>
+
+          <Img2 src={GamerRexSrc} />
+        </Main>
+
+        <Img3 src={TerrainSrc} />
+      </Wrapper>
     </Container>
   );
 };

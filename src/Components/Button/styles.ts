@@ -22,4 +22,5 @@ export const BtnStyles = styled.div<{ type2?: string }>`
   background: ${({ type2 }) => (type2 ? handleColorType(type2) : 'var(--primary)')};
   color: white;
   font-weight: bold;
+  white-space: nowrap;
 `;

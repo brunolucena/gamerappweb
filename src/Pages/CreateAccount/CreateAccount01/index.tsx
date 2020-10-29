@@ -54,21 +54,23 @@ const CreateAccount01: React.FC = () => {
         <span>Pra começar, qual o seu nome?</span>
       </Main>
 
-      <Btn>
-        <TextField
-          className='input-text'
-          inputProps={{ 'aria-label': 'nome' }}
-          helperText={error ? 'Campo obrigatório' : ''}
-          error={error}
-          onChange={onChange}
-          placeholder='Nome'
-          value={value}
-        />
+      <form onSubmit={onClick}>
+        <Btn>
+          <TextField
+            className='input-text'
+            inputProps={{ 'aria-label': 'nome' }}
+            helperText={error ? 'Campo obrigatório' : ''}
+            error={error}
+            onChange={onChange}
+            placeholder='Nome'
+            value={value}
+          />
 
-        <Button onClick={onClick} type='secondary'>
-          Próximo
-        </Button>
-      </Btn>
+          <Button buttonType='submit' type='secondary'>
+            Próximo
+          </Button>
+        </Btn>
+      </form>
     </Container>
   );
 };
