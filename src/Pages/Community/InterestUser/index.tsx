@@ -11,11 +11,13 @@ const InterestUser: React.FC = () => {
         </Btn>
         <Text>
           <strong>Quais são seus interesses?</strong>
-          <span>Veja só o que te interessa mais! Ah, você pode alterar depois!</span>
+          <p>Veja só o que te interessa mais! Ah, você pode alterar depois!</p>
         </Text>
       </Header>
 
-      <Main></Main>
+      <Main>
+        <button>teste</button>
+      </Main>
 
       <Bottom>
         <Button type='secondary'>

@@ -77,7 +77,7 @@ const ChoosePlatform: React.FC = () => {
         </Btn>
         <Text>
           <strong>Escolha sua plataforma</strong>
-          <span>Pode ser mais de uma, ok?</span>
+          <p>Pode ser mais de uma, ok?</p>
         </Text>
       </Header>
 
@@ -99,7 +99,6 @@ const ChoosePlatform: React.FC = () => {
           );
         })}
       </Main>
-
       <Bottom>
         <Button to='/community/interests' type='secondary'>
           Próximo

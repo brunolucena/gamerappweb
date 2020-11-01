@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Img, Baloon, Main, Img2, Img3, Wrapper } from './styles';
+import { Container, Baloon, Main, Img2, Img3, Wrapper } from './styles';
 import Button from '../../../Components/Button';
 import GamerRexSrc from '../../../Components/GamerRex/rex.png';
 import TerrainSrc from './terrain.png';
