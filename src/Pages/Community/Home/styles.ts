@@ -46,4 +46,16 @@ export const Selection = styled.div`
   }
 `;
 
-export const Post = styled.div``;
+export const Footer = styled.div`
+  max-width: 100vh;
+  background: var(--white);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  bottom: 0;
+  box-shadow: 0px 0px 15px 0px #29000024;
+  p {
+    font-size: 10px;
+    line-height: 20px;
+  }
+`;

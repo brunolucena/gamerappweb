@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Logo, Trophy, Pirate, Selection } from './styles';
+import { Container, Header, Logo, Trophy, Pirate, Selection, Footer } from './styles';
 import SearchIcon from '../../../Components/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import LogoSrc from '../../../Components/Logo/gamerlogo.png';
@@ -33,6 +33,16 @@ const Home: React.FC = () => {
       </Selection>
 
       <Post></Post>
+      <Post></Post>
+      <Post></Post>
+      <Post></Post>
+      <Footer>
+        <p>Home</p>
+        <p>Loja</p>
+        <p>Marketplace</p>
+        <p>Trocas</p>
+        <p>Mais</p>
+      </Footer>
     </Container>
   );
 };
