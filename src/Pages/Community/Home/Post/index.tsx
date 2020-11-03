@@ -23,10 +23,15 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import GameSrc from '../assets/game.png';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import MessageIcon from '@material-ui/icons/Message';
+import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
 import ShareIcon from '@material-ui/icons/Share';
 import FavoriteSrc from '../assets/favorite.png';
-const Post: React.FC = () => {
+
+interface Props {
+  iconColor?: string;
+}
+
+const Post: React.FC<Props> = ({ iconColor }) => {
   return (
     <Container>
       <Header>
@@ -46,7 +51,7 @@ const Post: React.FC = () => {
         <WrapperButton>
           <p>Reviews</p>
           <Menu>
-            <MoreVertIcon />
+            <MoreVertIcon style={{ fontSize: '20px' }} />
           </Menu>
         </WrapperButton>
       </Header>
@@ -74,14 +79,14 @@ const Post: React.FC = () => {
       </Main>
 
       <Footer>
-        <ArrowUpwardIcon />
+        <ArrowUpwardIcon style={{ color: iconColor || '#5c5c5c' }} />
         <p>10k</p>
-        <ArrowDownwardIcon />
+        <ArrowDownwardIcon style={{ color: iconColor || '#5c5c5c' }} />
         <p>5k</p>
-        <MessageIcon />
+        <MessageOutlinedIcon style={{ color: iconColor || '#5c5c5c' }} />
         <p>420</p>
         <p></p>
-        <ShareIcon />
+        <ShareIcon style={{ color: iconColor || '#5c5c5c' }} />
         <span></span>
         <Favorite src={FavoriteSrc} />
       </Footer>

@@ -7,7 +7,6 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  max-width: 100vh;
   padding: 10px 15px;
 `;
 
@@ -17,11 +16,10 @@ export const Pirate = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  display: grid;
   gap: 2px;
 `;
 export const Top = styled.div`
-  gap: 3px;
+  gap: 5px;
   display: flex;
   > p {
     font-size: 13px;
@@ -34,7 +32,7 @@ export const Top = styled.div`
   }
 
   > button {
-    font-size: 11px;
+    font-size: 12px;
     background: none;
     border: none;
     color: #279f20;
@@ -53,12 +51,12 @@ export const Bot = styled.div`
 
 export const Time = styled.div`
   font-size: 10px;
-  line-height: 12px;
+  line-height: 10px;
   font-weight: 400;
 `;
 
 export const Tag = styled.div`
-  font-size: 11px;
+  font-size: 10px;
   line-height: 10px;
   font-weight: 400;
   color: #1563ce;
@@ -70,7 +68,8 @@ export const WrapperButton = styled.div`
   position: absolute;
   right: 0;
   p {
-    padding: 4px;
+    padding: 6px;
+    line-height: 5px;
     font-size: 9px;
     background: var(--background);
     border: 1px;
@@ -135,6 +134,7 @@ export const Footer = styled.div`
   padding: 10px 7px;
   margin-bottom: 10px;
   p {
+    color: var(--grey);
     line-height: 12px;
     font-weight: 400;
     font-size: 10px;
