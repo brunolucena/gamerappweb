@@ -20,7 +20,6 @@ export const Header = styled.div`
 
 export const Logo = styled.img`
   width: 125px;
-  background: #099a35;
 `;
 
 export const Trophy = styled.img`

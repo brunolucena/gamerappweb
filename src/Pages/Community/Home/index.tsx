@@ -1,15 +1,11 @@
 import React from 'react';
 import { Container, Header, Logo, Trophy, Pirate, Selection, Footer } from './styles';
-import SearchIcon from '../../../Components/Search';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import LogoSrc from '../../../Components/Logo/gamerlogo.png';
+import Search from '../../../Components/Search';
+import Notification from '../../../Components/Notification';
+import LogoSrc from '../../../Components/LogoGreen/Logo.png';
 import TrophySrc from './assets/trophy.png';
 import PirateSrc from './assets/pirate.png';
 import Post from './Post';
-
-interface Props {
-  iconColor?: string;
-}
 
 const Home: React.FC = () => {
   return (
@@ -18,11 +14,11 @@ const Home: React.FC = () => {
         <p />
         <p />
         <Pirate src={PirateSrc} />
-        <SearchIcon />
+        <Search />
         <div />
         <Logo src={LogoSrc} />
         <div />
-        <NotificationsIcon />
+        <Notification />
         <Trophy src={TrophySrc} />
         <p />
         <p />
