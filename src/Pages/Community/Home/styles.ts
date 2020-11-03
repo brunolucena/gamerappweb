@@ -58,3 +58,17 @@ export const Footer = styled.div`
     line-height: 20px;
   }
 `;
+
+export const Icons = styled.div``;
+
+export const Store = styled.img`
+  width: 20px;
+`;
+
+export const Shop = styled.img`
+  width: 18px;
+`;
+
+export const Trade = styled.img`
+  width: 18px;
+`;
