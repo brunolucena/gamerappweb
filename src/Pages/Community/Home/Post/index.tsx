@@ -24,7 +24,7 @@ import GameSrc from '../assets/game.png';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
-import ShareIcon from '@material-ui/icons/Share';
+import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import FavoriteSrc from '../assets/favorite.png';
 
 interface Props {
@@ -86,7 +86,7 @@ const Post: React.FC<Props> = ({ iconColor }) => {
         <MessageOutlinedIcon style={{ color: iconColor || '#5c5c5c' }} />
         <p>420</p>
         <p></p>
-        <ShareIcon style={{ color: iconColor || '#5c5c5c' }} />
+        <ShareOutlinedIcon style={{ color: iconColor || '#5c5c5c' }} />
         <span></span>
         <Favorite src={FavoriteSrc} />
       </Footer>
