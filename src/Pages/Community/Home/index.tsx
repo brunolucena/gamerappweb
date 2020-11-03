@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Logo, Trophy, Pirate, Selection, Footer, Icons, Store, Shop, Trade } from './styles';
+import { Container, Header, Logo, Trophy, Pirate, Selection, Footer, Icons, Store, Shop, Trade, Names } from './styles';
 import Search from '../../../Components/Search';
 import Notification from '../../../Components/Notification';
 import LogoSrc from '../../../Components/LogoGreen/Logo.png';
@@ -39,17 +39,18 @@ const Home: React.FC = () => {
       <Footer>
         <Icons>
           <HomeOutlinedIcon />
-          <MenuIcon />
           <Store src={StoreSrc} />
           <Shop src={ShopSrc} />
           <Trade src={TradeSrc} />
+          <MenuIcon />
         </Icons>
-
-        <p>Home</p>
-        <p>Loja</p>
-        <p>Marketplace</p>
-        <p>Trocas</p>
-        <p>Mais</p>
+        <Names>
+          <p>Home</p>
+          <p>Loja</p>
+          <p>Marketplace</p>
+          <p>Trocas</p>
+          <p>Mais</p>
+        </Names>
       </Footer>
     </Container>
   );
