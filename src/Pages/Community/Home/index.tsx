@@ -11,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import StoreSrc from './assets/loja.png';
 import ShopSrc from './assets/shop.png';
 import TradeSrc from './assets/joystick.png';
+
 const Home: React.FC = () => {
   return (
     <Container>
@@ -38,11 +39,25 @@ const Home: React.FC = () => {
       <Post></Post>
       <Footer>
         <Icons>
-          <HomeOutlinedIcon />
-          <Store src={StoreSrc} />
-          <Shop src={ShopSrc} />
-          <Trade src={TradeSrc} />
-          <MenuIcon />
+          <button>
+            <HomeOutlinedIcon />
+          </button>
+          <button>
+            {' '}
+            <Store src={StoreSrc} />
+          </button>
+          <button>
+            {' '}
+            <Shop src={ShopSrc} />
+          </button>
+          <button>
+            {' '}
+            <Trade src={TradeSrc} />
+          </button>
+          <button>
+            {' '}
+            <MenuIcon />
+          </button>
         </Icons>
         <Names>
           <p>Home</p>

@@ -55,6 +55,10 @@ export const Footer = styled.div`
 export const Icons = styled.div`
   justify-content: space-between;
   display: flex;
+  > button {
+    background: none;
+    border: none;
+  }
 `;
 
 export const Store = styled.img`

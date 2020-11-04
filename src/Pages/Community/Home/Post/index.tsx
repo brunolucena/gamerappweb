@@ -17,6 +17,11 @@ import {
   Text3,
   Footer,
   Favorite,
+  Like,
+  Dislike,
+  Message,
+  WrapperLeft,
+  WrapperRight,
 } from './styles';
 import PirateSrc from '../assets/pirate.png';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -79,16 +84,35 @@ const Post: React.FC<Props> = ({ iconColor }) => {
       </Main>
 
       <Footer>
-        <ArrowUpwardIcon style={{ color: iconColor || '#5c5c5c' }} />
-        <p>10k</p>
-        <ArrowDownwardIcon style={{ color: iconColor || '#5c5c5c' }} />
-        <p>5k</p>
-        <MessageOutlinedIcon style={{ color: iconColor || '#5c5c5c' }} />
-        <p>420</p>
-        <p></p>
-        <ShareOutlinedIcon style={{ color: iconColor || '#5c5c5c' }} />
-        <span></span>
-        <Favorite src={FavoriteSrc} />
+        <WrapperLeft>
+          <Like>
+            <button>
+              <ArrowUpwardIcon style={{ color: iconColor || '#5c5c5c', fontSize: '20px' }} />
+            </button>
+            <p>10k</p>
+          </Like>
+
+          <Dislike>
+            <button>
+              <ArrowDownwardIcon style={{ color: iconColor || '#5c5c5c', fontSize: '20px' }} />
+            </button>
+            <p>5k</p>
+          </Dislike>
+
+          <Message>
+            <button>
+              <MessageOutlinedIcon style={{ color: iconColor || '#5c5c5c', fontSize: '22px' }} />
+            </button>
+            <p>420</p>
+          </Message>
+        </WrapperLeft>
+
+        <WrapperRight>
+          <button>
+            <ShareOutlinedIcon style={{ color: iconColor || '#5c5c5c', fontSize: '20px' }} />
+          </button>
+          <Favorite src={FavoriteSrc} />
+        </WrapperRight>
       </Footer>
     </Container>
   );
