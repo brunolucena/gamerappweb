@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Logo, Trophy, Pirate, Selection, Footer, Icons, Store, Shop, Trade, Names } from './styles';
+import { Container, Header, Logo, Trophy, Pirate, Selection, Footer, Icons, Store, Shop, Trade } from './styles';
 import Search from '../../../Components/Search';
 import Notification from '../../../Components/Notification';
 import LogoSrc from '../../../Components/LogoGreen/Logo.png';
@@ -12,7 +12,11 @@ import StoreSrc from './assets/loja.png';
 import ShopSrc from './assets/shop.png';
 import TradeSrc from './assets/joystick.png';
 
-const Home: React.FC = () => {
+interface Props {
+  iconColor?: string;
+}
+
+const Home: React.FC<Props> = ({ iconColor }) => {
   return (
     <Container>
       <Header>
@@ -40,32 +44,26 @@ const Home: React.FC = () => {
       <Footer>
         <Icons>
           <button>
-            <HomeOutlinedIcon />
+            <HomeOutlinedIcon style={{ color: iconColor || '#202020', fontSize: '25px' }} />
+            {'Home'}
           </button>
           <button>
-            {' '}
             <Store src={StoreSrc} />
+            {'Loja'}
           </button>
           <button>
-            {' '}
             <Shop src={ShopSrc} />
+            {'Marketplace'}
           </button>
           <button>
-            {' '}
             <Trade src={TradeSrc} />
+            {'Trocas'}
           </button>
           <button>
-            {' '}
-            <MenuIcon />
+            <MenuIcon style={{ color: iconColor || '#202020', fontSize: '25px' }} />
+            {'Mais'}
           </button>
         </Icons>
-        <Names>
-          <p>Home</p>
-          <p>Loja</p>
-          <p>Marketplace</p>
-          <p>Trocas</p>
-          <p>Mais</p>
-        </Names>
       </Footer>
     </Container>
   );

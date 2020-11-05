@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  max-height: 100vh;
-`;
+export const Container = styled.div``;
 
 export const Header = styled.div`
   position: sticky;
@@ -47,37 +45,37 @@ export const Selection = styled.div`
 
 export const Footer = styled.div`
   background: var(--white);
-  padding: 10px 10px;
+  padding-top: 5px;
+  padding-left: px;
+  padding-right: px;
   bottom: 0;
   box-shadow: 0px 0px 15px 0px #29000024;
 `;
 
 export const Icons = styled.div`
-  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
+  justify-content: space-between;
   > button {
+    height: 60px;
+    width: 40px;
     background: none;
     border: none;
+    font-size: 11px;
+    cursor: pointer;
   }
 `;
 
 export const Store = styled.img`
-  width: 18px;
+  width: 21px;
 `;
 
 export const Shop = styled.img`
-  width: 18px;
+  width: 17px;
+  justify-content: center;
 `;
 
 export const Trade = styled.img`
-  width: 18px;
-`;
-
-export const Names = styled.div`
-  display: flex;
-  justify-content: space-between;
-  p {
-    font-size: 10px;
-    line-height: 20px;
-  }
+  width: 16px;
 `;

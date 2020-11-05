@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #fff;
-  max-height: 100vh;
 `;
 
 export const Header = styled.div`
@@ -105,7 +104,7 @@ export const Text = styled.div`
 
 export const Text2 = styled.div`
   display: flex;
-  justify-content: space-around;
+  gap: 40px;
   margin-top: 25px;
   margin-right: 30px;
   strong {
@@ -119,7 +118,7 @@ export const Text2 = styled.div`
 `;
 export const Text3 = styled.div`
   display: flex;
-  justify-content: space-around;
+  gap: 20px;
   > p {
     font-size: 8px;
     line-height: 7px;

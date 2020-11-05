@@ -111,7 +111,9 @@ const Post: React.FC<Props> = ({ iconColor }) => {
           <button>
             <ShareOutlinedIcon style={{ color: iconColor || '#5c5c5c', fontSize: '20px' }} />
           </button>
-          <Favorite src={FavoriteSrc} />
+          <button>
+            <Favorite src={FavoriteSrc} />
+          </button>
         </WrapperRight>
       </Footer>
     </Container>
