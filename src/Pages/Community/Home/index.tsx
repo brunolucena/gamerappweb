@@ -2,16 +2,16 @@ import React from 'react';
 import { Container, Header, Logo, Trophy, Pirate, Selection, Footer, Icons, Store, Shop, Trade } from './styles';
 import Search from '../../../Components/Search';
 import Notification from '../../../Components/Notification';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import MenuIcon from '@material-ui/icons/Menu';
 import LogoSrc from '../../../Components/LogoGreen/Logo.png';
 import TrophySrc from './assets/trophy.png';
 import PirateSrc from './assets/pirate.png';
-import Post from './Post';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import MenuIcon from '@material-ui/icons/Menu';
 import StoreSrc from './assets/loja.png';
 import ShopSrc from './assets/shop.png';
 import TradeSrc from './assets/joystick.png';
-
+import Review from './Review';
+import NewLevel from './NewLevel';
 interface Props {
   iconColor?: string;
 }
@@ -37,10 +37,9 @@ const Home: React.FC<Props> = ({ iconColor }) => {
         <button>Reviews</button>
       </Selection>
 
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
+      <NewLevel></NewLevel>
+      <Review></Review>
+
       <Footer>
         <Icons>
           <button>

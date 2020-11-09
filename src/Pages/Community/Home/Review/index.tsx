@@ -36,7 +36,7 @@ interface Props {
   iconColor?: string;
 }
 
-const Post: React.FC<Props> = ({ iconColor }) => {
+const Review: React.FC<Props> = ({ iconColor }) => {
   return (
     <Container>
       <Header>
@@ -119,4 +119,4 @@ const Post: React.FC<Props> = ({ iconColor }) => {
     </Container>
   );
 };
-export default Post;
+export default Review;
