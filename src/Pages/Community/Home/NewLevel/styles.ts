@@ -85,3 +85,68 @@ export const Menu = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const Footer = styled.div`
+  box-shadow: 0px 0px 15px 0px #29000024;
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 10px;
+  margin-bottom: 10px;
+`;
+
+export const WrapperLeft = styled.div`
+  display: flex;
+  gap: 20px;
+  p {
+    color: var(--grey);
+    line-height: 22px;
+    font-weight: 400;
+    font-size: 10px;
+  }
+`;
+
+export const Like = styled.div`
+  display: flex;
+  gap: 5px;
+  button {
+    border: solid 0.5px #5c5c5c;
+    background: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+`;
+
+export const Dislike = styled.div`
+  display: flex;
+  gap: 5px;
+  button {
+    border: solid 0.5px #5c5c5c;
+    background: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+`;
+
+export const Message = styled.div`
+  display: flex;
+  gap: 5px;
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+`;
+
+export const WrapperRight = styled.div`
+  gap: 15px;
+  display: flex;
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+`;
+
+export const Favorite = styled.img`
+  height: 20px;
+`;
