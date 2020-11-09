@@ -84,7 +84,7 @@ export const Menu = styled.button`
 
 export const Main = styled.div`
   display: flex;
-  padding: 10px 5px;
+  padding: 10px 5px 15px;
 `;
 
 export const Game = styled.img`
@@ -126,7 +126,7 @@ export const Text3 = styled.div`
 `;
 
 export const Footer = styled.div`
-  box-shadow: 0px 0px 15px 0px #29000024;
+  box-shadow: 0px 0px 5px 0px #f0f0f0;
   display: flex;
   justify-content: space-between;
   padding: 7px 10px;

@@ -49,7 +49,7 @@ export const Footer = styled.div`
   padding-left: px;
   padding-right: px;
   bottom: 0;
-  box-shadow: 0px 0px 15px 0px #29000024;
+  box-shadow: 0px 0px 5px 0px #29000024;
 `;
 
 export const Icons = styled.div`

@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  padding: 10px 0px 10px 15px;
+  padding: 10px 0px 15px 15px;
   display: flex;
   justify-content: space-between;
 `;
@@ -20,7 +20,6 @@ export const Pirate = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  background: #e2e;
   width: 165px;
 `;
 export const Top = styled.div`
@@ -28,9 +27,9 @@ export const Top = styled.div`
   gap: 1px;
 
   > p {
-    font-size: 13px;
-    line-height: 13px;
-    font-weight: 500;
+    font-size: 12px;
+    line-height: 10px;
+    font-weight: 600;
   }
   > span {
     font-size: 15px;
@@ -42,7 +41,7 @@ export const Top = styled.div`
 export const Bot = styled.div`
   p {
     font-size: 10px;
-    line-height: 9px;
+    line-height: 20px;
   }
 `;
 
@@ -76,9 +75,7 @@ export const Confetti = styled.img`
   width: 25px;
 `;
 
-export const WrapperButton = styled.div`
-  background: #d4d4;
-`;
+export const WrapperButton = styled.div``;
 
 export const Menu = styled.button`
   background: none;
@@ -87,7 +84,7 @@ export const Menu = styled.button`
 `;
 
 export const Footer = styled.div`
-  box-shadow: 0px 0px 15px 0px #29000024;
+  box-shadow: 0px 0px 5px 0px #f0f0f0;
   display: flex;
   justify-content: space-between;
   padding: 7px 10px;
