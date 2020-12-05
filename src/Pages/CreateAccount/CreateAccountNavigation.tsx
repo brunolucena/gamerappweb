@@ -5,6 +5,7 @@ import CreateAccount02 from './CreateAccount02';
 import CreateAccount03 from './CreateAccount03';
 import CreateAccount04 from './CreateAccount04';
 import CreateAccount05 from './CreateAccount05';
+import Tutorial from './Tutorial';
 
 function CreateAccountNavigation() {
   return (
@@ -23,6 +24,10 @@ function CreateAccountNavigation() {
 
       <Route path='/signup/finish'>
         <CreateAccount05 />
+      </Route>
+
+      <Route path='/signup/tutorial'>
+        <Tutorial />
       </Route>
 
       <Route path='/signup'>
