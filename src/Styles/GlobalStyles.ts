@@ -33,4 +33,13 @@ html {
         text-align: center;
     }
 }
+
+.switch-wrapper {
+    position: relative;
+  }
+  
+  .switch-wrapper > div {
+    position: absolute;
+    width: 100%;
+  }
 `;
