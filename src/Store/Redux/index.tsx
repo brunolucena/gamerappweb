@@ -8,6 +8,7 @@ import configuration, {
 import productDetails, {
 	ProductDetailsState,
 } from 'Modules/Loja/Store/Ducks/ProductDetails';
+import storeSearch, { SearchState } from 'Modules/Loja/Store/Ducks/Search';
 import session, { SessionState } from 'Modules/Loja/Store/Ducks/Session';
 import sessionDetails, {
 	SessionDetailsState,
@@ -22,6 +23,7 @@ export interface ReduxStore {
 	storeProductDetails: ProductDetailsState;
 	storeBanners: BannersState;
 	storeSession: SessionState;
+	storeSearch: SearchState;
 }
 
 const reducers: any = {
@@ -32,6 +34,7 @@ const reducers: any = {
 	productDetails,
 	banners,
 	session,
+	storeSearch
 };
 
 export default reducers;
