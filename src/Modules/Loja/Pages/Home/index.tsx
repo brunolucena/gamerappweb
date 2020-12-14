@@ -3,10 +3,13 @@ import ContentSlider, { Item } from 'Components/ContentSlider';
 import SectionStore from 'Components/SectionStore';
 import CardStore from 'Components/CardStore';
 import React, { useEffect } from 'react';
+import { loadConfiguration } from '../../Store/Ducks/Configuration';
 import './styles.scss';
-import Axios from 'axios';
+import axios from "axios";
+import { useDispatch } from 'react-redux';
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
   const items: Array<Item> = [
     {
       id: '1',
@@ -22,9 +25,28 @@ const Home: React.FC = () => {
     },
   ];
 
+  const getConfigutarion = async () => {
+    try {
+      axios({
+        method: 'get',
+        url: 'https://gamerapp-api-dev.azurewebsites.net/StoreProduct/Config/v1',
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        }
+      })
+      .then(response => console.log('teste: ', response))
+
+    } catch(err) {
+        // TODO
+        // adicionar tratamento da exceção
+        console.error(err);
+    }
+};
+
   useEffect(() => {
-    Axios.get('https://gamerapp-api-dev.azurewebsites.net/StoreProduct/Config/v1')
-    .then(response => console.log('teste:', response))
+    getConfigutarion()
+    dispatch(loadConfiguration())
   }, [])
 
   return (
