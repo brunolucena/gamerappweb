@@ -4,13 +4,17 @@ import { Action } from 'Store/Models/ReduxModels';
 import { Environments } from 'Store/Models/ConfigModels';
 import { fakeBackend } from './Mock/fake-backend';
 
-export type UrlApis = '' | 'local' | 'postman' | 'viacep' | 'paypal';
+export type UrlApis = '' | 'development' | 'local' | 'postman' | 'viacep' | 'paypal';
 
 function getClient(client: UrlApis, environment: Environments) {
   let baseURL = 'https://gamerapp-api.azurewebsites.net';
   let responseType: ResponseType = 'json';
 
   switch (client) {
+    case 'development':
+      baseURL = 'https://gamerapp-api-dev.azurewebsites.net';
+      break;
+
     case 'local': {
       baseURL = 'http://192.168.0.14:3000';
       break;
