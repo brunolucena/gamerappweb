@@ -1,7 +1,7 @@
 import AccountRoutes from 'Modules/Account/AccountRoutes';
 import CommunityNavigation from './Pages/Community/CommunityNavigation';
 import React from 'react';
-import StoureRoutes from 'Modules/Store/StoreRoutes';
+import StoureRoutes from 'Modules/Loja/StoreRoutes';
 // @ts-ignore
 import { AnimatedSwitch } from 'react-router-transition';
 import { Route } from 'react-router-dom';
