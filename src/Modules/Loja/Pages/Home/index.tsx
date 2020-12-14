@@ -1,15 +1,17 @@
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
-import SectionStore from 'Components/SectionStore';
-import CardStore from 'Components/CardStore';
+import { loadConfiguration } from 'Modules/Loja/Store/Ducks/Configuration';
 import React, { useEffect } from 'react';
-import { loadConfiguration } from '../../Store/Ducks/Configuration';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReduxStore } from 'Store/Redux';
+import CardStore from 'Components/CardStore';
+import SectionStore from 'Components/SectionStore';
 import './styles.scss';
-import axios from "axios";
-import { useDispatch } from 'react-redux';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
+  const { sessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
+
   const items: Array<Item> = [
     {
       id: '1',
@@ -25,29 +27,11 @@ const Home: React.FC = () => {
     },
   ];
 
-  const getConfigutarion = async () => {
-    try {
-      axios({
-        method: 'get',
-        url: 'https://gamerapp-api-dev.azurewebsites.net/StoreProduct/Config/v1',
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        }
-      })
-      .then(response => console.log('teste: ', response))
-
-    } catch(err) {
-        // TODO
-        // adicionar tratamento da exceção
-        console.error(err);
-    }
-};
+  console.log({ sessions });
 
   useEffect(() => {
-    getConfigutarion()
-    dispatch(loadConfiguration())
-  }, [])
+    dispatch(loadConfiguration());
+  }, [dispatch]);
 
   return (
     <div className='home-container'>
