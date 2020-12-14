@@ -6,12 +6,12 @@ import sessionDetailsSaga from '../Sagas/SessionDetails';
 import searchSaga from '../Sagas/Search';
 
 const StoreSagas = [
-	configurationSaga,
-	bannerSaga,
-	productDetailsSaga,
-	sessionSaga,
-	sessionDetailsSaga,
-	searchSaga,
+  ...bannerSaga,
+  ...configurationSaga,
+  ...productDetailsSaga,
+  ...searchSaga,
+  ...sessionDetailsSaga,
+  ...sessionSaga,
 ];
 
 export default StoreSagas;
