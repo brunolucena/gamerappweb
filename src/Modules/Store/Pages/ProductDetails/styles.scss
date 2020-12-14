@@ -1,0 +1,14 @@
+.product-details-container {
+  .content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    padding: 60px 0;
+
+    > .left {
+      max-width: 300px;
+      display: flex;
+      flex-flow: column;
+    }
+  }
+}
