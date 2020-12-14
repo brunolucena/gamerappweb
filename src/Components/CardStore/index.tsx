@@ -4,15 +4,16 @@ import StringFormat from 'Utils/StringFormat';
 import { Grid } from '@material-ui/core';
 import IconPlatform from 'Components/IconsPlatform';
 import TimerIcon from '@material-ui/icons/Timer';
-import Button from 'Components/Button';
+import moment from 'moment';
 
 interface Props {
     banner: string;
     title: string;
-    discount: number;
+    discount: any;
     value: number;
     platform: Array<string>;
-    duration: string;
+    duration: any;
+    pay: string
 }
 
 const CardStore: React.FC<Props> = (props) => {
@@ -35,10 +36,10 @@ const CardStore: React.FC<Props> = (props) => {
                 <Grid item xs={12} md={12}>
                     <p className="title">{props.title}</p>
                 </Grid>
-                <Grid item xs={4} md={4}>
+                <Grid item xs={6} md={6}>
                     <span className="badge --primary">-{props.discount}%</span>
                 </Grid>
-                <Grid item xs={3} md={3}>
+                <Grid item xs={6} md={6}>
                     <span>R${StringFormat.formatToMonetary(props.value)}</span>
                 </Grid>
             </Grid>
@@ -52,7 +53,7 @@ const CardStore: React.FC<Props> = (props) => {
                     <IconPlatform name="steam"/>
                 </Grid>
                 <Grid item xs={6} md={6}>
-                    <p className="duration">{props.duration}</p>
+                    <p className="duration">{props.duration && moment(props.duration).format('DD/MM/YYYY')}</p>
                 </Grid>
                 <Grid item xs={2} md={2}>
                    <TimerIcon style={{fontSize:"17px",color: 'var(--primary)'}}/>
@@ -61,6 +62,7 @@ const CardStore: React.FC<Props> = (props) => {
             <Grid container spacing={1}>
                 <Grid item xs={12} md={12}>
                     <button style={{
+                        cursor: 'pointer',
                         border: 'none', 
                         padding: '0.7rem',
                         marginBottom: '0.5rem', 
@@ -70,7 +72,7 @@ const CardStore: React.FC<Props> = (props) => {
                         color: 'var(--white)',
                         fontWeight: 'bold'
                         }}
-                        onClick={()=>console.log('teste')}
+                        onClick={()=>window.open(props.pay, '_blank')}
                         >COMPRAR</button>
                 </Grid>
             </Grid>

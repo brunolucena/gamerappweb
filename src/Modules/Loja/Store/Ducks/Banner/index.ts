@@ -83,6 +83,7 @@ export function loadBanners(data: LoadBannersRequest): LoadBanners {
 	return {
 		type: LOAD_BANNERS,
 		payload: {
+			client: 'development',
 			request: {
 				method: 'GET',
 				url: `/Banner/${data.sessionId}/v1`,

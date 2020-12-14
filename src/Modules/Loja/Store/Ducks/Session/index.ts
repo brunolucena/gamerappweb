@@ -61,7 +61,7 @@ export default function reducer(
 				...state,
 				loading: false,
 				loaded: true,
-				items: [...state.items, ...action.payload.data.sessions],
+				items: [...state.items, ...action.payload.data.items],
 			};
 
 		case LOAD_SESSION_FAILURE:
@@ -80,6 +80,7 @@ export function loadSession(data: LoadSessionRequest): LoadSession {
 	return {
 		type: LOAD_SESSION,
 		payload: {
+			client: 'development',
 			request: {
 				method: 'GET',
 				url: `/Session/${data.sessionId}/v1`,

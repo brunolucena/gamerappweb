@@ -13,10 +13,6 @@ const SectionStore: React.FC<Props> = (props) => {
     return <div className="containerSectionStore">
         <div className="header">
             <p>{props.title}</p>
-            <button
-                type="button"
-                onClick={()=>props.actionButton()}
-            >{props.titleButton}</button>
         </div>
         <div className="body">
             {props.content()}

@@ -9,8 +9,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import { getProportions } from 'Helpers/functions';
 
 export interface Item {
-  id: string;
-  url: string;
+  sessionId: string;
+  imageUrl: string;
 }
 
 interface Props {
@@ -60,7 +60,7 @@ const ContentSlider: React.FC<Props> = (props) => {
           const sliderItems = items.map((item) => (
             <div
               style={{
-                backgroundImage: `url(${item.url})`,
+                backgroundImage: `url(${item.imageUrl})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'none',
                 backgroundSize: 'cover',
