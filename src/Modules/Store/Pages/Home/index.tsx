@@ -1,7 +1,10 @@
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
-import React from 'react';
+import SectionStore from 'Components/SectionStore';
+import CardStore from 'Components/CardStore';
+import React, { useEffect } from 'react';
 import './styles.scss';
+import Axios from 'axios';
 
 const Home: React.FC = () => {
   const items: Array<Item> = [
@@ -19,10 +22,104 @@ const Home: React.FC = () => {
     },
   ];
 
+  useEffect(() => {
+    Axios.get('https://gamerapp-api-dev.azurewebsites.net/StoreProduct/Config/v1')
+    .then(response => console.log('teste:', response))
+  }, [])
+
   return (
     <div className='home-container'>
       <Container>
         <ContentSlider items={items} itemsOnScreen={1} />
+        <SectionStore
+          title="Ofertas da semana"
+          titleButton="Ver tudo"
+          actionButton={()=>console.log('teste')}
+          content={()=>{
+            return <>
+            <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+            <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+            <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+             <CardStore
+              banner="https://photooxy.com/uploads/worigin/2018/02/18/csgo5a8966ab1890e_7e7800c6b40a6060287774d300d1315e.jpg"
+              title="CS Go COmpetitive"
+              discount={10}
+              value={100}
+              platform={['PC','PS4']}
+              duration="2d 02:00:00"
+            />
+            </>
+          }}
+        />
       </Container>
     </div>
   );
