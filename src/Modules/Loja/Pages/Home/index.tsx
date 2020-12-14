@@ -1,9 +1,15 @@
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
-import React from 'react';
+import { loadConfiguration } from 'Modules/Loja/Store/Ducks/Configuration';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReduxStore } from 'Store/Redux';
 import './styles.scss';
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
+  const { sessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
+
   const items: Array<Item> = [
     {
       id: '1',
@@ -18,6 +24,12 @@ const Home: React.FC = () => {
       url: 'https://deathstrandingpc.505games.com/wp-content/themes/deathstranding/img/topimage.jpg',
     },
   ];
+
+  console.log({ sessions });
+
+  useEffect(() => {
+    dispatch(loadConfiguration());
+  }, [dispatch]);
 
   return (
     <div className='home-container'>
