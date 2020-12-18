@@ -1,0 +1,52 @@
+.content-slider-container {
+  .menu-item-wrapper {
+    &:focus {
+      outline: #0e874f36 auto 1px;
+    }
+  }
+  .menu-wrapper--inner {
+    padding: 15px 0;
+    > * {
+      &:not(:first-child) {
+        margin-left: 15px;
+      }
+    }
+  }
+  .arrow-container {
+    cursor: pointer;
+  }
+
+  .slick-slider {
+    .slick-next:before,
+    .slick-prev:before {
+      content: '';
+    }
+  }
+
+  .slick-arrow {
+    &.slick-prev {
+      left: -75px;
+    }
+  }
+
+  .slick-dots {
+    bottom: -45px;
+
+    li {
+      button {
+        &:before {
+          color: #099a35;
+          font-size: 15px;
+        }
+      }
+
+      &.slick-active {
+        button {
+          &:before {
+            color: #099a35;
+          }
+        }
+      }
+    }
+  }
+}

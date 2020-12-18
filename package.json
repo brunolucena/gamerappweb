@@ -33,6 +33,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.11",
     "@types/react-router-dom": "^5.1.6",
+    "@types/react-slick": "^0.23.4",
     "@types/styled-components": "^5.1.3"
   },
   "dependencies": {
@@ -42,69 +43,22 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
+    "clsx": "^1.1.1",
+    "node-sass": "4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.0.0",
     "react-scripts": "3.4.3",
+    "react-sizeme": "^2.6.12",
+    "react-slick": "^0.27.13",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.0",
     "typescript": "^3.7.5"
-  },
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "setupFiles": [
-      "react-app-polyfill/jsdom"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jest-environment-jsdom-fourteen",
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "modulePaths": [
-      "C:\\Users\\55199\\Desktop\\Dev\\repos\\bonavi\\bonavi\\src"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ],
-    "watchPlugins": [
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
-    ]
   },
   "babel": {
     "presets": [

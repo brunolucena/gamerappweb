@@ -1,15 +1,12 @@
+import AccountRoutes from 'Modules/Account/AccountRoutes';
 import CommunityNavigation from './Pages/Community/CommunityNavigation';
-import OnboardingHome from './Pages/OnboardingHome';
 import React from 'react';
+import StoureRoutes from 'Modules/Store/StoreRoutes';
 // @ts-ignore
 import { AnimatedSwitch } from 'react-router-transition';
 import { Route } from 'react-router-dom';
-import AccountRoutes from 'Modules/Account/AccountRoutes';
 
 function AppRoutes() {
-  // TODO: colocar lógica do isLoggedIn
-  const isLoggedIn = false;
-
   // TODO: arrumar rotas principais
   return (
     <AnimatedSwitch atActive={{ opacity: 1 }} atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} className='switch-wrapper'>
@@ -21,7 +18,9 @@ function AppRoutes() {
         <CommunityNavigation />
       </Route>
 
-      <Route path='/'>{isLoggedIn ? <div>logado</div> : <OnboardingHome />}</Route>
+      <Route path='/'>
+        <StoureRoutes />
+      </Route>
     </AnimatedSwitch>
   );
 }
