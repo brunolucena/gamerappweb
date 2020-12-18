@@ -61,7 +61,7 @@ export default function reducer(
 				...state,
 				loading: false,
 				loaded: true,
-				items: [...state.items, ...action.payload.data.items],
+				items: action.payload.data.items,
 			};
 
 		case LOAD_SESSION_FAILURE:

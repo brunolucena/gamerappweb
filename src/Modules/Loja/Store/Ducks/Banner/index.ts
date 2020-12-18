@@ -64,7 +64,7 @@ export default function reducer(
 				...state,
 				loading: false,
 				loaded: true,
-				banners: [...state.banners, ...action.payload.data.banners],
+				banners: action.payload.data.banners,
 			};
 
 		case LOAD_BANNERS_FAILURE:
