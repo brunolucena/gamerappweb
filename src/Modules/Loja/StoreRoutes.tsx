@@ -1,3 +1,4 @@
+import Header from '../../Components/Header';
 import Home from './Pages/Home';
 import ProductDetails from './Pages/ProductDetails';
 import React from 'react';
@@ -11,6 +12,7 @@ function StoureRoutes() {
       </Route>
 
       <Route path='/'>
+        <Header />
         <Home />
       </Route>
     </Switch>
