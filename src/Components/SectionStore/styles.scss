@@ -1,0 +1,36 @@
+.containerSectionStore{
+    margin-top: 54px;
+    width: 100%;
+    padding: 10px 0px;
+
+    > .header{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+
+        > p{
+            font-weight: bold;
+            font-size: 29.25px;
+            line-height: 36px;
+        }
+
+        > button{
+            min-width: 105px;
+            background: #fff;
+            color: green;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+    }
+
+    > .body{
+        padding: 30px 0px;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: end;
+    }
+}

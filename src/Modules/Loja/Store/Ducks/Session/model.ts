@@ -1,17 +1,19 @@
 export interface ProductItem {
-	sessionId: string;
-	name: string;
-	id: string;
-	imageUrl: string;
-	price: number;
-	oldPrice?: number;
-	isSteam: boolean;
-	isUplay: boolean;
-	isOrigin: boolean;
-	mac: boolean;
-	windows: boolean;
-	linux: boolean;
-	offerValidUntil?: Date;
+		sessionId: string;
+		name: string;
+		id: string;
+		imageUrl: string;
+		price: number;
+		oldPrice?: number;
+		isSteam: boolean;
+		discount: number;
+		isUplay: boolean;
+		isOrigin: boolean;
+		mac: boolean;
+		windows: boolean;
+		linux: boolean;
+		offerValidUntil?: Date;
+		url: string
 }
 
 export interface LoadSessionRequest {
@@ -19,7 +21,7 @@ export interface LoadSessionRequest {
 }
 
 export interface LoadSessionResponse {
-	sessions: ProductItem[];
+	items: ProductItem[];
 	count: number;
 	name: string;
 }

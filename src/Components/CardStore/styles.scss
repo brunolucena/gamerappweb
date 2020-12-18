@@ -1,0 +1,42 @@
+.containerCardStore{
+    width: 204px;
+    min-height: 229.50px;
+    background-color: var(--white);
+    border-radius: 8px;
+    margin-top: 1rem;
+
+    &+&{
+        margin-left: 2rem;
+    }
+
+    &+&:nth-child(0n+6){
+        margin-left: 0rem;
+    }
+
+    > .body{
+        padding: 1rem;
+
+        .title{
+            margin-bottom: 0.7rem;
+        }
+
+        .badge{
+            padding: 5px 10px;
+            border-radius: 4px;
+
+            &.--primary{
+                background-color: var(--primary);
+                color: var(--white);
+                font-weight: 500;
+            }
+        }
+    }
+
+    > .footer{ 
+        padding: 0rem 1rem;
+
+        .duration{
+            font-size: 12px;
+        }
+    }
+}
