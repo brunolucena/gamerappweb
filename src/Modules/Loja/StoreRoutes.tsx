@@ -8,6 +8,7 @@ function StoureRoutes() {
   return (
     <Switch>
       <Route path='/product/:id'>
+        <Header />
         <ProductDetails />
       </Route>
 
