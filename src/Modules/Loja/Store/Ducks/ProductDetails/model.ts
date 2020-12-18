@@ -1,25 +1,31 @@
+export interface ProductPlatform {
+  id: string;
+  imageUrl: string;
+  platformName: string;
+}
+
+export interface Price {
+  price: number;
+  oldPrice?: number;
+  discount?: number;
+}
+
 export interface ProductModel {
-	id: string;
-	images: string[];
-	title: string;
-	description: string;
-	price: number;
-	oldPrice?: number;
-	isSteam: boolean;
-	isUplay: boolean;
-	isOrigin: boolean;
-	mac: boolean;
-	windows: boolean;
-	linux: boolean;
-	storeName: string;
-	storeLogoUrl?: string;
-	about: string;
-	copyright?: string;
-	link: string;
+  about: string;
+  copyright?: string;
+  description: string;
+  id: string;
+  images: string[] | null;
+  link: string;
+  platforms: ProductPlatform[];
+  price: Price;
+  storeLogoUrl?: string;
+  storeName: string;
+  title: string;
 }
 
 export interface LoadProductDetailsRequest {
-	id: string;
+  id: string;
 }
 
 export interface LoadProductDetailsResponse extends ProductModel {}
