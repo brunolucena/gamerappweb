@@ -1,3 +1,4 @@
+import Alarm from '@material-ui/icons/Alarm';
 import Box from 'Components/Box';
 import Button from 'Components/Button';
 import Container from 'Components/Container';
@@ -18,7 +19,19 @@ const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { storeProductDetails } = useSelector((state: ReduxStore) => state);
 
-  const { about, copyright, description, images, link, platforms, price, storeName, storeLogoUrl, title } = storeProductDetails;
+  const {
+    about,
+    copyright,
+    description,
+    images,
+    link,
+    offerValidUntil,
+    platforms,
+    price,
+    storeName,
+    storeLogoUrl,
+    title,
+  } = storeProductDetails;
 
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
@@ -39,7 +52,7 @@ const ProductDetails: React.FC = () => {
               </Box>
 
               <Text color='gray' size={18}>
-                {description}
+                {about}
               </Text>
             </Box>
           </Box>
@@ -54,37 +67,50 @@ const ProductDetails: React.FC = () => {
               paddingLeft={30}
               paddingRight={30}
             >
-              <Box
-                alignItems='center'
-                backgroundColor='#fcfcfc'
-                borderColor='lightGray'
-                borderStyle={1}
-                borderRadius={5}
-                display='flex'
-                paddingTop={10}
-                paddingBottom={10}
-                paddingLeft={15}
-                paddingRight={15}
-              >
-                <Text size={18}>Tempo restante:</Text>
+              <Countdown
+                date={offerValidUntil}
+                renderer={({ completed, formatted }) => {
+                  const { days, hours, minutes, seconds } = formatted;
 
-                <Box marginStart={3}>
-                  <Countdown
-                    date={Date.now() + 10000}
-                    renderer={(props) => {
-                      console.log({ props });
+                  return (
+                    !completed && (
+                      <Box
+                        alignItems='center'
+                        backgroundColor='#fcfcfc'
+                        borderColor='lightGray'
+                        borderStyle={1}
+                        borderBottomLeftRadius={5}
+                        borderBottomRightRadius={5}
+                        borderTopLeftRadius={5}
+                        borderTopRightRadius={5}
+                        display='flex'
+                        paddingTop={10}
+                        paddingBottom={10}
+                        paddingLeft={15}
+                        paddingRight={15}
+                      >
+                        <Box marginEnd={8} position='relative' top={1}>
+                          <Alarm style={{ color: '#0dac3d', fontSize: 32 }} />
+                        </Box>
 
-                      return <Text size={18}>00</Text>;
-                    }}
-                  />
-                </Box>
-              </Box>
+                        <Text size={18}>Tempo restante:</Text>
 
-              <Box marginBottom={12} marginTop={12}>
+                        <Box marginStart={3}>
+                          <Text size={18}>
+                            {days !== '00' ? `${days}d` : ''} {hours}:{minutes}:{seconds}
+                          </Text>
+                        </Box>
+                      </Box>
+                    )
+                  );
+                }}
+              />
+
+              <Box marginBottom={8} marginTop={26}>
                 <Heading>{title}</Heading>
               </Box>
 
-              <Text color='gray'>{about}</Text>
+              {description && <Text color='gray'>{description}</Text>}
 
               <Box alignItems='center' display='flex' gap={20} marginTop={24} marginBottom={30}>
                 <Box borderColor='green' borderStyle={1} paddingTop={8} paddingBottom={8} paddingLeft={8} paddingRight={8}>
