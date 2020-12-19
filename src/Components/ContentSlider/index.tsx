@@ -9,31 +9,32 @@ import 'slick-carousel/slick/slick-theme.css';
 import { getProportions } from 'Helpers/functions';
 
 export interface Item {
-  sessionId: string;
   imageUrl: string;
+  sessionId: string;
 }
 
 interface Props {
-  items: Item[];
+  insideArrows?: boolean;
   itemWidth?: number;
+  items: Item[];
   itemsOnScreen?: number;
 }
 
 const ContentSlider: React.FC<Props> = (props) => {
-  const { items, itemsOnScreen = 1 } = props;
+  const { insideArrows, items, itemsOnScreen = 1 } = props;
 
   const [itemWidth, setItemWidth] = useState(props.itemWidth);
   const [slideToShow, setSlideToShow] = useState(itemsOnScreen);
 
   const arrowLeft = (
     <div className='arrow-container arrow-left-container'>
-      <ArrowLeft style={{ color: '#099a35', fontSize: 70 }} />
+      <ArrowLeft style={{ color: insideArrows ? '#ffffff' : '#099a35', fontSize: 70, opacity: insideArrows ? 0.75 : 1 }} />
     </div>
   );
 
   const arrowRight = (
     <div className='arrow-container arrow-right-container'>
-      <ArrowRight style={{ color: '#099a35', fontSize: 70 }} />
+      <ArrowRight style={{ color: insideArrows ? '#ffffff' : '#099a35', fontSize: 70, opacity: insideArrows ? 0.75 : 1 }} />
     </div>
   );
 
@@ -48,7 +49,7 @@ const ContentSlider: React.FC<Props> = (props) => {
   }, [setSlideToShow, itemWidth]);
 
   return (
-    <div className='content-slider-container' id='content-slider-container'>
+    <div className={`content-slider-container ${insideArrows ? 'inside-arrows' : ''}`} id='content-slider-container'>
       <SizeMe>
         {({ size }) => {
           const proportions = getProportions({ width: size.width ?? 1000 }, '2x1');
@@ -78,25 +79,29 @@ const ContentSlider: React.FC<Props> = (props) => {
           }
 
           return (
-            <Slider
-              autoplay
-              autoplaySpeed={3000}
-              centerPadding='0'
-              dots
-              focusOnSelect={false}
-              infinite={true}
-              initialSlide={0}
-              nextArrow={arrowRight}
-              prevArrow={arrowLeft}
-              speed={500}
-              slidesToShow={slideToShow}
-              slidesToScroll={1}
-              swipeToSlide
-            >
-              {sliderItems.map((item, index) => (
-                <div key={index}>{item}</div>
-              ))}
-            </Slider>
+            <div style={{ position: 'relative', height: proportions.height ?? '' }}>
+              <div style={{ position: 'absolute', width: '100%' }}>
+                <Slider
+                  autoplay
+                  autoplaySpeed={3000}
+                  centerPadding='0'
+                  dots
+                  focusOnSelect={false}
+                  infinite={true}
+                  initialSlide={0}
+                  nextArrow={arrowRight}
+                  prevArrow={arrowLeft}
+                  speed={500}
+                  slidesToShow={slideToShow}
+                  slidesToScroll={1}
+                  swipeToSlide
+                >
+                  {sliderItems.map((item, index) => (
+                    <div key={index}>{item}</div>
+                  ))}
+                </Slider>
+              </div>
+            </div>
           );
         }}
       </SizeMe>
