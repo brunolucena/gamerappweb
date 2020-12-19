@@ -186,7 +186,7 @@ const Box: React.FC<Props> = ({
         justifyContent: justifyContent ? JustifyContentObject[justifyContent] : undefined,
         backgroundColor,
         borderRadius,
-        boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : 'none',
+        boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : undefined,
         gap,
         margin,
         marginTop,
