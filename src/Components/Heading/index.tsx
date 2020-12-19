@@ -6,6 +6,7 @@ import '../Styles/Typography.scss';
 
 interface Props {
   align?: TextAlign;
+  className?: string;
   color?: Color;
   id?: string;
   overflow?: TextOverflow;
@@ -17,6 +18,7 @@ interface Props {
 
 const Heading: React.FC<Props> = ({
   align = 'left',
+  className,
   children,
   color = 'darkGray',
   id,
@@ -28,6 +30,7 @@ const Heading: React.FC<Props> = ({
   const classes = clsx(
     'antialiased',
     'sans-serif',
+    className,
     align === 'center' && 'align-center',
     align === 'justify' && 'align-justify',
     align === 'left' && 'align-left',
