@@ -17,13 +17,6 @@ import {
   Position,
 } from 'Components/Styles/models';
 
-const BorderStyles = {
-  1: '1px solid black',
-  2: '2px solid black',
-  shadow: '0 0 8px rgba(0, 0, 0, 0.1)',
-  none: 'none',
-};
-
 interface Props {
   style?: CSSProperties;
   className?: string;
@@ -34,6 +27,7 @@ interface Props {
   alignItems?: AlignItems;
   alignSelf?: AlignSelf;
   justifyContent?: JustifyContent;
+  gap?: number;
 
   borderColor?: Color;
   borderStyle?: 1 | 2 | 'shadow' | 'none';
@@ -75,7 +69,7 @@ const Box: React.FC<Props> = ({
   alignContent,
   alignItems,
   alignSelf,
-  borderColor = 'var(--color-darkGray)',
+  borderColor = 'darkGray',
   borderRadius,
   borderStyle,
   bottom,
@@ -83,6 +77,7 @@ const Box: React.FC<Props> = ({
   className,
   direction,
   display,
+  gap,
   height,
   justifyContent,
   left,
@@ -109,7 +104,16 @@ const Box: React.FC<Props> = ({
   width,
   zIndex,
 }) => {
-  const classes = clsx(className);
+  const classes = clsx(
+    className,
+    (borderStyle === 1 || borderStyle === 2) && 'border',
+    borderStyle && borderColor === 'blue' && 'border-color-blue',
+    borderStyle && borderColor === 'darkGray' && 'border-color-dark-gray',
+    borderStyle && borderColor === 'gray' && 'border-color-gray',
+    borderStyle && borderColor === 'green' && 'border-color-green',
+    borderStyle && borderColor === 'lightGray' && 'border-color-light-gray',
+    borderStyle && borderColor === 'red' && 'border-color-red'
+  );
 
   return (
     <div
@@ -121,10 +125,9 @@ const Box: React.FC<Props> = ({
         alignItems,
         alignSelf,
         justifyContent,
-        borderColor,
         borderRadius,
-        borderWidth: borderStyle === 1 || borderStyle === 2 ? BorderStyles[borderStyle] : 'none',
-        boxShadow: borderStyle === 'shadow' ? BorderStyles[borderStyle] : 'none',
+        boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : 'none',
+        gap,
         margin,
         marginTop,
         marginBottom,
