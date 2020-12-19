@@ -1,7 +1,7 @@
 export type AlignContent = 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'stretch';
 export type AlignItems = 'start' | 'end' | 'center' | 'baseline' | 'stretch';
 export type AlignSelf = 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch';
-export type Color = 'blue' | 'darkGray' | 'gray' | 'green' | 'lightGray' | 'red';
+export type Color = 'blue' | 'darkGray' | 'gray' | 'green' | 'lightGray' | 'red' | 'white';
 export type Dimension = number | string;
 export type Direction = 'row' | 'column';
 export type Display = 'none' | 'block' | 'inline' | 'inlineBlock' | 'visuallyHidden' | 'flex' | 'grid';

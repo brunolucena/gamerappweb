@@ -45,6 +45,7 @@ const Text: React.FC<Props> = ({
     color === 'green' && 'green',
     color === 'lightGray' && 'light-gray',
     color === 'red' && 'red',
+    color === 'white' && 'white',
     italic && 'font-style-italic',
     lineThrough && 'text-decoration-line-through',
     overflow === 'breakWord' && 'break-word',

@@ -41,6 +41,7 @@ const Heading: React.FC<Props> = ({
     color === 'green' && 'green',
     color === 'lightGray' && 'light-gray',
     color === 'red' && 'red',
+    color === 'white' && 'white',
     overflow === 'breakWord' && 'break-word',
     overflow === 'noWrap' && 'no-wrap',
     size === 20 && 'font-size-20',
