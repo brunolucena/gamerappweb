@@ -1,14 +1,9 @@
 .product-details-container {
-  .content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    padding: 60px 0;
+  .price {
+    line-height: 35px;
+  }
 
-    > .left {
-      max-width: 300px;
-      display: flex;
-      flex-flow: column;
-    }
+  .button-text {
+    line-height: 20px;
   }
 }
