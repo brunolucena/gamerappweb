@@ -11,4 +11,4 @@ export type Overflow = 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY' |
 export type Position = 'static' | 'absolute' | 'relative' | 'fixed';
 export type TextAlign = 'left' | 'right' | 'center' | 'justify';
 export type TextOverflow = 'normal' | 'breakWord' | 'noWrap';
-export type TextWeight = 'bold' | 'normal';
+export type TextWeight = 'bold' | 'semi-bold' | 'normal';

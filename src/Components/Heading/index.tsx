@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { Color, TextAlign, TextOverflow } from 'Components/Styles/models';
+import { Color, TextAlign, TextOverflow, TextWeight } from 'Components/Styles/models';
 import '../Styles/Colors.scss';
 import '../Styles/Typography.scss';
 
@@ -12,9 +12,19 @@ interface Props {
   size?: 20 | 28 | 36;
   /** Truncate the text to a single line. */
   truncate?: boolean;
+  weight?: TextWeight;
 }
 
-const Heading: React.FC<Props> = ({ align, children, color, id, overflow, size, truncate }) => {
+const Heading: React.FC<Props> = ({
+  align = 'left',
+  children,
+  color = 'darkGray',
+  id,
+  overflow = 'breakWord',
+  size = 36,
+  truncate = false,
+  weight = 'semi-bold',
+}) => {
   const classes = clsx(
     'antialiased',
     'sans-serif',
@@ -33,7 +43,10 @@ const Heading: React.FC<Props> = ({ align, children, color, id, overflow, size, 
     size === 20 && 'font-size-20',
     size === 28 && 'font-size-28',
     size === 36 && 'font-size-36',
-    truncate && 'truncate'
+    truncate && 'truncate',
+    weight === 'bold' && 'font-weight-bold',
+    weight === 'semi-bold' && 'font-weight-semi-bold',
+    weight === 'normal' && 'font-weight-normal'
   );
 
   function getTag() {
@@ -59,14 +72,6 @@ const Heading: React.FC<Props> = ({ align, children, color, id, overflow, size, 
       {children}
     </Tag>
   );
-};
-
-Heading.defaultProps = {
-  align: 'left',
-  color: 'darkGray',
-  overflow: 'breakWord',
-  size: 36,
-  truncate: false,
 };
 
 export default Heading;

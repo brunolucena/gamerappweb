@@ -52,6 +52,7 @@ const Text: React.FC<Props> = ({
     size === 18 && 'font-size-18',
     truncate && 'truncate',
     weight === 'bold' && 'font-weight-bold',
+    weight === 'semi-bold' && 'font-weight-semi-bold',
     weight === 'normal' && 'font-weight-normal'
   );
 
