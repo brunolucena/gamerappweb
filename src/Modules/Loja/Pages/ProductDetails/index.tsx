@@ -2,6 +2,7 @@ import Box from 'Components/Box';
 import Button from 'Components/Button';
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
+import Countdown from 'react-countdown';
 import Heading from 'Components/Heading';
 import React, { useEffect } from 'react';
 import Text from 'Components/Text';
@@ -53,6 +54,32 @@ const ProductDetails: React.FC = () => {
               paddingLeft={30}
               paddingRight={30}
             >
+              <Box
+                alignItems='center'
+                backgroundColor='#fcfcfc'
+                borderColor='lightGray'
+                borderStyle={1}
+                borderRadius={5}
+                display='flex'
+                paddingTop={10}
+                paddingBottom={10}
+                paddingLeft={15}
+                paddingRight={15}
+              >
+                <Text size={18}>Tempo restante:</Text>
+
+                <Box marginStart={3}>
+                  <Countdown
+                    date={Date.now() + 10000}
+                    renderer={(props) => {
+                      console.log({ props });
+
+                      return <Text size={18}>00</Text>;
+                    }}
+                  />
+                </Box>
+              </Box>
+
               <Box marginBottom={12} marginTop={12}>
                 <Heading>{title}</Heading>
               </Box>
@@ -109,7 +136,7 @@ const ProductDetails: React.FC = () => {
                     const { id, imageUrl, platformName } = platform;
 
                     return (
-                      <Box alignItems='center' display='flex' gap={8} key={id + index}>
+                      <Box alignItems='center' display='flex' gap={8} key={id + index} marginBottom={10}>
                         {imageUrl && <img src={imageUrl} alt={platformName} />}
 
                         <Text>{platformName}</Text>
@@ -122,7 +149,9 @@ const ProductDetails: React.FC = () => {
               <Box alignItems='end' className='right' display='flex' direction='column' gap={3}>
                 <Text size={14}>Vendido por</Text>
 
-                <Box marginTop={5}>{storeLogoUrl ? <img src={storeLogoUrl} alt={storeName} /> : <Text>{storeName}</Text>}</Box>
+                <Box marginTop={5}>
+                  {storeLogoUrl ? <img alt={storeName} src={storeLogoUrl} height={25} width='100%' /> : <Text>{storeName}</Text>}
+                </Box>
               </Box>
             </Box>
           </Box>
