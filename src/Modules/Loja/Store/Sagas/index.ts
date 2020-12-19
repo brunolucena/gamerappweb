@@ -1,4 +1,4 @@
-import configurationSaga from '../Sagas/Configuration';
+import configurationSaga from '../Ducks/Configuration/sagas';
 import bannerSaga from '../Sagas/Banner';
 import productDetailsSaga from '../Sagas/ProductDetails';
 import sessionSaga from '../Sagas/Session';

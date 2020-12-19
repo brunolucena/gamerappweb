@@ -38,6 +38,7 @@ export const initialState: ProductDetailsState = {
   id: '',
   images: null,
   link: '',
+  offerValidUntil: undefined,
   platforms: [],
   price: {
     discount: 0,
