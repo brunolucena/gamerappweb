@@ -116,7 +116,6 @@ const ProductDetails: React.FC = () => {
             </Box>
 
             <Box
-              alignItems='center'
               backgroundColor='#f0f0f0'
               borderBottomRightRadius={10}
               borderBottomLeftRadius={10}
