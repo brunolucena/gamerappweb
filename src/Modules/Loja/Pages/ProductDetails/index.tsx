@@ -162,7 +162,7 @@ const ProductDetails: React.FC = () => {
 
                     return (
                       <Box alignItems='center' display='flex' gap={8} key={id + index} marginBottom={10}>
-                        {imageUrl && <img src={imageUrl} alt={platformName} />}
+                        {imageUrl && <img alt={platformName} src={imageUrl} style={{ height: '100%', width: 20 }} />}
 
                         <Text>{platformName}</Text>
                       </Box>
