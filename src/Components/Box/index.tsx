@@ -85,6 +85,8 @@ interface Props {
   justifyContent?: JustifyContent;
   gap?: number;
 
+  gridTemplateColumns?: string;
+
   backgroundColor?: string;
   borderColor?: Color;
   borderStyle?: 1 | 2 | 'shadow' | 'none';
@@ -144,6 +146,7 @@ const Box: React.FC<Props> = ({
   direction,
   display,
   gap,
+  gridTemplateColumns,
   height,
   justifyContent,
   left,
@@ -200,6 +203,7 @@ const Box: React.FC<Props> = ({
         borderTopRightRadius,
         boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : undefined,
         gap,
+        gridTemplateColumns,
         margin,
         marginTop,
         marginBottom,
