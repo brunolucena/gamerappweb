@@ -85,6 +85,7 @@ interface Props {
   justifyContent?: JustifyContent;
   gap?: number;
 
+  backgroundColor?: string;
   borderColor?: Color;
   borderStyle?: 1 | 2 | 'shadow' | 'none';
   borderRadius?: number;
@@ -125,6 +126,7 @@ const Box: React.FC<Props> = ({
   alignContent,
   alignItems,
   alignSelf,
+  backgroundColor,
   borderColor = 'darkGray',
   borderRadius,
   borderStyle,
@@ -182,6 +184,7 @@ const Box: React.FC<Props> = ({
         alignItems: alignItems ? AlignItemsObject[alignItems] : undefined,
         alignSelf: alignSelf ? AlignSelfObject[alignSelf] : undefined,
         justifyContent: justifyContent ? JustifyContentObject[justifyContent] : undefined,
+        backgroundColor,
         borderRadius,
         boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : 'none',
         gap,
