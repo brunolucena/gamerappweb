@@ -40,9 +40,10 @@ export const initialState: ProductDetailsState = {
   link: '',
   platforms: [],
   price: {
-    price: 0,
     discount: 0,
+    discountPercent: 0,
     oldPrice: 0,
+    price: 0,
   },
   storeLogoUrl: '',
   storeName: '',

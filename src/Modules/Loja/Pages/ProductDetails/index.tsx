@@ -62,7 +62,7 @@ const ProductDetails: React.FC = () => {
               <Box alignItems='center' display='flex' gap={20} marginTop={24} marginBottom={30}>
                 <Box borderColor='green' borderStyle={1} paddingTop={8} paddingBottom={8} paddingLeft={8} paddingRight={8}>
                   <Heading align='center' color='green' size={28}>
-                    -{price.discount}%
+                    -{price.discountPercent}%
                   </Heading>
                 </Box>
 
@@ -104,15 +104,15 @@ const ProductDetails: React.FC = () => {
               <Box display='flex' direction='column' gap={3}>
                 <Text size={14}>Ativação e sistemas</Text>
 
-                <Box>
+                <Box marginTop={5}>
                   {platforms.map((platform, index) => {
                     const { id, imageUrl, platformName } = platform;
 
                     return (
-                      <Box key={id + index}>
+                      <Box alignItems='center' display='flex' gap={8} key={id + index}>
                         {imageUrl && <img src={imageUrl} alt={platformName} />}
 
-                        <Text weight='bold'>{platformName}</Text>
+                        <Text>{platformName}</Text>
                       </Box>
                     );
                   })}
@@ -122,7 +122,7 @@ const ProductDetails: React.FC = () => {
               <Box alignItems='end' className='right' display='flex' direction='column' gap={3}>
                 <Text size={14}>Vendido por</Text>
 
-                <Box>{storeLogoUrl ? <img src={storeLogoUrl} alt={storeName} /> : <Text weight='bold'>{storeName}</Text>}</Box>
+                <Box marginTop={5}>{storeLogoUrl ? <img src={storeLogoUrl} alt={storeName} /> : <Text>{storeName}</Text>}</Box>
               </Box>
             </Box>
           </Box>

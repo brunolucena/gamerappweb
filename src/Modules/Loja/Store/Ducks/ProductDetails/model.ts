@@ -5,9 +5,10 @@ export interface ProductPlatform {
 }
 
 export interface Price {
-  price: number;
-  oldPrice?: number;
   discount?: number;
+  discountPercent?: number;
+  oldPrice?: number;
+  price: number;
 }
 
 export interface ProductModel {
