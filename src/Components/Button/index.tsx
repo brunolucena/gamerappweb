@@ -16,7 +16,7 @@ const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, 
   const button = <BtnStyles type2={type || ''}>{children}</BtnStyles>;
 
   return external ? (
-    <a href={to} rel='noopened noreferrer' style={{ textAlign: 'center', textDecoration: 'none' }} target='_blank'>
+    <a href={to} rel='noopener noreferrer' style={{ textAlign: 'center', textDecoration: 'none' }} target='_blank'>
       {button}
     </a>
   ) : to ? (
