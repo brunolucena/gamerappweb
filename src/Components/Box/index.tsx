@@ -17,6 +17,15 @@ import {
   Position,
 } from 'Components/Styles/models';
 
+const JustifyContentObject = {
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  between: 'space-between',
+  around: 'space-around',
+  evenly: 'space-evenly',
+};
+
 interface Props {
   style?: CSSProperties;
   className?: string;
@@ -124,7 +133,7 @@ const Box: React.FC<Props> = ({
         alignContent,
         alignItems,
         alignSelf,
-        justifyContent,
+        justifyContent: justifyContent ? JustifyContentObject[justifyContent] : undefined,
         borderRadius,
         boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : 'none',
         gap,
