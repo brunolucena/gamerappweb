@@ -17,13 +17,60 @@ import {
   Position,
 } from 'Components/Styles/models';
 
-const JustifyContentObject = {
-  start: 'flex-start',
-  end: 'flex-end',
-  center: 'center',
-  between: 'space-between',
+const AlignContentObject = {
   around: 'space-around',
+  baseline: 'baseline',
+  between: 'space-between',
+  center: 'center',
+  end: 'flex-end',
   evenly: 'space-evenly',
+  start: 'flex-start',
+  stretch: 'stretch',
+};
+
+const AlignItemsObject = {
+  baseline: 'baseline',
+  center: 'center',
+  end: 'flex-end',
+  start: 'flex-start',
+  stretch: 'stretch',
+};
+
+const AlignSelfObject = {
+  auto: 'auto',
+  baseline: 'baseline',
+  center: 'center',
+  end: 'flex-end',
+  start: 'flex-start',
+  stretch: 'stretch',
+};
+
+const DisplayObject = {
+  none: 'none',
+  block: 'block',
+  inline: 'inline',
+  inlineBlock: 'inline-block',
+  visuallyHidden: undefined,
+  flex: 'flex',
+  grid: 'grid',
+};
+
+const JustifyContentObject = {
+  around: 'space-around',
+  between: 'space-between',
+  center: 'center',
+  end: 'flex-end',
+  evenly: 'space-evenly',
+  start: 'flex-start',
+};
+
+const OverflowObject = {
+  visible: 'visible',
+  hidden: 'hidden',
+  scroll: 'scroll',
+  scrollX: undefined,
+  scrollY: undefined,
+  auto: 'auto',
 };
 
 interface Props {
@@ -99,6 +146,7 @@ const Box: React.FC<Props> = ({
   maxWidth,
   minHeight,
   minWidth,
+  opacity,
   overflow,
   padding,
   paddingBottom,
@@ -128,11 +176,11 @@ const Box: React.FC<Props> = ({
     <div
       className={classes}
       style={{
-        display,
+        display: display ? DisplayObject[display] : undefined,
         flexDirection: direction,
-        alignContent,
-        alignItems,
-        alignSelf,
+        alignContent: alignContent ? AlignContentObject[alignContent] : undefined,
+        alignItems: alignItems ? AlignItemsObject[alignItems] : undefined,
+        alignSelf: alignSelf ? AlignSelfObject[alignSelf] : undefined,
         justifyContent: justifyContent ? JustifyContentObject[justifyContent] : undefined,
         borderRadius,
         boxShadow: borderStyle === 'shadow' ? '0 0 8px rgba(0, 0, 0, 0.1)' : 'none',
@@ -152,7 +200,10 @@ const Box: React.FC<Props> = ({
         bottom,
         left,
         right,
-        overflow,
+        opacity: opacity ?? display === 'visuallyHidden' ? 0 : undefined,
+        overflow: overflow && OverflowObject[overflow],
+        overflowX: overflow === 'scrollX' ? 'scroll' : undefined,
+        overflowY: overflow === 'scrollY' ? 'scroll' : undefined,
         height,
         width,
         maxHeight,
