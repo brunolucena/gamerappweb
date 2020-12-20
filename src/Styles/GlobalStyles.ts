@@ -22,7 +22,6 @@ html {
     --error: #ef0000;
     --success: #0dac3d;
     --warn: #ca2d51;
-    --gray: #a0a0a0;
     --gray2: #8c8c8c;
     --background: #f0f0f0;
     --black: #000000;
