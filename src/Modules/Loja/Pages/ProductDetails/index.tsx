@@ -1,9 +1,11 @@
 import Alarm from '@material-ui/icons/Alarm';
+import BackButton from 'Components/BackButton';
 import Box from 'Components/Box';
 import Button from 'Components/Button';
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
 import Countdown from 'react-countdown';
+import Header from 'Components/Header';
 import Heading from 'Components/Heading';
 import React, { useEffect } from 'react';
 import Text from 'Components/Text';
@@ -32,6 +34,8 @@ const ProductDetails: React.FC = () => {
     storeLogoUrl,
     title,
   } = storeProductDetails;
+
+  console.log({ copyright });
 
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
@@ -95,13 +99,14 @@ const ProductDetails: React.FC = () => {
 
   const gameprice = (
     <Box className='game-price'>
-      <Box borderColor='green' borderStyle={1} paddingTop={8} paddingBottom={8} paddingLeft={8} paddingRight={8}>
-        <div className='discount'>
+      <Box borderColor='green' borderStyle={1} className='discount-container'>
+        <Box className='discount'>
           <Heading className='discount-wrapper'>-{price.discountPercent}%</Heading>
-        </div>
-        <div className='discount-mobile'>
+        </Box>
+
+        <Box className='discount-mobile'>
           <Heading className='discount-wrapper-mobile'>-{price.discountPercent}%</Heading>
-        </div>
+        </Box>
       </Box>
 
       <Box display='flex' direction='column'>
@@ -118,8 +123,10 @@ const ProductDetails: React.FC = () => {
     </Box>
   );
   return (
-    <>
+    <Box className='product-details-wrapper'>
       <Box backgroundColor='#f8f8f8' className='product-details-container' minHeight='calc(100vh - 70px)'>
+        <Header />
+
         <Container>
           <Box display='grid' gap={30} gridTemplateColumns='2fr 1fr' paddingTop={60} paddingBottom={60}>
             <Box display='flex' direction='column'>
@@ -197,19 +204,31 @@ const ProductDetails: React.FC = () => {
           )}
         </Container>
       </Box>
+
       <Box className='product-details-mobile'>
-        <Box display='flex' direction='column' backgroundColor='#ffffff'>
-          <Box paddingLeft={15} paddingRight={95} paddingTop={5}>
+        <Box display='flex' direction='column' backgroundColor='#ffffff' paddingBottom={90}>
+          <Box position='relative' backgroundColor='#ffffff'>
+            <Box backgroundColor='#00000026' position='absolute' top={0} bottom={5} left={0} right={0}>
+              <BackButton fontSize={28} iconColor='#ffffff' />
+            </Box>
+
+            <img src={items[0].imageUrl} alt={items[0].sessionId} width='100%' />
+          </Box>
+
+          <Box paddingLeft={15} paddingRight={95} paddingTop={8}>
             {countdown}
           </Box>
-          <Box paddingLeft={15} paddingRight={15} paddingTop={15} paddingBottom={10}>
+
+          <Box paddingLeft={15} paddingRight={15} paddingTop={11} paddingBottom={10}>
             <div className='game-title'>{title}</div>
+
             {description && (
               <Box marginTop={10} marginBottom={5}>
                 <Text color='gray'>{description}</Text>
               </Box>
             )}
           </Box>
+
           <Box
             backgroundColor='#f0f0f0'
             className='bottom'
@@ -225,42 +244,48 @@ const ProductDetails: React.FC = () => {
               {activation}
             </Box>
 
-            <Box alignItems='end' display='flex' direction='column' gap={3}>
+            <Box display='flex' direction='column' gap={3}>
               <Text size={12}>Vendido por</Text>
               {sold}
             </Box>
           </Box>
+
           <Box paddingLeft={15} paddingRight={15}>
             {gameprice}
           </Box>
 
           <Box paddingLeft={15} paddingRight={15} backgroundColor='#ffffff'>
-            <Box marginBottom={10} marginTop={10}>
+            <Box marginBottom={10} marginTop={20}>
               <Heading weight='bold' size={20}>
                 Sobre o jogo
               </Heading>
             </Box>
+
             <Box>
               <Text color='gray' size={14}>
                 {about}
               </Text>
+
               {copyright && (
-                <Box marginTop={25} marginBottom={90}>
-                  <Text color='lightGray'>{copyright}</Text>
+                <Box marginBottom={10} marginTop={20}>
+                  <Text color='lightGray' size={12}>
+                    {copyright}
+                  </Text>
                 </Box>
               )}
             </Box>
           </Box>
+
           <Box className='button-wrapper'>
             <Button external to={link}>
-              <Text align='center' className='button-text' color='white' size={14}>
+              <Text align='center' className='button-text' color='white' size={16} weight='bold'>
                 Comprar
               </Text>
             </Button>
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
