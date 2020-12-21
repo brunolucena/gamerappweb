@@ -35,8 +35,6 @@ const ProductDetails: React.FC = () => {
     title,
   } = storeProductDetails;
 
-  console.log({ copyright });
-
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   useEffect(() => {
