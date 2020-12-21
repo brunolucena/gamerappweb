@@ -15,6 +15,7 @@ interface Props {
     title: string;
     discount: any;
     value: number;
+    oldPrice: number;
     platform: any;
     duration: any;
     pay: string;
@@ -68,12 +69,15 @@ const CardStore: React.FC<Props> = (props) => {
                 <Grid item xs={12} md={12}>
                     <p className="title">{props.title}</p>
                 </Grid>
+                </Grid>
+                <Grid container spacing={1} alignItems="center">
                 {
                     moment(props.duration).isAfter(props.dateHourNow) && <Grid item xs={6} md={6}>
                         <span className="badge --primary">-{props.discount}%</span>
                     </Grid>
                 }
                 <Grid item xs={6} md={6}>
+                    {props.oldPrice ? <Text color='lightGray' lineThrough size={12}>R${StringFormat.formatToMonetary(props.oldPrice)}</Text> : ''}
                     <span>R${StringFormat.formatToMonetary(props.value)}</span>
                 </Grid>
             </Grid>

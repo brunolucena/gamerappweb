@@ -21,7 +21,7 @@ const SectionStore: React.FC<Props> = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { sessionId, title, isAllItems = true, isAllItemsBottom, searchText } = props;
-    const { items } = useSelector((state: ReduxStore) => state.storeSession);
+    const { items: itemSession } = useSelector((state: ReduxStore) => state.storeSession);
     const { items: itemsSearch } = useSelector((state: ReduxStore) => state.storeSearch);
     const [dateHours, setDateHours] = useState();
     const [quantity, setQuantity] = useState(10);
@@ -29,7 +29,7 @@ const SectionStore: React.FC<Props> = (props) => {
     useEffect(() => {
         sessionId && !searchText && dispatch(loadSession({sessionId: sessionId, quantity: quantity}))
         !sessionId && searchText && dispatch(search({searchText: searchText, quantity: 50, page: 1}))
-    }, [])
+    }, [sessionId || searchText])
     
     return <div className="containerSectionStore">
         <div className="header">
@@ -48,12 +48,13 @@ const SectionStore: React.FC<Props> = (props) => {
         <div className="body">
             <>
                 {
-                    sessionId && !searchText && items.length > 0 && _.groupBy(items, 'sessionId')[sessionId]?.map((item: any) => {
+                    sessionId && itemSession && _.groupBy(itemSession, 'sessionId')[sessionId]?.map((item: any) => {
                         return <CardStore
                             banner={item.imageUrl}
                             title={item.name}
                             discount={Number(item.price.discount).toFixed(2)}
                             value={item.price.price}
+                            oldPrice={item.price.oldPrice}
                             platform={item.platforms}
                             duration={item.offerValidUntil}
                             pay={item.url}
@@ -62,13 +63,14 @@ const SectionStore: React.FC<Props> = (props) => {
                     })
                 }
                  {
-                    !sessionId && searchText && itemsSearch.length > 0 && itemsSearch?.map((item: any) => {
+                    searchText && itemsSearch && itemsSearch?.map((item: any) => {
                         return <CardStore
                             banner={item.imageUrl}
                             title={item.name}
                             discount={Number(item.price?.discount).toFixed(2)}
                             value={item.price.price}
                             platform={item.platforms}
+                            oldPrice={item.price.oldPrice}
                             duration={item.offerValidUntil}
                             pay={item.url}
                             dateHourNow={dateHours}
