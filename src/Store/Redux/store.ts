@@ -10,7 +10,6 @@ import { PersistPartial } from 'redux-persist/es/persistReducer';
 
 const persistConfig = {
   key: 'gamerappweb',
-  blacklist: ['storeBanners, storeSession'],
   storage,
 };
 

@@ -7,6 +7,9 @@ import './styles.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getProportions } from 'Helpers/functions';
+import { useSelector, useDispatch } from 'react-redux';
+import { ReduxStore } from 'Store/Redux';
+import { loadBanners } from 'Modules/Loja/Store/Ducks/Banner';
 
 export interface Item {
   sessionId: string;
@@ -14,16 +17,17 @@ export interface Item {
 }
 
 interface Props {
-  items: Item[];
+  sessionId: string;
   itemWidth?: number;
   itemsOnScreen?: number;
 }
 
 const ContentSlider: React.FC<Props> = (props) => {
-  const { items, itemsOnScreen = 1 } = props;
-
+  const dispatch = useDispatch();
+  const { sessionId, itemsOnScreen = 1 } = props;
   const [itemWidth, setItemWidth] = useState(props.itemWidth);
   const [slideToShow, setSlideToShow] = useState(itemsOnScreen);
+  const storeBanners = useSelector((state: ReduxStore) => state.storeBanners);
 
   const arrowLeft = (
     <div className='arrow-container arrow-left-container'>
@@ -36,6 +40,10 @@ const ContentSlider: React.FC<Props> = (props) => {
       <ArrowRight style={{ color: '#099a35', fontSize: 70 }} />
     </div>
   );
+
+  useEffect(() => {
+    dispatch(loadBanners({sessionId: sessionId}))
+  }, [])
 
   useEffect(() => {
     const container = document.getElementById('content-slider-container');
@@ -56,8 +64,8 @@ const ContentSlider: React.FC<Props> = (props) => {
           if (!props.itemWidth) {
             setItemWidth(proportions.width);
           }
-
-          const sliderItems = items.map((item) => (
+          const arrayBanner = storeBanners.banners.filter(banner => banner.sessionId == sessionId)
+          const sliderItems = arrayBanner.map((item) => (
             <div
               style={{
                 backgroundImage: `url(${item.imageUrl})`,

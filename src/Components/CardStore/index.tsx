@@ -11,7 +11,7 @@ interface Props {
     title: string;
     discount: any;
     value: number;
-    platform: Array<string>;
+    platform: any;
     duration: any;
     pay: string;
     dateHourNow: any;
@@ -51,9 +51,9 @@ const CardStore: React.FC<Props> = (props) => {
         <div className="footer">
             <Grid container spacing={1}>
                 {
-                    props.platform.map(plat => {
+                    props.platform.map((plat: any) => {
                         return <Grid item xs={2} md={2}>
-                            <IconPlatform name={plat} />
+                            <IconPlatform name={plat.platformName} icon={plat.imageUrl}/>
                         </Grid>
                     })
                 }

@@ -13,6 +13,7 @@ import {
 export const LOAD_BANNERS = 'LOAD_BANNERS';
 export const LOAD_BANNERS_SUCCESS = 'LOAD_BANNERS_SUCCESS';
 export const LOAD_BANNERS_FAILURE = 'LOAD_BANNERS_FAILURE';
+export const LOAD_BANNERS_CLEAR = 'LOAD_BANNERS_CLEAR';
 
 export interface LoadBanners {
 	type: typeof LOAD_BANNERS;
@@ -24,6 +25,11 @@ export interface LoadBannersSuccess {
 	payload: BaseResponse<LoadBannersResponse>;
 }
 
+export interface LoadBannersClear {
+	type: typeof LOAD_BANNERS_CLEAR;
+	payload: [];
+}
+
 export interface LoadBannersFailure {
 	type: typeof LOAD_BANNERS_FAILURE;
 	payload: BaseErrorResponse;
@@ -32,6 +38,7 @@ export interface LoadBannersFailure {
 export type BannerActions =
 	| LoadBanners
 	| LoadBannersSuccess
+	| LoadBannersClear
 	| LoadBannersFailure;
 
 export interface BannersState {
@@ -55,7 +62,7 @@ export default function reducer(
 		case LOAD_BANNERS:
 			return {
 				...state,
-				loading: false,
+				loading: true,
 				loaded: false,
 			};
 
@@ -64,7 +71,7 @@ export default function reducer(
 				...state,
 				loading: false,
 				loaded: true,
-				banners: action.payload.data.banners,
+				banners: [...state.banners, ...action.payload.data.banners],
 			};
 
 		case LOAD_BANNERS_FAILURE:
@@ -72,6 +79,13 @@ export default function reducer(
 				...state,
 				loading: false,
 				loaded: false,
+			};
+		case LOAD_BANNERS_CLEAR:
+			return {
+				...state,
+				loading: false,
+				loaded: false,
+				banners: []
 			};
 
 		default:
@@ -89,6 +103,13 @@ export function loadBanners(data: LoadBannersRequest): LoadBanners {
 				url: `/Banner/${data.sessionId}/v1`,
 			},
 		},
+	};
+}
+
+
+export function loadBannersClear() {
+	return {
+		type: LOAD_BANNERS_CLEAR
 	};
 }
 

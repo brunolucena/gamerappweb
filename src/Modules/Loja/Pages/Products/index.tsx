@@ -10,30 +10,28 @@ import CardStore from 'Components/CardStore';
 import SectionStore from 'Components/SectionStore';
 import './styles.scss';
 
-const Home: React.FC = () => {
+interface Props {
+  sessionId: any,
+  title?: string
+}
+
+const Products: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
-  const { sessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
-  const {items} = useSelector((state: ReduxStore) => state.storeSession);
+  const { sessionId, title } = props;
 
   useEffect(() => {
     dispatch(loadBannersClear())
     dispatch(loadSessionClear())
-    dispatch(loadConfiguration());
   }, []);
 
   return (
     <div className='home-container'>
       <Container>
-        {
-          sessions?.map((session: any) => <>
-            {session.type == 'Banner' && <ContentSlider sessionId={session.id} itemsOnScreen={1}/>}
-            {session.type == 'Game' && <SectionStore sessionId={session.id} title={session.title}/>}
-          </>
-          )
-        }
+        <p>{title}</p>
+        <SectionStore sessionId={sessionId.match.params.id} title={title} isAllItems={false}/>
       </Container>
     </div>
   );
 };
 
-export default Home;
+export default Products;
