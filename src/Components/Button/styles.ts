@@ -18,7 +18,7 @@ export const Btn = styled.button`
 
 export const BtnStyles = styled.div<{ type2?: string }>`
   padding: 17px;
-  border-radius: 5px;
+  border-radius: 8px;
   background: ${({ type2 }) => (type2 ? handleColorType(type2) : 'var(--primary)')};
   color: white;
   font-weight: bold;

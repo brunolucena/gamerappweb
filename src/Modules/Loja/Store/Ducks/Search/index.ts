@@ -1,9 +1,4 @@
-import {
-	ActionPayload,
-	BaseError,
-	BaseErrorResponse,
-	BaseResponse,
-} from 'Store/Models/ReduxModels';
+import { ActionPayload, BaseErrorResponse, BaseResponse } from 'Store/Models/ReduxModels';
 import { ProductItem } from '../Session/model';
 import { SearchRequest, SearchResponse } from './model';
 
@@ -12,78 +7,76 @@ export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const SEARCH_FAILURE = 'SEARCH_FAILURE';
 
 export interface Search {
-	type: typeof SEARCH;
-	payload: ActionPayload<SearchRequest>;
+  type: typeof SEARCH;
+  payload: ActionPayload<SearchRequest>;
 }
 
 export interface SearchSuccess {
-	type: typeof SEARCH_SUCCESS;
-	payload: BaseResponse<SearchResponse>;
+  type: typeof SEARCH_SUCCESS;
+  payload: BaseResponse<SearchResponse>;
 }
 
 export interface SearchsFailure {
-	type: typeof SEARCH_FAILURE;
-	payload: BaseErrorResponse;
+  type: typeof SEARCH_FAILURE;
+  payload: BaseErrorResponse;
 }
 
 export type SessionActions = Search | SearchSuccess | SearchsFailure;
 
 export interface SearchState {
-	error: string;
-	loaded: boolean;
-	loading: boolean;
-	items: ProductItem[];
-	count: number;
+  error: string;
+  loaded: boolean;
+  loading: boolean;
+  items: ProductItem[];
+  count: number;
 }
 
 export const initialState: SearchState = {
-	error: '',
-	items: [],
-	loaded: false,
-	loading: false,
-	count: 0,
+  error: '',
+  items: [],
+  loaded: false,
+  loading: false,
+  count: 0,
 };
 
-export default function reducer(
-	state = initialState,
-	action: SessionActions
-): SearchState {
-	switch (action.type) {
-		case SEARCH:
-			return {
-				...state,
-				loading: false,
-				loaded: false,
-			};
+export default function reducer(state = initialState, action: SessionActions): SearchState {
+  switch (action.type) {
+    case SEARCH:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+      };
 
-		case SEARCH_SUCCESS:
-			return {
-				...state,
-				loading: false,
-				loaded: true,
-				items: [...state.items, ...action.payload.data.items],
-			};
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        items: [...state.items, ...action.payload.data.items],
+      };
 
-		case SEARCH_FAILURE:
-			return {
-				...state,
-				loading: false,
-				loaded: false,
-			};
+    case SEARCH_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+      };
 
-		default:
-			return state;
-	}
+    default:
+      return state;
+  }
 }
 
 export function search(data: SearchRequest): Search {
-	return {
-		type: SEARCH,
-		payload: {
-			request: {
-				method: 'GET',
-				url: `/StoreProduct/v1?searchText=${data.searchText}&page=${data.page}&quantity=${data.quantity}`,
-			},
-		},
-	};
+  return {
+    type: SEARCH,
+    payload: {
+      client: 'development',
+      request: {
+        method: 'GET',
+        url: `/StoreProduct/v1?searchText=${data.searchText}&page=${data.page}&quantity=${data.quantity}`,
+      },
+    },
+  };
 }

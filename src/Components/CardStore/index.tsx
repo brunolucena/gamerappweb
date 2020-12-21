@@ -5,6 +5,10 @@ import { Grid } from '@material-ui/core';
 import IconPlatform from 'Components/IconsPlatform';
 import TimerIcon from '@material-ui/icons/Timer';
 import moment from 'moment';
+import Countdown from 'react-countdown';
+import Box from 'Components/Box';
+import Alarm from '@material-ui/icons/Alarm';
+import Text from 'Components/Text';
 
 interface Props {
     banner: string;
@@ -18,6 +22,32 @@ interface Props {
 }
 
 const CardStore: React.FC<Props> = (props) => {
+    
+    const countdown = (
+        <Countdown
+          date={props.duration}
+          renderer={({ completed, formatted }) => {
+            const { days, hours, minutes, seconds } = formatted;
+    
+            return (
+              !completed && (
+                <Box className='countdown'>
+                  <Box className='alarm-wrapper'>
+                    <Box className='alarm'>
+                      <Alarm style={{ color: '#0dac3d', fontSize: 32 }} />
+                    </Box>
+                  </Box>
+                  <Box marginStart={3}>
+                    <Text className='time'>
+                      {days !== '00' ? `${days}d` : ''} {hours}:{minutes}:{seconds}
+                    </Text>
+                  </Box>         
+                </Box>
+              )
+            );
+          }}
+        />
+      );
 
     return <div className="containerCardStore">
         <div className="banner"
@@ -51,7 +81,7 @@ const CardStore: React.FC<Props> = (props) => {
         <div className="footer">
             <Grid container spacing={1}>
                 {
-                    props.platform.map((plat: any) => {
+                    props?.platform?.map((plat: any) => {
                         return <Grid item xs={2} md={2}>
                             <IconPlatform name={plat.platformName} icon={plat.imageUrl}/>
                         </Grid>
@@ -59,11 +89,8 @@ const CardStore: React.FC<Props> = (props) => {
                 }
                 {
                     props.duration && moment(props.duration).isAfter(props.dateHourNow) && <>
-                        <Grid item xs={5} md={5}>
-                            <p className="duration">{moment(moment(props.duration).diff(props.dateHourNow)).format('DD hh:mm:ss')}</p>
-                        </Grid>
-                        <Grid item xs={2} md={2}>
-                            <TimerIcon style={{ fontSize: "17px", color: 'var(--primary)' }} />
+                        <Grid item xs={12} md={12}>
+                            {countdown}
                         </Grid>
                     </>
                 }

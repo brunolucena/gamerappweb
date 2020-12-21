@@ -11,13 +11,16 @@ import SectionStore from 'Components/SectionStore';
 import './styles.scss';
 
 interface Props {
-  sessionId: any,
-  title?: string
+  sessionId?: any,
+  title?: string,
+  searchText?: any
 }
 
 const Products: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
-  const { sessionId, title } = props;
+  const { sessionId, title, searchText } = props;
+  const params = new URLSearchParams(searchText?.location.search);
+  const searchTextParams = params.get('search');
 
   useEffect(() => {
     dispatch(loadBannersClear())
@@ -28,7 +31,7 @@ const Products: React.FC<Props> = (props) => {
     <div className='home-container'>
       <Container>
         <p>{title}</p>
-        <SectionStore sessionId={sessionId.match.params.id} title={title} isAllItems={false}/>
+        <SectionStore sessionId={sessionId?.match.params.id} searchText={searchTextParams} title={title} isAllItems={false}/>
       </Container>
     </div>
   );

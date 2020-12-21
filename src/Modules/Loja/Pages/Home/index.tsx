@@ -12,8 +12,7 @@ import './styles.scss';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const { sessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
-  const {items} = useSelector((state: ReduxStore) => state.storeSession);
+  const { feedSessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
 
   useEffect(() => {
     dispatch(loadBannersClear())
@@ -25,7 +24,7 @@ const Home: React.FC = () => {
     <div className='home-container'>
       <Container>
         {
-          sessions?.map((session: any) => <>
+          feedSessions?.map((session: any) => <>
             {session.type == 'Banner' && <ContentSlider sessionId={session.id} itemsOnScreen={1}/>}
             {session.type == 'Game' && <SectionStore sessionId={session.id} title={session.title}/>}
           </>

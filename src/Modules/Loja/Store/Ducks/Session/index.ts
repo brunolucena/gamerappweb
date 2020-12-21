@@ -1,9 +1,4 @@
-import {
-	ActionPayload,
-	BaseError,
-	BaseErrorResponse,
-	BaseResponse,
-} from 'Store/Models/ReduxModels';
+import { ActionPayload, BaseErrorResponse, BaseResponse } from 'Store/Models/ReduxModels';
 import { LoadSessionRequest, LoadSessionResponse, ProductItem } from './model';
 
 export const LOAD_SESSION = 'LOAD_SESSION';
@@ -12,18 +7,18 @@ export const LOAD_SESSION_FAILURE = 'LOAD_SESSION_FAILURE';
 export const LOAD_SESSION_CLEAR = 'LOAD_SESSION_CLEAR';
 
 export interface LoadSession {
-	type: typeof LOAD_SESSION;
-	payload: ActionPayload<LoadSessionRequest>;
+  type: typeof LOAD_SESSION;
+  payload: ActionPayload<LoadSessionRequest>;
 }
 
 export interface LoadSessionSuccess {
-	type: typeof LOAD_SESSION_SUCCESS;
-	payload: BaseResponse<LoadSessionResponse>;
+  type: typeof LOAD_SESSION_SUCCESS;
+  payload: BaseResponse<LoadSessionResponse>;
 }
 
 export interface LoadSessionsFailure {
-	type: typeof LOAD_SESSION_FAILURE;
-	payload: BaseErrorResponse;
+  type: typeof LOAD_SESSION_FAILURE;
+  payload: BaseErrorResponse;
 }
 
 export interface LoadSessionsClear {
@@ -38,45 +33,42 @@ export type SessionActions =
 	| LoadSessionsClear;
 
 export interface SessionState {
-	error: string;
-	loaded: boolean;
-	loading: boolean;
-	items: ProductItem[];
+  error: string;
+  loaded: boolean;
+  loading: boolean;
+  items: ProductItem[];
 }
 
 export const initialState: SessionState = {
-	error: '',
-	items: [],
-	loaded: false,
-	loading: false,
+  error: '',
+  items: [],
+  loaded: false,
+  loading: false,
 };
 
-export default function reducer(
-	state = initialState,
-	action: SessionActions
-): SessionState {
-	switch (action.type) {
-		case LOAD_SESSION:
-			return {
-				...state,
-				loading: false,
-				loaded: false,
-			};
+export default function reducer(state = initialState, action: SessionActions): SessionState {
+  switch (action.type) {
+    case LOAD_SESSION:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+      };
 
-		case LOAD_SESSION_SUCCESS:
-			return {
-				...state,
-				loading: false,
-				loaded: true,
-				items: [...state.items, ...action.payload.data.items],
-			};
+    case LOAD_SESSION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        items: [...state.items, ...action.payload.data.items],
+      };
 
-		case LOAD_SESSION_FAILURE:
-			return {
-				...state,
-				loading: false,
-				loaded: false,
-			};
+    case LOAD_SESSION_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+      };
 
 		case LOAD_SESSION_CLEAR:
 			return {
@@ -98,7 +90,7 @@ export function loadSession(data: LoadSessionRequest): LoadSession {
 			client: 'development',
 			request: {
 				method: 'GET',
-				url: `/Session/${data.sessionId}/v1${data.quantity ? `?quantity=${data.quantity}` : ``}`,
+				url: `/Session/${data.sessionId}/v1?quantity=${data.quantity}`,
 			},
 		},
 	};
@@ -112,9 +104,6 @@ export function loadSessionClear() {
 
 // selectors
 
-export function getSessionItemBySessionId(
-	state: SessionState,
-	sessionId: string
-): ProductItem[] {
-	return state.items.filter((p) => p.sessionId === sessionId);
+export function getSessionItemBySessionId(state: SessionState, sessionId: string): ProductItem[] {
+  return state.items.filter((p) => p.sessionId === sessionId);
 }

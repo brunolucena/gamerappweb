@@ -5,6 +5,10 @@ export const LOAD_CONFIGURATION = 'LOAD_CONFIGURATION';
 export const LOAD_CONFIGURATION_SUCCESS = 'LOAD_CONFIGURATION_SUCCESS';
 export const LOAD_CONFIGURATION_FAILURE = 'LOAD_CONFIGURATION_FAILURE';
 
+export const LOAD_MENU_CONFIGURATION = 'LOAD_MENU_CONFIGURATION';
+export const LOAD_MENU_CONFIGURATION_SUCCESS = 'LOAD_MENU_CONFIGURATION_SUCCESS';
+export const LOAD_MENU_CONFIGURATION_FAILURE = 'LOAD_MENU_CONFIGURATION_FAILURE';
+
 export interface LoadConfiguration {
   type: typeof LOAD_CONFIGURATION;
   payload: ActionPayload<LoadConfigurationRequest>;
@@ -20,20 +24,43 @@ export interface LoadConfigurationFailure {
   payload: BaseErrorResponse;
 }
 
-export type ConfigurationActions = LoadConfiguration | LoadConfigurationSuccess | LoadConfigurationFailure;
+export interface LoadMenuConfiguration {
+  type: typeof LOAD_MENU_CONFIGURATION;
+  payload: ActionPayload<LoadConfigurationRequest>;
+}
+
+export interface LoadMenuConfigurationSuccess {
+  type: typeof LOAD_MENU_CONFIGURATION_SUCCESS;
+  payload: BaseResponse<LoadConfigurationResponse>;
+}
+
+export interface LoadMenuConfigurationFailure {
+  type: typeof LOAD_MENU_CONFIGURATION_FAILURE;
+  payload: BaseErrorResponse;
+}
+
+export type ConfigurationActions =
+  | LoadConfiguration
+  | LoadConfigurationFailure
+  | LoadConfigurationSuccess
+  | LoadMenuConfiguration
+  | LoadMenuConfigurationFailure
+  | LoadMenuConfigurationSuccess;
 
 export interface ConfigurationState {
   error: string;
   loaded: boolean;
   loading: boolean;
-  sessions: ConfigurationModel[];
+  feedSessions: ConfigurationModel[];
+  menuSessions: ConfigurationModel[];
 }
 
 export const initialState: ConfigurationState = {
   error: '',
   loaded: false,
   loading: false,
-  sessions: [],
+  feedSessions: [],
+  menuSessions: [],
 };
 
 export default function reducer(state = initialState, action: ConfigurationActions): ConfigurationState {
@@ -44,16 +71,34 @@ export default function reducer(state = initialState, action: ConfigurationActio
         loading: false,
         loaded: true,
       };
-
     case LOAD_CONFIGURATION_SUCCESS:
       return {
         ...state,
         loading: false,
         loaded: true,
-        sessions: action.payload.data.sessions,
+        feedSessions: action.payload.data.sessions,
+      };
+    case LOAD_CONFIGURATION_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
       };
 
-    case LOAD_CONFIGURATION_FAILURE:
+    case LOAD_MENU_CONFIGURATION:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+      };
+    case LOAD_MENU_CONFIGURATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        menuSessions: action.payload.data.sessions,
+      };
+    case LOAD_MENU_CONFIGURATION_FAILURE:
       return {
         ...state,
         loading: false,
@@ -72,7 +117,20 @@ export function loadConfiguration(): LoadConfiguration {
       client: 'development',
       request: {
         method: 'GET',
-        url: '/StoreProduct/Config/v1',
+        url: '/StoreProduct/Config/v1?isFeedSession=true',
+      },
+    },
+  };
+}
+
+export function loadMenuConfiguration(): LoadMenuConfiguration {
+  return {
+    type: LOAD_MENU_CONFIGURATION,
+    payload: {
+      client: 'development',
+      request: {
+        method: 'GET',
+        url: '/StoreProduct/Config/v1?isMenuSession=true',
       },
     },
   };
