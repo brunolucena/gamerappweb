@@ -207,7 +207,7 @@ const ProductDetails: React.FC = () => {
               <BackButton fontSize={28} iconColor='#ffffff' />
             </Box>
 
-            <img src={items[0].imageUrl} alt={items[0].sessionId} width='100%' />
+            {items[0] && <img src={items[0].imageUrl} alt={items[0].sessionId} width='100%' />}
           </Box>
 
           <Box paddingLeft={15} paddingRight={95} paddingTop={8}>
