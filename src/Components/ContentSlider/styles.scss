@@ -84,3 +84,11 @@
     }
   }
 }
+
+@media screen and (max-width: 1300px) {
+  .content-slider-container {
+    .slick-arrow {
+      display: none !important;
+    }
+  }
+}
