@@ -10,11 +10,11 @@ import { useHistory } from 'react-router-dom';
 var _ = require('lodash');
 
 interface Props {
-    sessionId?: string,
-    title?: string,
-    isAllItems?: boolean,
-    isAllItemsBottom?: boolean,
-    searchText?: string|null
+  sessionId?: string;
+  title?: string;
+  isAllItems?: boolean;
+  isAllItemsBottom?: boolean;
+  searchText?: string | null;
 }
 
 const SectionStore: React.FC<Props> = (props) => {
@@ -50,6 +50,7 @@ const SectionStore: React.FC<Props> = (props) => {
                 {
                     sessionId && itemSession && _.groupBy(itemSession, 'sessionId')[sessionId]?.map((item: any) => {
                         return <CardStore
+                            id={item.id}
                             banner={item.imageUrl}
                             title={item.name}
                             discount={Number(item.price.discount).toFixed(2)}
@@ -65,6 +66,7 @@ const SectionStore: React.FC<Props> = (props) => {
                  {
                     searchText && itemsSearch && itemsSearch?.map((item: any) => {
                         return <CardStore
+                            id={item.id}
                             banner={item.imageUrl}
                             title={item.name}
                             discount={Number(item.price?.discount).toFixed(2)}
@@ -92,7 +94,6 @@ const SectionStore: React.FC<Props> = (props) => {
             }
         </div>
     </div>
-    
-}
+};
 
 export default SectionStore;

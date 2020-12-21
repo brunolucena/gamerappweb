@@ -5,7 +5,6 @@ import Button from 'Components/Button';
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
 import Countdown from 'react-countdown';
-import Header from 'Components/Header';
 import Heading from 'Components/Heading';
 import React, { useEffect } from 'react';
 import Text from 'Components/Text';
@@ -123,8 +122,6 @@ const ProductDetails: React.FC = () => {
   return (
     <Box className='product-details-wrapper'>
       <Box backgroundColor='#f8f8f8' className='product-details-container' minHeight='calc(100vh - 70px)'>
-        <Header />
-
         <Container>
           <Box display='grid' gap={30} gridTemplateColumns='2fr 1fr' paddingTop={60} paddingBottom={60}>
             <Box display='flex' direction='column'>

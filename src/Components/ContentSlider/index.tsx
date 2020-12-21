@@ -10,10 +10,12 @@ import { getProportions } from 'Helpers/functions';
 import { useSelector, useDispatch } from 'react-redux';
 import { ReduxStore } from 'Store/Redux';
 import { loadBanners } from 'Modules/Loja/Store/Ducks/Banner';
+import { Link } from 'react-router-dom';
 
 export interface Item {
   imageUrl: string;
   sessionId: string;
+  storeProductId?: string;
 }
 
 interface Props {
@@ -44,8 +46,10 @@ const ContentSlider: React.FC<Props> = (props) => {
   );
 
   useEffect(() => {
-    !items && sessionId && dispatch(loadBanners({sessionId: sessionId}))
-  }, [])
+    if (!items && sessionId) {
+      dispatch(loadBanners({ sessionId }));
+    }
+  }, []);
 
   useEffect(() => {
     const container = document.getElementById('content-slider-container');
@@ -66,21 +70,29 @@ const ContentSlider: React.FC<Props> = (props) => {
           if (!props.itemWidth) {
             setItemWidth(proportions.width);
           }
-          const arrayBanner = (!items && sessionId) ? storeBanners.banners.filter(banner => banner.sessionId == sessionId) : items;
-          console.log('teste: ', arrayBanner, items)
-          const sliderItems = arrayBanner?.map((item) => (
-            <div
-              style={{
-                backgroundImage: `url(${item.imageUrl})`,
-                backgroundPosition: 'center',
-                backgroundRepeat: 'none',
-                backgroundSize: 'cover',
-                borderRadius: 20,
-                height: proportions.height,
-                width: proportions.width,
-              }}
-            />
-          ))??[];
+
+          const arrayBanner = items ?? storeBanners.banners.filter((banner) => banner.sessionId === sessionId);
+
+          const sliderItems = arrayBanner.map((item) => {
+            const element = (
+              <div
+                style={{
+                  backgroundImage: `url('${item.imageUrl}')`,
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'none',
+                  backgroundSize: 'cover',
+                  borderRadius: 20,
+                  height: proportions.height,
+                  width: proportions.width,
+                }}
+              />
+            );
+            return item.storeProductId || item.sessionId ? (
+              <Link to={item.storeProductId ? `/produto/${item.storeProductId}` : `/produtos/${item.sessionId}`}>{element}</Link>
+            ) : (
+              element
+            );
+          });
 
           if (sliderItems.length < slideToShow) {
             while (sliderItems.length < slideToShow) {
