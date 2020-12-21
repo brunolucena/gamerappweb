@@ -90,9 +90,7 @@ const ProductDetails: React.FC = () => {
   );
 
   const sold = (
-    <Box marginTop={5}>
-      {storeLogoUrl ? <img alt={storeName} src={storeLogoUrl} height={25} width='100%' /> : <Text>{storeName}</Text>}
-    </Box>
+    <Box marginTop={5}>{storeLogoUrl ? <img alt={storeName} src={storeLogoUrl} width={100} /> : <Text>{storeName}</Text>}</Box>
   );
 
   const gameprice = (
