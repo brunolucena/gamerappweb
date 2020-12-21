@@ -99,18 +99,20 @@ const ProductDetails: React.FC = () => {
 
   const gameprice = (
     <Box className='game-price'>
-      <Box borderColor='green' borderStyle={1} className='discount-container'>
-        <Box className='discount'>
-          <Heading className='discount-wrapper'>-{price.discountPercent}%</Heading>
-        </Box>
+      {!!price.discountPercent && (
+        <Box borderColor='green' borderStyle={1} className='discount-container'>
+          <Box className='discount'>
+            <Heading className='discount-wrapper'>-{price.discountPercent}%</Heading>
+          </Box>
 
-        <Box className='discount-mobile'>
-          <Heading className='discount-wrapper-mobile'>-{price.discountPercent}%</Heading>
+          <Box className='discount-mobile'>
+            <Heading className='discount-wrapper-mobile'>-{price.discountPercent}%</Heading>
+          </Box>
         </Box>
-      </Box>
+      )}
 
       <Box display='flex' direction='column'>
-        {price.oldPrice && (
+        {!!price.oldPrice && (
           <Box left={2} position='relative'>
             <Text color='lightGray' lineThrough size={12}>
               {formatCurrency(price.oldPrice)}
