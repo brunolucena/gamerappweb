@@ -96,7 +96,7 @@ const ProductDetails: React.FC = () => {
   );
 
   const gameprice = (
-    <Box className='game-price'>
+    <Box className='game-price' marginTop={!price.oldPrice ? 21 : 24} marginBottom={30}>
       {!!price.discountPercent && (
         <Box borderColor='green' borderStyle={1} className='discount-container'>
           <Box className='discount'>
