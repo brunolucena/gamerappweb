@@ -117,7 +117,7 @@ export function loadConfiguration(): LoadConfiguration {
       client: 'development',
       request: {
         method: 'GET',
-        url: '/StoreProduct/Config/v1',
+        url: '/StoreProduct/Config/v1?isFeedSession=true',
       },
     },
   };
@@ -130,7 +130,7 @@ export function loadMenuConfiguration(): LoadMenuConfiguration {
       client: 'development',
       request: {
         method: 'GET',
-        url: '/StoreProduct/Config/v1',
+        url: '/StoreProduct/Config/v1?isMenuSession=true',
       },
     },
   };
