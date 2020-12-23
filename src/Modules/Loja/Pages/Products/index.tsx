@@ -1,13 +1,9 @@
 import Container from 'Components/Container';
-import ContentSlider from 'Components/ContentSlider';
-import { loadConfiguration } from 'Modules/Loja/Store/Ducks/Configuration';
-import { loadBanners, loadBannersClear } from 'Modules/Loja/Store/Ducks/Banner';
-import { loadSession, loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ReduxStore } from 'Store/Redux';
-import CardStore from 'Components/CardStore';
+import React, { useEffect } from 'react';
 import SectionStore from 'Components/SectionStore';
+import { loadBannersClear } from 'Modules/Loja/Store/Ducks/Banner';
+import { loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
+import { useDispatch } from 'react-redux';
 import './styles.scss';
 
 interface Props {
