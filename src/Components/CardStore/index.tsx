@@ -34,14 +34,14 @@ const CardStore: React.FC<Props> = (props) => {
 
         return (
           !completed && (
-            <Box className='countdown'>
+            <Box className='countdown backgroundTransparent'>
               <Box className='alarm-wrapper'>
                 <Box className='alarm'>
-                  <Alarm style={{ color: '#0dac3d', fontSize: 32 }} />
+                  <Alarm style={{ color: '#0dac3d', fontSize: 22 }} />
                 </Box>
               </Box>
               <Box marginStart={3}>
-                <Text className='time'>
+                <Text size={14}>
                   {days !== '00' ? `${days}d` : ''} {hours}:{minutes}:{seconds}
                 </Text>
               </Box>
@@ -65,21 +65,33 @@ const CardStore: React.FC<Props> = (props) => {
           width: '100%',
           height: '114.75px',
         }}
-      ></div>
+      >
+        {
+            props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
+                <Grid container spacing={1} className="containerCountDown">
+                    <Grid item xs={10} md={10}>
+                        {countdown}
+                    </Grid>
+                </Grid>
+            )
+        }
+      </div>
       <div className='body'>
         <Grid container spacing={1}>
           <Grid item xs={12} md={12}>
             <p className='title'>{props.title}</p>
           </Grid>
-          {moment(props.duration).isAfter(props.dateHourNow) && (
+        </Grid>
+        <Grid container spacing={1} alignItems="center">
+          {moment(props.duration).isAfter(props.dateHourNow) && props.discount > 0 && (
             <Grid item xs={6} md={6}>
               <span className='badge --primary'>-{props.discount}%</span>
             </Grid>
           )}
-          <Grid item xs={6} md={6}>
-            <Text size={18} weight='semi-bold'>
-            {props.oldPrice ? <Text color='lightGray' lineThrough size={12}>R${StringFormat.formatToMonetary(props.oldPrice)}</Text> : ''}
-              R${StringFormat.formatToMonetary(props.value)}
+          <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
+            <Text size={16} weight='semi-bold'>
+                {props.oldPrice ? <Text color='lightGray' lineThrough size={12}>R${StringFormat.formatToMonetary(props.oldPrice)}</Text> : ''}
+                R${StringFormat.formatToMonetary(props.value)}
             </Text>
           </Grid>
         </Grid>
@@ -93,13 +105,6 @@ const CardStore: React.FC<Props> = (props) => {
               </Grid>
             );
           })}
-          {props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
-            <>
-              <Grid item xs={12} md={12}>
-                {countdown}
-              </Grid>
-            </>
-          )}
         </Grid>
       </div>
     </Link>
