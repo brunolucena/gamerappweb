@@ -114,7 +114,6 @@ export function loadConfiguration(): LoadConfiguration {
   return {
     type: LOAD_CONFIGURATION,
     payload: {
-      client: 'development',
       request: {
         method: 'GET',
         url: '/StoreProduct/Config/v1?isFeedSession=true',
@@ -127,7 +126,6 @@ export function loadMenuConfiguration(): LoadMenuConfiguration {
   return {
     type: LOAD_MENU_CONFIGURATION,
     payload: {
-      client: 'development',
       request: {
         method: 'GET',
         url: '/StoreProduct/Config/v1?isMenuSession=true',

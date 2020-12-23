@@ -1,4 +1,4 @@
-.content-slider-container + .containerSectionStore{
+.content-slider-container + .containerSectionStore {
   margin-top: 54px;
 }
 
@@ -6,7 +6,7 @@
   width: 100%;
   padding: 10px 0px;
 
-  &+&{
+  & + & {
     margin-top: 20px;
   }
 
@@ -17,7 +17,7 @@
     justify-content: space-between;
     padding: 10px 0px;
 
-    .title{
+    .title {
       text-align: center;
       width: 100%;
     }
@@ -28,30 +28,32 @@
       line-height: 36px;
     }
 
-    > button {
+    > a.ver-tudo {
       min-width: 105px;
       background: #fff;
       color: var(--color-green);
-      padding: 10px;
+      padding: 10px 30px;
       border: 1px solid #cccccc;
       border-radius: 8px;
       font-weight: 600;
+      text-decoration: none;
+      text-align: center;
       cursor: pointer;
     }
   }
 
   > .body {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(204px, 204px));
-      gap: 35px;
-      padding: 30px 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(204px, 204px));
+    gap: 35px;
+    padding: 30px 0px;
   }
 
-  > .footer{
+  > .footer {
     width: 100%;
     text-align: center;
-    
-    > button{
+
+    > button {
       min-width: 105px;
       background: var(--color-green);
       color: var(--white);
@@ -65,8 +67,8 @@
 }
 
 @media screen and (max-width: 770px) {
-  .containerSectionStore{
-    > .body{
+  .containerSectionStore {
+    > .body {
       justify-content: center;
       grid-template-columns: repeat(auto-fit, minmax(170px, 170px));
       gap: 10px;

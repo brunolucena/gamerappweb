@@ -55,7 +55,7 @@ export default function reducer(state = initialState, action: ProductDetailsActi
   switch (action.type) {
     case LOAD_PRODUCT_DETAILS:
       return {
-        ...state,
+        ...initialState,
         loading: false,
       };
 
@@ -83,7 +83,6 @@ export function loadProductDetails(data: LoadProductDetailsRequest): LoadProduct
   return {
     type: LOAD_PRODUCT_DETAILS,
     payload: {
-      client: 'development',
       request: {
         method: 'GET',
         url: `/StoreProduct/${data.id}/v1`,

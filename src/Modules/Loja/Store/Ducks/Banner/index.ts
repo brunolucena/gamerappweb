@@ -17,8 +17,8 @@ export interface LoadBannersSuccess {
 }
 
 export interface LoadBannersClear {
-	type: typeof LOAD_BANNERS_CLEAR;
-	payload: [];
+  type: typeof LOAD_BANNERS_CLEAR;
+  payload: [];
 }
 
 export interface LoadBannersFailure {
@@ -26,11 +26,7 @@ export interface LoadBannersFailure {
   payload: BaseErrorResponse;
 }
 
-export type BannerActions =
-	| LoadBanners
-	| LoadBannersSuccess
-	| LoadBannersClear
-	| LoadBannersFailure;
+export type BannerActions = LoadBanners | LoadBannersSuccess | LoadBannersClear | LoadBannersFailure;
 
 export interface BannersState {
   error: string;
@@ -45,17 +41,14 @@ export const initialState: BannersState = {
   loaded: false,
   loading: false,
 };
-export default function reducer(
-	state = initialState,
-	action: BannerActions
-): BannersState {
-	switch (action.type) {
-		case LOAD_BANNERS:
-			return {
-				...state,
-				loading: true,
-				loaded: false,
-			};
+export default function reducer(state = initialState, action: BannerActions): BannersState {
+  switch (action.type) {
+    case LOAD_BANNERS:
+      return {
+        ...state,
+        loading: true,
+        loaded: false,
+      };
 
     case LOAD_BANNERS_SUCCESS:
       return {
@@ -65,19 +58,19 @@ export default function reducer(
         banners: [...state.banners, ...action.payload.data.banners],
       };
 
-		case LOAD_BANNERS_FAILURE:
-			return {
-				...state,
-				loading: false,
-				loaded: false,
-			};
-		case LOAD_BANNERS_CLEAR:
-			return {
-				...state,
-				loading: false,
-				loaded: false,
-				banners: []
-			};
+    case LOAD_BANNERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+      };
+    case LOAD_BANNERS_CLEAR:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        banners: [],
+      };
 
     default:
       return state;
@@ -88,7 +81,6 @@ export function loadBanners(data: LoadBannersRequest): LoadBanners {
   return {
     type: LOAD_BANNERS,
     payload: {
-      client: 'development',
       request: {
         method: 'GET',
         url: `/Banner/${data.sessionId}/v1`,
@@ -97,11 +89,10 @@ export function loadBanners(data: LoadBannersRequest): LoadBanners {
   };
 }
 
-
 export function loadBannersClear() {
-	return {
-		type: LOAD_BANNERS_CLEAR
-	};
+  return {
+    type: LOAD_BANNERS_CLEAR,
+  };
 }
 
 // selectors
