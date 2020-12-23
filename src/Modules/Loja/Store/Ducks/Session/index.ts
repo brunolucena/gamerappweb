@@ -4,6 +4,7 @@ import { LoadSessionRequest, LoadSessionResponse, ProductItem } from './model';
 export const LOAD_SESSION = 'LOAD_SESSION';
 export const LOAD_SESSION_SUCCESS = 'LOAD_SESSION_SUCCESS';
 export const LOAD_SESSION_FAILURE = 'LOAD_SESSION_FAILURE';
+export const LOAD_SESSION_CLEAR = 'LOAD_SESSION_CLEAR';
 
 export interface LoadSession {
   type: typeof LOAD_SESSION;
@@ -20,7 +21,16 @@ export interface LoadSessionsFailure {
   payload: BaseErrorResponse;
 }
 
-export type SessionActions = LoadSession | LoadSessionSuccess | LoadSessionsFailure;
+export interface LoadSessionsClear {
+	type: typeof LOAD_SESSION_CLEAR;
+	payload: [];
+}
+
+export type SessionActions =
+	| LoadSession
+	| LoadSessionSuccess
+	| LoadSessionsFailure
+	| LoadSessionsClear;
 
 export interface SessionState {
   error: string;
@@ -60,22 +70,36 @@ export default function reducer(state = initialState, action: SessionActions): S
         loaded: false,
       };
 
-    default:
-      return state;
-  }
+		case LOAD_SESSION_CLEAR:
+			return {
+				...state,
+				loading: false,
+				loaded: false,
+				items: []
+			};
+
+		default:
+			return state;
+	}
 }
 
 export function loadSession(data: LoadSessionRequest): LoadSession {
-  return {
-    type: LOAD_SESSION,
-    payload: {
-      client: 'development',
-      request: {
-        method: 'GET',
-        url: `/Session/${data.sessionId}/v1`,
-      },
-    },
-  };
+	return {
+		type: LOAD_SESSION,
+		payload: {
+			client: 'development',
+			request: {
+				method: 'GET',
+				url: `/Session/${data.sessionId}/v1?quantity=${data.quantity}`,
+			},
+		},
+	};
+}
+
+export function loadSessionClear() {
+	return {
+		type: LOAD_SESSION_CLEAR,
+	};
 }
 
 // selectors

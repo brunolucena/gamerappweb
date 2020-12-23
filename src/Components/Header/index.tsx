@@ -19,8 +19,8 @@ import { ReduxStore } from 'Store/Redux';
 import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
 
-const PLAYSTATION_ID_SESSION = 'A063BA2F-6B73-4484-92EB-5691A175F8B0';
-const XBOX_ID_SESSION = '25DA08DD-CC54-4DAA-A535-345C4AFC38D0';
+const PLAYSTATION_ID_SESSION = 'a063ba2f-6b73-4484-92eb-5691a175f8b0';
+const XBOX_ID_SESSION = '25da08dd-cc54-4daa-a535-345c4afc38d0';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,10 +30,12 @@ const Header: React.FC = () => {
   const [search, setSearch] = useState('');
 
   const handleNavigate = () => {
-    history.push({
-      pathname: '/search',
-      search: `?search=${search}`,
-    });
+    if (search) {
+      history.push({
+        pathname: '/pesquisar',
+        search: `?search=${search}`,
+      });
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,37 +53,87 @@ const Header: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className='container-header'>
-      <Container>
-        <Box className='header-content'>
-          <Link className='logo-link' to='/'>
-            <img alt='Logo GamerApp' src={logo} style={{ width: 103 }} />
-          </Link>
+    <>
+      <div className='container-header'>
+        <Container>
+          <Box className='header-content'>
+            <Link className='logo-link' to='/'>
+              <img alt='Logo GamerApp' src={logo} style={{ width: 103 }} />
+            </Link>
 
-          <Box className='search-text-container'>
-            <TextField
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='end'>
-                    <Box className='icon-container'>
-                      <IconButton onClick={handleNavigate}>
-                        <Search style={{ color: '#0dac3d', fontSize: 32 }} />
-                      </IconButton>
-                    </Box>
-                  </InputAdornment>
-                ),
-              }}
-              className='search-field'
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              placeholder='Pesquise no GamerApp'
-              value={search}
-              variant='outlined'
-            />
+            <Box className='search-text-container'>
+              <TextField
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <Box className='icon-container'>
+                        <IconButton onClick={handleNavigate}>
+                          <Search style={{ color: '#0dac3d', fontSize: 32 }} />
+                        </IconButton>
+                      </Box>
+                    </InputAdornment>
+                  ),
+                }}
+                className='search-field'
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                placeholder='Pesquise no GamerApp'
+                value={search}
+                variant='outlined'
+              />
+            </Box>
+
+            <Box className='menu-items'>
+              {menuSessions.length > 0 && (
+                <button className='menu-item'>
+                  <img alt='Categorias' src={cupom} style={{ height: 20 }} />
+
+                  <Box marginEnd={1} marginStart={8}>
+                    <Heading size={20}>Categorias</Heading>
+                  </Box>
+
+                  <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
+
+                  <Box className='menu-item-dropdown' borderRadius={5} borderStyle='shadow'>
+                    {menuSessions.map((menu, index) => {
+                      return (
+                        <Link className='menu-item-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
+                          <Text size={18} weight='semi-bold'>
+                            {menu.title}
+                          </Text>
+                        </Link>
+                      );
+                    })}
+                  </Box>
+                </button>
+              )}
+
+              <Link className='menu-item is-link' to={`/produtos/${PLAYSTATION_ID_SESSION}`}>
+                <img alt='Playstation' src={playstation} style={{ height: 20 }} />
+
+                <Box marginEnd={1} marginStart={8}>
+                  <Heading size={20}>Playstation</Heading>
+                </Box>
+              </Link>
+
+              <Link className='menu-item is-link' to={`/produtos/${XBOX_ID_SESSION}`}>
+                <img alt='Xbox' src={xbox} style={{ height: 20 }} />
+
+                <Box marginEnd={1} marginStart={8}>
+                  <Heading size={20}>Xbox</Heading>
+                </Box>
+              </Link>
+            </Box>
+
+            <Box className='hamburguer-wrapper'>
+              <Hamburguer opened={menuOpened} toggleOpened={() => setMenuOpened(!menuOpened)} />
+            </Box>
           </Box>
+        </Container>
 
-          <Box className='menu-items'>
-            {menuSessions.length > 0 && (
+        <Box className={`menu-items-mobile ${menuOpened ? 'opened' : ''}`}>
+          {menuSessions.length > 0 && (
+            <>
               <button className='menu-item'>
                 <img alt='Categorias' src={cupom} style={{ height: 20 }} />
 
@@ -90,88 +142,62 @@ const Header: React.FC = () => {
                 </Box>
 
                 <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
-
-                <Box className='menu-item-dropdown' borderRadius={5} borderStyle='shadow'>
-                  {menuSessions.map((menu, index) => {
-                    return (
-                      <Link className='menu-item-dropdown-item' key={menu.id + index} to={`/session/${menu.id}`}>
-                        <Text size={18} weight='semi-bold'>
-                          {menu.title}
-                        </Text>
-                      </Link>
-                    );
-                  })}
-                </Box>
               </button>
-            )}
 
-            <Link className='menu-item is-link' to={`/session/${PLAYSTATION_ID_SESSION}`}>
-              <img alt='Playstation' src={playstation} style={{ height: 20 }} />
-
-              <Box marginEnd={1} marginStart={8}>
-                <Heading size={20}>Playstation</Heading>
+              <Box className='menu-item-dropdown-mobile' borderRadius={5} borderStyle='shadow'>
+                {menuSessions.map((menu, index) => {
+                  return (
+                    <Link className='menu-item-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
+                      <Text size={18} weight='semi-bold'>
+                        {menu.title}
+                      </Text>
+                    </Link>
+                  );
+                })}
               </Box>
-            </Link>
+            </>
+          )}
 
-            <Link className='menu-item is-link' to={`/session/${XBOX_ID_SESSION}`}>
-              <img alt='Xbox' src={xbox} style={{ height: 20 }} />
+          <Link className='menu-item is-link' to={`/produtos/${PLAYSTATION_ID_SESSION}`}>
+            <img alt='Playstation' src={playstation} style={{ height: 20 }} />
 
-              <Box marginEnd={1} marginStart={8}>
-                <Heading size={20}>Xbox</Heading>
-              </Box>
-            </Link>
-          </Box>
-
-          <Box className='hamburguer-wrapper'>
-            <Hamburguer opened={menuOpened} toggleOpened={() => setMenuOpened(!menuOpened)} />
-          </Box>
-        </Box>
-      </Container>
-
-      <Box className={`menu-items-mobile ${menuOpened ? 'opened' : ''}`}>
-        {menuSessions.length > 0 && (
-          <>
-            <button className='menu-item'>
-              <img alt='Categorias' src={cupom} style={{ height: 20 }} />
-
-              <Box marginEnd={1} marginStart={8}>
-                <Heading size={20}>Categorias</Heading>
-              </Box>
-
-              <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
-            </button>
-
-            <Box className='menu-item-dropdown-mobile' borderRadius={5} borderStyle='shadow'>
-              {menuSessions.map((menu, index) => {
-                return (
-                  <Link className='menu-item-dropdown-item' key={menu.id + index} to={`/session/${menu.id}`}>
-                    <Text size={18} weight='semi-bold'>
-                      {menu.title}
-                    </Text>
-                  </Link>
-                );
-              })}
+            <Box marginEnd={1} marginStart={8}>
+              <Heading size={20}>Playstation</Heading>
             </Box>
-          </>
-        )}
+          </Link>
 
-        <Link className='menu-item is-link' to={`/session/${PLAYSTATION_ID_SESSION}`}>
-          <img alt='Playstation' src={playstation} style={{ height: 20 }} />
+          <Link className='menu-item is-link' to={`/produtos/${XBOX_ID_SESSION}`}>
+            <img alt='Xbox' src={xbox} style={{ height: 20 }} />
 
-          <Box marginEnd={1} marginStart={8}>
-            <Heading size={20}>Playstation</Heading>
-          </Box>
-        </Link>
+            <Box marginEnd={1} marginStart={8}>
+              <Heading size={20}>Xbox</Heading>
+            </Box>
+          </Link>
+        </Box>
+      </div>
 
-        <Link className='menu-item is-link' to={`/session/${XBOX_ID_SESSION}`}>
-          <img alt='Xbox' src={xbox} style={{ height: 20 }} />
-
-          <Box marginEnd={1} marginStart={8}>
-            <Heading size={20}>Xbox</Heading>
-          </Box>
-        </Link>
+      <Box className='search-text-container search-text-container-mobile'>
+        <TextField
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <Box className='icon-container'>
+                  <IconButton onClick={handleNavigate}>
+                    <Search style={{ color: '#0dac3d', fontSize: 32 }} />
+                  </IconButton>
+                </Box>
+              </InputAdornment>
+            ),
+          }}
+          className='search-field'
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder='Pesquise no GamerApp'
+          value={search}
+          variant='outlined'
+        />
       </Box>
-    </div>
+    </>
   );
 };
 

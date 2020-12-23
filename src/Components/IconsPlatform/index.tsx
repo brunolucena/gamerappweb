@@ -4,47 +4,20 @@ import iconSteam from './iconSteam.png';
 
 interface Props {
     name: string;
+    icon: string;
 }
 
-const renderIcon = (name: string) => {
-    switch (String(name).toUpperCase()) {
-        case 'WINDOWS':
-            return <div 
+const IconPlatform: React.FC<Props> = (props) => {
+    return <div>
+        <div 
             style={{
-                backgroundImage: `url(${iconWindows})`,
-                backgroundPosition: 'center',
-                backgroundRepeat: 'none',
-                backgroundSize: 'cover',
-                width: '17px',
-                height: '17px'
-              }}
-            ></div>
-        case 'STEAM':
-            return <div 
-            style={{
-                backgroundImage: `url(${iconSteam})`,
+                backgroundImage: `url(${props.icon})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'none',
                 backgroundSize: 'cover',
                 width: '17px',
                 height: '17px'
               }}></div>
-        default:
-            return <div
-            style={{
-                backgroundImage: `url(${iconWindows})`,
-                backgroundPosition: 'center',
-                backgroundRepeat: 'none',
-                backgroundSize: 'cover',
-                width: '17px',
-                height: '17px'
-              }}
-            ></div>
-    }
-}
-const IconPlatform: React.FC<Props> = (props) => {
-    return <div>
-        {renderIcon(props.name)}
     </div>
 }
 

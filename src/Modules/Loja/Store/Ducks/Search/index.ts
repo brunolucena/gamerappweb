@@ -72,6 +72,7 @@ export function search(data: SearchRequest): Search {
   return {
     type: SEARCH,
     payload: {
+      client: 'development',
       request: {
         method: 'GET',
         url: `/StoreProduct/v1?searchText=${data.searchText}&page=${data.page}&quantity=${data.quantity}`,

@@ -3,7 +3,7 @@ export interface ProductItem {
 		name: string;
 		id: string;
 		imageUrl: string;
-		price: number;
+		price: PriceItem;
 		oldPrice?: number;
 		isSteam: boolean;
 		discount: number;
@@ -13,11 +13,19 @@ export interface ProductItem {
 		windows: boolean;
 		linux: boolean;
 		offerValidUntil?: Date;
-		url: string
+		url: string;
+}
+
+export interface PriceItem {
+	discount: number;
+	discountPercent: number;
+	oldPrice: number;
+	price: number;
 }
 
 export interface LoadSessionRequest {
 	sessionId: string;
+	quantity?: number;
 }
 
 export interface LoadSessionResponse {

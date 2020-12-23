@@ -4,6 +4,7 @@ import { BannerModel, LoadBannerResponse as LoadBannersResponse, LoadBannersRequ
 export const LOAD_BANNERS = 'LOAD_BANNERS';
 export const LOAD_BANNERS_SUCCESS = 'LOAD_BANNERS_SUCCESS';
 export const LOAD_BANNERS_FAILURE = 'LOAD_BANNERS_FAILURE';
+export const LOAD_BANNERS_CLEAR = 'LOAD_BANNERS_CLEAR';
 
 export interface LoadBanners {
   type: typeof LOAD_BANNERS;
@@ -15,12 +16,21 @@ export interface LoadBannersSuccess {
   payload: BaseResponse<LoadBannersResponse>;
 }
 
+export interface LoadBannersClear {
+	type: typeof LOAD_BANNERS_CLEAR;
+	payload: [];
+}
+
 export interface LoadBannersFailure {
   type: typeof LOAD_BANNERS_FAILURE;
   payload: BaseErrorResponse;
 }
 
-export type BannerActions = LoadBanners | LoadBannersSuccess | LoadBannersFailure;
+export type BannerActions =
+	| LoadBanners
+	| LoadBannersSuccess
+	| LoadBannersClear
+	| LoadBannersFailure;
 
 export interface BannersState {
   error: string;
@@ -35,14 +45,17 @@ export const initialState: BannersState = {
   loaded: false,
   loading: false,
 };
-export default function reducer(state = initialState, action: BannerActions): BannersState {
-  switch (action.type) {
-    case LOAD_BANNERS:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-      };
+export default function reducer(
+	state = initialState,
+	action: BannerActions
+): BannersState {
+	switch (action.type) {
+		case LOAD_BANNERS:
+			return {
+				...state,
+				loading: true,
+				loaded: false,
+			};
 
     case LOAD_BANNERS_SUCCESS:
       return {
@@ -52,12 +65,19 @@ export default function reducer(state = initialState, action: BannerActions): Ba
         banners: [...state.banners, ...action.payload.data.banners],
       };
 
-    case LOAD_BANNERS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-      };
+		case LOAD_BANNERS_FAILURE:
+			return {
+				...state,
+				loading: false,
+				loaded: false,
+			};
+		case LOAD_BANNERS_CLEAR:
+			return {
+				...state,
+				loading: false,
+				loaded: false,
+				banners: []
+			};
 
     default:
       return state;
@@ -75,6 +95,13 @@ export function loadBanners(data: LoadBannersRequest): LoadBanners {
       },
     },
   };
+}
+
+
+export function loadBannersClear() {
+	return {
+		type: LOAD_BANNERS_CLEAR
+	};
 }
 
 // selectors

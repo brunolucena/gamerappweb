@@ -1,42 +1,52 @@
-.containerCardStore{
-    width: 204px;
-    min-height: 229.50px;
-    background-color: var(--white);
-    border-radius: 8px;
-    margin-top: 1rem;
+.containerCardStore {
+  width: 204px;
+  min-height: 229.5px;
+  background-color: var(--white);
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid var(--white);
+  text-decoration: none;
+  color: #3c3c3c;
 
-    &+&{
-        margin-left: 2rem;
+  & + & {
+    margin-left: 2rem;
+  }
+
+  & + &:nth-child(0n + 6) {
+    margin-left: 0rem;
+  }
+
+  &:hover {
+    border: 1px solid var(--primary);
+    box-shadow: 0px 0px 20px -7px;
+    cursor: pointer;
+  }
+
+  > .body {
+    padding: 1rem;
+
+    .title {
+      margin-bottom: 0.7rem;
+      height: 38px;
     }
 
-    &+&:nth-child(0n+6){
-        margin-left: 0rem;
+    .badge {
+      padding: 5px 10px;
+      border-radius: 4px;
+
+      &.--primary {
+        background-color: var(--primary);
+        color: var(--white);
+        font-weight: 500;
+      }
     }
+  }
 
-    > .body{
-        padding: 1rem;
+  > .footer {
+    padding: 0rem 1rem 0.5rem 1rem;
 
-        .title{
-            margin-bottom: 0.7rem;
-        }
-
-        .badge{
-            padding: 5px 10px;
-            border-radius: 4px;
-
-            &.--primary{
-                background-color: var(--primary);
-                color: var(--white);
-                font-weight: 500;
-            }
-        }
+    .duration {
+      font-size: 12px;
     }
-
-    > .footer{ 
-        padding: 0rem 1rem;
-
-        .duration{
-            font-size: 12px;
-        }
-    }
+  }
 }

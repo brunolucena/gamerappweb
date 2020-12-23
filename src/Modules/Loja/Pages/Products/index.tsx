@@ -10,29 +10,31 @@ import CardStore from 'Components/CardStore';
 import SectionStore from 'Components/SectionStore';
 import './styles.scss';
 
-const Home: React.FC = () => {
+interface Props {
+  sessionId?: any,
+  title?: string,
+  searchText?: any
+}
+
+const Products: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
-  const { feedSessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
+  const { sessionId, title, searchText } = props;
+  const params = new URLSearchParams(searchText?.location.search);
+  const searchTextParams = params.get('search');
 
   useEffect(() => {
     dispatch(loadBannersClear())
     dispatch(loadSessionClear())
-    dispatch(loadConfiguration());
   }, []);
 
   return (
     <div className='home-container'>
       <Container>
-        {
-          feedSessions?.map((session: any) => <>
-            {session.type == 'Banner' && <ContentSlider sessionId={session.id} itemsOnScreen={1}/>}
-            {session.type == 'Game' && <SectionStore sessionId={session.id} title={session.title}/>}
-          </>
-          )
-        }
+        <p>{title}</p>
+        <SectionStore sessionId={sessionId?.match.params.id} searchText={searchTextParams} title={title} isAllItems={false}/>
       </Container>
     </div>
   );
 };
 
-export default Home;
+export default Products;
