@@ -55,7 +55,7 @@ export default function reducer(state = initialState, action: ProductDetailsActi
   switch (action.type) {
     case LOAD_PRODUCT_DETAILS:
       return {
-        ...state,
+        ...initialState,
         loading: false,
       };
 
