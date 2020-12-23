@@ -83,7 +83,6 @@ export function loadProductDetails(data: LoadProductDetailsRequest): LoadProduct
   return {
     type: LOAD_PRODUCT_DETAILS,
     payload: {
-      client: 'development',
       request: {
         method: 'GET',
         url: `/StoreProduct/${data.id}/v1`,
