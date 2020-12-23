@@ -25,13 +25,19 @@ const Products: React.FC<Props> = (props) => {
   useEffect(() => {
     dispatch(loadBannersClear())
     dispatch(loadSessionClear())
-  }, []);
+  }, [searchText || sessionId]);
 
   return (
     <div className='home-container'>
       <Container>
         <p>{title}</p>
-        <SectionStore sessionId={sessionId?.match.params.id} searchText={searchTextParams} title={title} isAllItems={false}/>
+        <SectionStore 
+          sessionId={sessionId?.match.params.id} 
+          searchText={searchTextParams} 
+          title={title} 
+          isAllItems={false}
+          isAllItemsBottom={true}
+        />
       </Container>
     </div>
   );

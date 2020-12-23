@@ -37,13 +37,17 @@ export interface SessionState {
   loaded: boolean;
   loading: boolean;
   items: ProductItem[];
+  name: string;
+  count: number;
 }
 
 export const initialState: SessionState = {
   error: '',
   items: [],
+  name: '',
   loaded: false,
   loading: false,
+  count: 0
 };
 
 export default function reducer(state = initialState, action: SessionActions): SessionState {
@@ -53,6 +57,8 @@ export default function reducer(state = initialState, action: SessionActions): S
         ...state,
         loading: false,
         loaded: false,
+        name: '',
+        count: 0,
       };
 
     case LOAD_SESSION_SUCCESS:
@@ -61,6 +67,8 @@ export default function reducer(state = initialState, action: SessionActions): S
         loading: false,
         loaded: true,
         items: [...state.items, ...action.payload.data.items],
+        name: action.payload.data.name,
+        count: action.payload.data.count,
       };
 
     case LOAD_SESSION_FAILURE:
@@ -68,6 +76,8 @@ export default function reducer(state = initialState, action: SessionActions): S
         ...state,
         loading: false,
         loaded: false,
+        name: '',
+        count: 0,
       };
 
 		case LOAD_SESSION_CLEAR:
@@ -75,7 +85,9 @@ export default function reducer(state = initialState, action: SessionActions): S
 				...state,
 				loading: false,
 				loaded: false,
-				items: []
+        items: [],
+        name: '',
+        count: 0,
 			};
 
 		default:

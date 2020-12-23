@@ -23,4 +23,5 @@ export const BtnStyles = styled.div<{ type2?: string }>`
   color: white;
   font-weight: bold;
   white-space: nowrap;
+  min-width: 105px;
 `;
