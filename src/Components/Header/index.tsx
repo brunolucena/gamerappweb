@@ -30,10 +30,12 @@ const Header: React.FC = () => {
   const [search, setSearch] = useState('');
 
   const handleNavigate = () => {
-    history.push({
-      pathname: '/pesquisar',
-      search: `?search=${search}`,
-    });
+    if (search) {
+      history.push({
+        pathname: '/pesquisar',
+        search: `?search=${search}`,
+      });
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
