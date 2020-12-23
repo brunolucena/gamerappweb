@@ -93,6 +93,10 @@
 .search-text-container {
   margin-inline-start: 20px;
 
+  fieldset {
+    border: none;
+  }
+
   .search-field {
     height: 100%;
     width: 100%;
