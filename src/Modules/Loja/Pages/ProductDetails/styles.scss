@@ -97,6 +97,20 @@
       }
     }
   }
+
+  .link-button {
+    display: block;
+    padding: 17px;
+    min-width: 105px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    white-space: nowrap;
+    text-align: center;
+    text-decoration: none;
+    line-height: 20px;
+    font-weight: 700;
+  }
 }
 
 .countdown {

@@ -272,11 +272,11 @@ const ProductDetails: React.FC = () => {
           </Box>
 
           <Box className='button-wrapper'>
-            <Button external to={link}>
+            <a className="link-button" href={link} rel="noopener noreferrer" target="_blank">
               <Text align='center' className='button-text' color='white' size={16} weight='bold'>
                 Comprar
               </Text>
-            </Button>
+            </a>
           </Box>
         </Box>
       </Box>
