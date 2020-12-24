@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import logo from './logo.svg';
+import logoMobile from './logo-green.png';
 import playstation from './playstation.svg';
 import React, { useEffect, useState } from 'react';
 import Search from '@material-ui/icons/Search';
@@ -17,6 +18,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { loadMenuConfiguration } from 'Modules/Loja/Store/Ducks/Configuration';
 import { ReduxStore } from 'Store/Redux';
 import { useDispatch, useSelector } from 'react-redux';
+import useIsMobile from 'Helpers/useIsMobile';
 import './styles.scss';
 
 const PLAYSTATION_ID_SESSION = 'a063ba2f-6b73-4484-92eb-5691a175f8b0';
@@ -28,6 +30,7 @@ const Header: React.FC = () => {
   const { menuSessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
+  const isMobile = useIsMobile()
 
   const handleNavigate = () => {
     if (search) {
@@ -58,7 +61,7 @@ const Header: React.FC = () => {
         <Container>
           <Box className='header-content'>
             <Link className='logo-link' to='/'>
-              <img alt='Logo GamerApp' src={logo} style={{ width: 103 }} />
+              <img alt='Logo GamerApp' src={isMobile ? logoMobile : logo} style={{ width: 103 }} />
             </Link>
 
             <Box className='search-text-container'>

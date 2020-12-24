@@ -5,6 +5,9 @@ import { loadBannersClear } from 'Modules/Loja/Store/Ducks/Banner';
 import { loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
+import Box from 'Components/Box';
+import BackButton from 'Components/BackButton';
+import { Link } from 'react-router-dom';
 
 interface Props {
   sessionId?: any;
@@ -25,6 +28,9 @@ const Products: React.FC<Props> = (props) => {
 
   return (
     <div className='products-container'>
+      <Box position='absolute' top={110} bottom={5} left={0} right={0}>
+          <BackButton fontSize={28} iconColor='#999'/>
+      </Box>
       <Container>
         <p>{title}</p>
         <SectionStore

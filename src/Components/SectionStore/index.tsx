@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { loadSession, loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
 import { ReduxStore } from 'Store/Redux';
-import { search } from 'Modules/Loja/Store/Ducks/Search';
+import { search, searchClear } from 'Modules/Loja/Store/Ducks/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import './styles.scss';
@@ -28,6 +28,7 @@ const SectionStore: React.FC<Props> = (props) => {
 
   useEffect(() => {
     dispatch(loadSessionClear());
+    dispatch(searchClear());
 
     sessionId && !searchText && dispatch(loadSession({ sessionId: sessionId, quantity: quantity }));
     !sessionId && searchText && dispatch(search({ searchText: searchText, quantity: 50, page: 1 }));
