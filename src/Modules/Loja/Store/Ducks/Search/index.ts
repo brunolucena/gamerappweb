@@ -5,6 +5,7 @@ import { SearchRequest, SearchResponse } from './model';
 export const SEARCH = 'SEARCH';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const SEARCH_FAILURE = 'SEARCH_FAILURE';
+export const SEARCH_CLEAR = 'SEARCH_CLEAR';
 
 export interface Search {
   type: typeof SEARCH;
@@ -16,12 +17,17 @@ export interface SearchSuccess {
   payload: BaseResponse<SearchResponse>;
 }
 
+export interface SearchClear {
+  type: typeof SEARCH_CLEAR;
+  payload: [];
+}
+
 export interface SearchsFailure {
   type: typeof SEARCH_FAILURE;
   payload: BaseErrorResponse;
 }
 
-export type SessionActions = Search | SearchSuccess | SearchsFailure;
+export type SessionActions = Search | SearchSuccess | SearchsFailure | SearchClear;
 
 export interface SearchState {
   error: string;
@@ -63,6 +69,14 @@ export default function reducer(state = initialState, action: SessionActions): S
         loaded: false,
       };
 
+      case SEARCH_CLEAR:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        items: []
+      };
+
     default:
       return state;
   }
@@ -77,5 +91,11 @@ export function search(data: SearchRequest): Search {
         url: `/StoreProduct/v1?searchText=${data.searchText}&page=${data.page}&quantity=${data.quantity}`,
       },
     },
+  };
+}
+
+export function searchClear() {
+  return {
+    type: SEARCH_CLEAR,
   };
 }

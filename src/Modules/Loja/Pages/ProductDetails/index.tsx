@@ -33,7 +33,7 @@ const ProductDetails: React.FC = () => {
     storeLogoUrl,
     title,
   } = storeProductDetails;
-
+console.log('teste about: ', about)
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const ProductDetails: React.FC = () => {
                 </Box>
 
                 <Text color='gray' size={18}>
-                  {about}
+                  {about ? about : 'Nenhum detalhes disponível...'}
                 </Text>
               </Box>
             </Box>
@@ -258,7 +258,7 @@ const ProductDetails: React.FC = () => {
 
             <Box>
               <Text color='gray' size={14}>
-                {about}
+                {about ? about : 'Nenhum detalhes disponível...'}
               </Text>
 
               {copyright && (
