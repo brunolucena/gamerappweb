@@ -7,7 +7,7 @@ type ButtonType = 'primary' | 'secondary';
 interface Props {
   buttonType?: 'button' | 'submit' | 'reset';
   external?: boolean;
-  onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
+  onClick?: ((event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
   to?: string;
   type?: string;
 }
@@ -16,11 +16,17 @@ const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, 
   const button = <BtnStyles type2={type || ''}>{children}</BtnStyles>;
 
   return external ? (
-    <a href={to} rel='noopener noreferrer' style={{ textAlign: 'center', textDecoration: 'none' }} target='_blank'>
+    <a
+      href={to}
+      onClick={() => onClick && onClick()}
+      rel='noopener noreferrer'
+      style={{ textAlign: 'center', textDecoration: 'none' }}
+      target='_blank'
+    >
       {button}
     </a>
   ) : to ? (
-    <Link to={to} style={{ textAlign: 'center', textDecoration: 'none' }}>
+    <Link onClick={() => onClick && onClick()} to={to} style={{ textAlign: 'center', textDecoration: 'none' }}>
       {button}
     </Link>
   ) : (

@@ -11,14 +11,20 @@ import Text from 'Components/Text';
 import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
 import { ReduxStore } from 'Store/Redux';
+import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
+import { logEvent } from 'Utils/Firebase';
 
 const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
   const { storeProductDetails } = useSelector((state: ReduxStore) => state);
+
+  const buttonComprarExperimentEnabled = remoteConfig.getValue('button_comprar_experiment').asBoolean();
+
+  const buttonLabel = buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar';
 
   const {
     about,
@@ -33,8 +39,18 @@ const ProductDetails: React.FC = () => {
     storeLogoUrl,
     title,
   } = storeProductDetails;
-console.log('teste about: ', about)
+
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
+
+  const onClick = () => {
+    logEvent('button_comprar_click', {
+      label: buttonLabel,
+      link,
+      price: JSON.stringify(price),
+      storeName,
+      title,
+    });
+  };
 
   useEffect(() => {
     dispatch(loadProductDetails({ id }));
@@ -72,6 +88,7 @@ console.log('teste about: ', about)
       }}
     />
   );
+
   const activation = (
     <Box marginTop={5}>
       {platforms.map((platform, index) => {
@@ -127,15 +144,17 @@ console.log('teste about: ', about)
             <Box display='flex' direction='column'>
               {contentslider}
 
-              <Box direction='column' display='flex'>
-                <Box marginBottom={30} marginTop={30}>
-                  <Heading weight='bold'>Sobre o jogo</Heading>
-                </Box>
+              {about && (
+                <Box direction='column' display='flex'>
+                  <Box marginBottom={30} marginTop={30}>
+                    <Heading weight='bold'>Sobre o jogo</Heading>
+                  </Box>
 
-                <Text color='gray' size={18}>
-                  {about ? about : 'Nenhum detalhes disponível...'}
-                </Text>
-              </Box>
+                  <Text color='gray' size={18}>
+                    {about}
+                  </Text>
+                </Box>
+              )}
             </Box>
 
             <Box>
@@ -159,9 +178,9 @@ console.log('teste about: ', about)
                 {gameprice}
 
                 <Box marginTop={30} marginBottom={15}>
-                  <Button external to={link}>
+                  <Button external onClick={onClick} to={link}>
                     <Heading align='center' className='button-text' color='white' size={20}>
-                      Comprar
+                      {buttonLabel}
                     </Heading>
                   </Button>
                 </Box>
@@ -272,9 +291,9 @@ console.log('teste about: ', about)
           </Box>
 
           <Box className='button-wrapper'>
-            <a className="link-button" href={link} rel="noopener noreferrer" target="_blank">
+            <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
               <Text align='center' className='button-text' color='white' size={16} weight='bold'>
-                Comprar
+                {buttonLabel}
               </Text>
             </a>
           </Box>

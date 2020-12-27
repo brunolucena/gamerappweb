@@ -13,12 +13,12 @@ import React, { useEffect, useState } from 'react';
 import Search from '@material-ui/icons/Search';
 import Text from 'Components/Text';
 import TextField from '@material-ui/core/TextField';
+import useIsMobile from 'Helpers/useIsMobile';
 import xbox from './xbox.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { loadMenuConfiguration } from 'Modules/Loja/Store/Ducks/Configuration';
 import { ReduxStore } from 'Store/Redux';
 import { useDispatch, useSelector } from 'react-redux';
-import useIsMobile from 'Helpers/useIsMobile';
 import './styles.scss';
 
 const PLAYSTATION_ID_SESSION = 'a063ba2f-6b73-4484-92eb-5691a175f8b0';
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
   const { menuSessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   const handleNavigate = () => {
     if (search) {
