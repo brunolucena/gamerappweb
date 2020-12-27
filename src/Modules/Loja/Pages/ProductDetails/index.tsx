@@ -144,15 +144,17 @@ const ProductDetails: React.FC = () => {
             <Box display='flex' direction='column'>
               {contentslider}
 
-              <Box direction='column' display='flex'>
-                <Box marginBottom={30} marginTop={30}>
-                  <Heading weight='bold'>Sobre o jogo</Heading>
-                </Box>
+              {about && (
+                <Box direction='column' display='flex'>
+                  <Box marginBottom={30} marginTop={30}>
+                    <Heading weight='bold'>Sobre o jogo</Heading>
+                  </Box>
 
-                <Text color='gray' size={18}>
-                  {about ? about : 'Nenhum detalhes disponível...'}
-                </Text>
-              </Box>
+                  <Text color='gray' size={18}>
+                    {about}
+                  </Text>
+                </Box>
+              )}
             </Box>
 
             <Box>
