@@ -15,6 +15,7 @@ import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
+import { logEvent } from 'Utils/Firebase';
 
 const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ const ProductDetails: React.FC = () => {
   const { storeProductDetails } = useSelector((state: ReduxStore) => state);
 
   const buttonComprarExperimentEnabled = remoteConfig.getValue('button_comprar_experiment').asBoolean();
+
+  const buttonLabel = buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar';
 
   const {
     about,
@@ -38,6 +41,16 @@ const ProductDetails: React.FC = () => {
   } = storeProductDetails;
 
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
+
+  const onClick = () => {
+    logEvent('button_comprar_click', {
+      label: buttonLabel,
+      link,
+      price,
+      storeName,
+      title,
+    });
+  };
 
   useEffect(() => {
     dispatch(loadProductDetails({ id }));
@@ -163,9 +176,9 @@ const ProductDetails: React.FC = () => {
                 {gameprice}
 
                 <Box marginTop={30} marginBottom={15}>
-                  <Button external to={link}>
+                  <Button external onClick={onClick} to={link}>
                     <Heading align='center' className='button-text' color='white' size={20}>
-                      {buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar'}
+                      {buttonLabel}
                     </Heading>
                   </Button>
                 </Box>
@@ -276,9 +289,9 @@ const ProductDetails: React.FC = () => {
           </Box>
 
           <Box className='button-wrapper'>
-            <a className='link-button' href={link} rel='noopener noreferrer' target='_blank'>
+            <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
               <Text align='center' className='button-text' color='white' size={16} weight='bold'>
-                {buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar'}
+                {buttonLabel}
               </Text>
             </a>
           </Box>
