@@ -46,7 +46,7 @@ const ProductDetails: React.FC = () => {
     logEvent('button_comprar_click', {
       label: buttonLabel,
       link,
-      price,
+      price: JSON.stringify(price),
       storeName,
       title,
     });
