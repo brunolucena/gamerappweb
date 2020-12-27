@@ -11,6 +11,7 @@ import Text from 'Components/Text';
 import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
 import { ReduxStore } from 'Store/Redux';
+import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
@@ -19,6 +20,8 @@ const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
   const { storeProductDetails } = useSelector((state: ReduxStore) => state);
+
+  const buttonComprarExperimentEnabled = remoteConfig.getValue('button_comprar_experiment').asBoolean();
 
   const {
     about,
@@ -33,7 +36,7 @@ const ProductDetails: React.FC = () => {
     storeLogoUrl,
     title,
   } = storeProductDetails;
-console.log('teste about: ', about)
+
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   useEffect(() => {
@@ -72,6 +75,7 @@ console.log('teste about: ', about)
       }}
     />
   );
+
   const activation = (
     <Box marginTop={5}>
       {platforms.map((platform, index) => {
@@ -161,7 +165,7 @@ console.log('teste about: ', about)
                 <Box marginTop={30} marginBottom={15}>
                   <Button external to={link}>
                     <Heading align='center' className='button-text' color='white' size={20}>
-                      Comprar
+                      {buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar'}
                     </Heading>
                   </Button>
                 </Box>
@@ -272,9 +276,9 @@ console.log('teste about: ', about)
           </Box>
 
           <Box className='button-wrapper'>
-            <a className="link-button" href={link} rel="noopener noreferrer" target="_blank">
+            <a className='link-button' href={link} rel='noopener noreferrer' target='_blank'>
               <Text align='center' className='button-text' color='white' size={16} weight='bold'>
-                Comprar
+                {buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar'}
               </Text>
             </a>
           </Box>

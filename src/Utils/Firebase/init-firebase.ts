@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/analytics';
-import 'firebase/';
+import 'firebase/remote-config';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyADBF29dra-aO3YWWk_brWSw6vsfeegGzc',
@@ -15,3 +15,12 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
+export const remoteConfig = firebase.remoteConfig();
+
+remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
+remoteConfig.defaultConfig = {
+  button_comprar_experiment: false,
+};
+
+remoteConfig.fetchAndActivate();
