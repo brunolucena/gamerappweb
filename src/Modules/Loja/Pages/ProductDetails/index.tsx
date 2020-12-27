@@ -33,7 +33,7 @@ const ProductDetails: React.FC = () => {
     storeLogoUrl,
     title,
   } = storeProductDetails;
-console.log('teste about: ', about)
+  console.log('teste about: ', about);
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   useEffect(() => {
@@ -127,15 +127,17 @@ console.log('teste about: ', about)
             <Box display='flex' direction='column'>
               {contentslider}
 
-              <Box direction='column' display='flex'>
-                <Box marginBottom={30} marginTop={30}>
-                  <Heading weight='bold'>Sobre o jogo</Heading>
-                </Box>
+              {about && (
+                <Box direction='column' display='flex'>
+                  <Box marginBottom={30} marginTop={30}>
+                    <Heading weight='bold'>Sobre o jogo</Heading>
+                  </Box>
 
-                <Text color='gray' size={18}>
-                  {about ? about : 'Nenhum detalhes disponível...'}
-                </Text>
-              </Box>
+                  <Text color='gray' size={18}>
+                    {about}
+                  </Text>
+                </Box>
+              )}
             </Box>
 
             <Box>
@@ -272,7 +274,7 @@ console.log('teste about: ', about)
           </Box>
 
           <Box className='button-wrapper'>
-            <a className="link-button" href={link} rel="noopener noreferrer" target="_blank">
+            <a className='link-button' href={link} rel='noopener noreferrer' target='_blank'>
               <Text align='center' className='button-text' color='white' size={16} weight='bold'>
                 Comprar
               </Text>
