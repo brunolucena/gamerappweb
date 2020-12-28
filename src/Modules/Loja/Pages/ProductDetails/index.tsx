@@ -178,11 +178,11 @@ const ProductDetails: React.FC = () => {
                 {gameprice}
 
                 <Box marginTop={30} marginBottom={15}>
-                  <Button external onClick={onClick} to={link}>
+                  <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
                     <Heading align='center' className='button-text' color='white' size={20}>
                       {buttonLabel}
                     </Heading>
-                  </Button>
+                  </a>
                 </Box>
               </Box>
 
