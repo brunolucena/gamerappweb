@@ -47,15 +47,6 @@
       padding: 0 20px;
     }
 
-    &:active,
-    &:focus {
-      .menu-item-dropdown {
-        display: block;
-        transform: translate(-50%, 0);
-        opacity: 1;
-      }
-    }
-
     &:focus {
       outline: -webkit-focus-ring-color auto 1px;
     }
@@ -190,6 +181,7 @@
       top: 100%;
       left: 0;
       right: 0;
+      margin-top: 62px;
       background-color: #ffffff;
       z-index: 10;
       transition: all 0.2s ease-out;
@@ -202,38 +194,6 @@
       .menu-item {
         width: 100%;
         padding: 20px;
-
-        &:active,
-        &:focus {
-          ~ .menu-item-dropdown-mobile {
-            max-height: 500px;
-            opacity: 1;
-          }
-        }
-      }
-
-      .menu-item-dropdown-mobile {
-        max-height: 0;
-        opacity: 0;
-        width: 100%;
-        background-color: #f4f4f4;
-        transition: all 0.1s ease-out;
-
-        .menu-item-dropdown-item {
-          display: flex;
-          padding: 15px 25px;
-          color: #343434;
-          font-size: 18px;
-          font-weight: 700;
-          text-decoration: none;
-          white-space: nowrap;
-
-          &:active,
-          &:hover,
-          &:focus {
-            background-color: #f4f4f4;
-          }
-        }
       }
     }
   }
