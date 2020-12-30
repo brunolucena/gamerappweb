@@ -6,6 +6,7 @@ import ContentSlider, { Item } from 'Components/ContentSlider';
 import Countdown from 'react-countdown';
 import Heading from 'Components/Heading';
 import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
 import Text from 'Components/Text';
 import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
@@ -42,7 +43,13 @@ const ProductDetails: React.FC = () => {
   const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   const onClick = () => {
-    logEvent('button_comprar_click', {
+    ReactGA.event({
+      action: 'BUTTON_COMPRAR_CLICK',
+      category: 'PRODUCT',
+      label: buttonLabel,
+    });
+
+    logEvent('BUTTON_COMPRAR_CLICK', {
       label: buttonLabel,
       link,
       price: JSON.stringify(price),
@@ -54,6 +61,10 @@ const ProductDetails: React.FC = () => {
   useEffect(() => {
     dispatch(loadProductDetails({ id }));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    ReactGA.initialize('UA-156499346-1');
+  }, []);
 
   const contentslider = <ContentSlider insideArrows items={items} itemsOnScreen={1} />;
   const countdown = (
