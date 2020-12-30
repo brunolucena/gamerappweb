@@ -10,7 +10,7 @@ interface Props {
   color?: Color;
   id?: string;
   overflow?: TextOverflow;
-  size?: 20 | 28 | 36;
+  size?: 20 | 28 | 36 | 44;
   /** Truncate the text to a single line. */
   truncate?: boolean;
   weight?: TextWeight;
@@ -47,6 +47,7 @@ const Heading: React.FC<Props> = ({
     size === 20 && 'font-size-20',
     size === 28 && 'font-size-28',
     size === 36 && 'font-size-36',
+    size === 44 && 'font-size-44',
     truncate && 'truncate',
     weight === 'bold' && 'font-weight-bold',
     weight === 'semi-bold' && 'font-weight-semi-bold',
