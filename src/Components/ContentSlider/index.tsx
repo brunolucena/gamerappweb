@@ -49,7 +49,7 @@ const ContentSlider: React.FC<Props> = (props) => {
     if (!items && sessionId) {
       dispatch(loadBanners({ sessionId }));
     }
-  }, []);
+  }, [dispatch, items, sessionId]);
 
   useEffect(() => {
     const container = document.getElementById('content-slider-container');
