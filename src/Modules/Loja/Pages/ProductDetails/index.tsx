@@ -209,7 +209,13 @@ const ProductDetails: React.FC = () => {
 
                 <Box alignItems='end' className='right' display='flex' direction='column' gap={3}>
                   <Text size={14}>Vendido por</Text>
-                  {sold}
+                  <a
+                    href={'https://www.awin1.com/cread.php?awinmid=17811&awinaffid=797361&ued=https%3A%2F%2Fwww.nuuvem.com%2F'}
+                    rel='noopener noreferrer'
+                    target='_blank'
+                  >
+                    {sold}
+                  </a>
                 </Box>
               </Box>
             </Box>
@@ -270,7 +276,13 @@ const ProductDetails: React.FC = () => {
 
             <Box display='flex' direction='column' gap={3}>
               <Text size={12}>Vendido por</Text>
-              {sold}
+              <a
+                href={'https://www.awin1.com/cread.php?awinmid=17811&awinaffid=797361&ued=https%3A%2F%2Fwww.nuuvem.com%2F'}
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                {sold}
+              </a>
             </Box>
           </Box>
 
