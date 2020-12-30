@@ -136,6 +136,10 @@ const ProductDetails: React.FC = () => {
       </Box>
     </Box>
   );
+
+  const disclaimer = (
+    <p>Disclaimer: os preços podem sofrer variação nos sites dos nossos parceiros, bem como a validade e vigência de promoções</p>
+  );
   return (
     <Box className='product-details-wrapper'>
       <Box backgroundColor='#f8f8f8' className='product-details-container' minHeight='calc(100vh - 70px)'>
@@ -211,11 +215,17 @@ const ProductDetails: React.FC = () => {
             </Box>
           </Box>
 
-          {copyright && (
-            <Box marginTop={40}>
-              <Text color='lightGray'>{copyright}</Text>
+          <Box paddingBottom={50}>
+            <Box>
+              <Text color='lightGray'>{disclaimer}</Text>
             </Box>
-          )}
+
+            {copyright && (
+              <Box marginTop={10}>
+                <Text color='lightGray'>{copyright}</Text>
+              </Box>
+            )}
+          </Box>
         </Container>
       </Box>
 
@@ -280,8 +290,14 @@ const ProductDetails: React.FC = () => {
                 {about ? about : 'Nenhum detalhes disponível...'}
               </Text>
 
+              <Box marginTop={10}>
+                <Text color='lightGray' size={12}>
+                  {disclaimer}
+                </Text>
+              </Box>
+
               {copyright && (
-                <Box marginBottom={10} marginTop={20}>
+                <Box marginBottom={10} marginTop={10}>
                   <Text color='lightGray' size={12}>
                     {copyright}
                   </Text>
