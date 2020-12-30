@@ -1,7 +1,6 @@
 import Alarm from '@material-ui/icons/Alarm';
 import BackButton from 'Components/BackButton';
 import Box from 'Components/Box';
-import Button from 'Components/Button';
 import Container from 'Components/Container';
 import ContentSlider, { Item } from 'Components/ContentSlider';
 import Countdown from 'react-countdown';
@@ -10,12 +9,12 @@ import React, { useEffect } from 'react';
 import Text from 'Components/Text';
 import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
+import { logEvent } from 'Utils/Firebase';
 import { ReduxStore } from 'Store/Redux';
 import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
-import { logEvent } from 'Utils/Firebase';
 
 const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
@@ -178,11 +177,11 @@ const ProductDetails: React.FC = () => {
                 {gameprice}
 
                 <Box marginTop={30} marginBottom={15}>
-                  <Button external onClick={onClick} to={link}>
+                  <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
                     <Heading align='center' className='button-text' color='white' size={20}>
                       {buttonLabel}
                     </Heading>
-                  </Button>
+                  </a>
                 </Box>
               </Box>
 

@@ -1,11 +1,11 @@
 import CardStore from 'Components/CardStore';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { loadSession, loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
 import { ReduxStore } from 'Store/Redux';
 import { search, searchClear } from 'Modules/Loja/Store/Ducks/Search';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
 import './styles.scss';
 var _ = require('lodash');
 
@@ -18,7 +18,6 @@ interface Props {
 }
 
 const SectionStore: React.FC<Props> = (props) => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { sessionId, title, isAllItems = true, isAllItemsBottom, searchText } = props;
   const { items: itemSession, name, count } = useSelector((state: ReduxStore) => state.storeSession);
@@ -32,7 +31,7 @@ const SectionStore: React.FC<Props> = (props) => {
 
     sessionId && !searchText && dispatch(loadSession({ sessionId: sessionId, quantity: quantity }));
     !sessionId && searchText && dispatch(search({ searchText: searchText, quantity: 50, page: 1 }));
-  }, [sessionId || searchText || quantity]);
+  }, [dispatch, sessionId, searchText, quantity]);
 
   return (
     <div className='containerSectionStore'>
