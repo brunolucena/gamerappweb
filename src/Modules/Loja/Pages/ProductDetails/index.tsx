@@ -140,7 +140,7 @@ const ProductDetails: React.FC = () => {
     <Box className='product-details-wrapper'>
       <Box backgroundColor='#f8f8f8' className='product-details-container' minHeight='calc(100vh - 70px)'>
         <Container>
-          <Box display='grid' gap={30} gridTemplateColumns='2fr 1fr' paddingTop={100} paddingBottom={60}>
+          <Box display='grid' gap={30} gridTemplateColumns='2fr 1fr' paddingTop={64} paddingBottom={60}>
             <Box display='flex' direction='column'>
               {contentslider}
 
