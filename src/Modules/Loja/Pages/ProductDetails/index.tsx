@@ -12,8 +12,8 @@ import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
 import { logEvent } from 'Utils/Firebase';
 import { ReduxStore } from 'Store/Redux';
-import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetExperimentVariant } from 'Helpers/GoogleOptimize';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
 
@@ -22,7 +22,10 @@ const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { storeProductDetails } = useSelector((state: ReduxStore) => state);
 
-  const buttonComprarExperimentEnabled = remoteConfig.getValue('button_comprar_experiment').asBoolean();
+  const { enabled: buttonComprarExperimentEnabled } = useGetExperimentVariant({
+    activationEvent: 'optimize.activate.button_comprar_experiment',
+    experimentId: 'zdECmV5gR62CkMfiw_zj0w',
+  });
 
   const buttonLabel = buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar';
 
