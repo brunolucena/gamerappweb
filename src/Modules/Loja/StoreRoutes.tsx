@@ -21,7 +21,7 @@ function StoureRoutes() {
   return (
     <>
       <Header />
-      {/* {switchRoute()} */}
+      {switchRoute()}
       <Footer />
     </>
   );

@@ -1,7 +1,7 @@
 import AppRoutes from 'AppRoutes';
 import GlobalStyles from './Styles/GlobalStyles';
 import mySaga from 'Store/Sagas';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import store, { sagaMiddleware } from 'Store/Redux/store';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
