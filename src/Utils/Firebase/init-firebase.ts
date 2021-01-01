@@ -19,8 +19,6 @@ firebase.analytics();
 export const remoteConfig = firebase.remoteConfig();
 
 remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
-remoteConfig.defaultConfig = {
-  button_comprar_experiment: false,
-};
+remoteConfig.defaultConfig = {};
 
 remoteConfig.fetchAndActivate();
