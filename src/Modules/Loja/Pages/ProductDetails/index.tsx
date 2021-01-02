@@ -150,11 +150,15 @@ const ProductDetails: React.FC = () => {
       </Box>
     </Box>
   );
+
+  const disclaimer = (
+    <p>Disclaimer: os preços podem sofrer variação nos sites dos nossos parceiros, bem como a validade e vigência de promoções</p>
+  );
   return (
     <Box className='product-details-wrapper'>
       <Box backgroundColor='#f8f8f8' className='product-details-container' minHeight='calc(100vh - 70px)'>
         <Container>
-          <Box display='grid' gap={30} gridTemplateColumns='2fr 1fr' paddingTop={100} paddingBottom={60}>
+          <Box display='grid' gap={30} gridTemplateColumns='2fr 1fr' paddingTop={64} paddingBottom={60}>
             <Box display='flex' direction='column'>
               {contentslider}
 
@@ -219,17 +223,29 @@ const ProductDetails: React.FC = () => {
 
                 <Box alignItems='end' className='right' display='flex' direction='column' gap={3}>
                   <Text size={14}>Vendido por</Text>
-                  {sold}
+                  <a
+                    href={'https://www.awin1.com/cread.php?awinmid=17811&awinaffid=797361&ued=https%3A%2F%2Fwww.nuuvem.com%2F'}
+                    rel='noopener noreferrer'
+                    target='_blank'
+                  >
+                    {sold}
+                  </a>
                 </Box>
               </Box>
             </Box>
           </Box>
 
-          {copyright && (
-            <Box marginTop={40}>
-              <Text color='lightGray'>{copyright}</Text>
+          <Box paddingBottom={50}>
+            <Box>
+              <Text color='lightGray'>{disclaimer}</Text>
             </Box>
-          )}
+
+            {copyright && (
+              <Box marginTop={10}>
+                <Text color='lightGray'>{copyright}</Text>
+              </Box>
+            )}
+          </Box>
         </Container>
       </Box>
 
@@ -274,7 +290,13 @@ const ProductDetails: React.FC = () => {
 
             <Box display='flex' direction='column' gap={3}>
               <Text size={12}>Vendido por</Text>
-              {sold}
+              <a
+                href={'https://www.awin1.com/cread.php?awinmid=17811&awinaffid=797361&ued=https%3A%2F%2Fwww.nuuvem.com%2F'}
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                {sold}
+              </a>
             </Box>
           </Box>
 
@@ -294,8 +316,14 @@ const ProductDetails: React.FC = () => {
                 {about ? about : 'Nenhum detalhes disponível...'}
               </Text>
 
+              <Box marginTop={10}>
+                <Text color='lightGray' size={12}>
+                  {disclaimer}
+                </Text>
+              </Box>
+
               {copyright && (
-                <Box marginBottom={10} marginTop={20}>
+                <Box marginBottom={10} marginTop={10}>
                   <Text color='lightGray' size={12}>
                     {copyright}
                   </Text>
