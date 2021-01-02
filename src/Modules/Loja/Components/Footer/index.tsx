@@ -12,9 +12,15 @@ import React from 'react';
 import Text from 'Components/Text';
 import Youtube from 'Components/SocialMedia/Youtube';
 import { Link } from 'react-router-dom';
+import { ReduxStore } from 'Store/Redux';
+import { useSelector } from 'react-redux';
 import './styles.scss';
 
 const Footer: React.FC = () => {
+  const { menuSessions: menuSessionsRedux } = useSelector((state: ReduxStore) => state.storeConfiguration);
+
+  const menuSessions = menuSessionsRedux.slice(0, 2);
+
   return (
     <Box className='footer-wrapper'>
       <Box className='footer-container'>
@@ -42,11 +48,22 @@ const Footer: React.FC = () => {
 
           <Box>
             <Box alignItems='center' display='flex' gap={20} marginBottom={30}>
-              <img alt='Acelerada Inovativa Brasil 2020' src={AceleradaInovativaBrasil2020} style={{ width: 120 }} />
-              <img alt='Aceleradora Inova Unigran' src={AceleradoraInovaUnigran} style={{ width: 120 }} />
+              <a
+                href='https://www.inovativabrasil.com.br/wp-content/uploads/2020/11/Encarte-Experience-Dezembro-2020.pdf'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                <img alt='Acelerada Inovativa Brasil 2020' src={AceleradaInovativaBrasil2020} style={{ width: 120 }} />
+              </a>
+
+              <a href='https://www.inovaunigran.com.br' rel='noopener noreferrer' target='_blank'>
+                <img alt='Aceleradora Inova Unigran' src={AceleradoraInovaUnigran} style={{ width: 120 }} />
+              </a>
             </Box>
 
-            <img alt='Capital Empreendedor Sebrae' src={CapitalEmpreendedorSebrae} style={{ width: 260 }} />
+            <a href='https://capitalempreendedor2020.com.br/startup-gamerapp' rel='noopener noreferrer' target='_blank'>
+              <img alt='Capital Empreendedor Sebrae' src={CapitalEmpreendedorSebrae} style={{ width: 260 }} />
+            </a>
           </Box>
         </Box>
 
@@ -61,6 +78,14 @@ const Footer: React.FC = () => {
                 Home
               </Heading>
             </Link>
+
+            {menuSessions.map((menu, index) => (
+              <Link key={menu.id + index} to={`/produtos/${menu.id}`}>
+                <Heading color='white' size={20} weight='normal'>
+                  {menu.title}
+                </Heading>
+              </Link>
+            ))}
 
             <Link to='/terms-of-use'>
               <Heading color='white' size={20} weight='normal'>
