@@ -19,6 +19,9 @@ firebase.analytics();
 export const remoteConfig = firebase.remoteConfig();
 
 remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
-remoteConfig.defaultConfig = {};
+remoteConfig.defaultConfig = {
+  banners_with_info_enabled: false,
+};
 
-remoteConfig.fetchAndActivate();
+remoteConfig.fetch();
+remoteConfig.activate();

@@ -14,6 +14,17 @@ export default createGlobalStyle`
 html {
     background: var(--background);
 }
+
+.app-wrapper {
+  &.preload {
+    * {
+      -webkit-transition: none !important;
+      -moz-transition: none !important;
+      -o-transition: none !important;
+      transition: none !important;
+    }
+  }
+}
     
 :root {
     --primary: #0dac3d;
@@ -27,6 +38,10 @@ html {
     --black: #000000;
     --white: #ffffff
   }
+
+a {
+  text-decoration: none;
+}
 
 .input-text {
     input {

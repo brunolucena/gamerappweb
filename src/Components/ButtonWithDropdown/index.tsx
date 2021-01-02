@@ -17,9 +17,16 @@ interface Props {
 
 const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 'desktop' }) => {
   const node = useRef<HTMLDivElement>(null);
+  const [fadeOut, setFadeOut] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
 
-  const dropdownClasses = clsx('button-dropdown', {
+  const dropdownClasses = clsx('button-dropdown', 'animate__animated', 'animate__faster', {
+    opened: isOpened,
+    animate__fadeInDown: isOpened,
+    animate__fadeOutUp: fadeOut && !isOpened,
+  });
+
+  const dropdownMobileClasses = clsx('button-dropdown', {
     opened: isOpened,
   });
 
@@ -32,6 +39,7 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
 
       // outside click
       setIsOpened(false);
+      setFadeOut(true);
     };
 
     document.addEventListener('mousedown', handleClick);
@@ -41,9 +49,14 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
     };
   }, [version]);
 
+  const toggleOpened = () => {
+    setFadeOut(true);
+    setIsOpened(!isOpened);
+  };
+
   return version === 'desktop' ? (
     <div className='button-with-dropdown-wrapper' ref={node}>
-      <button className='button-with-dropdown' onClick={() => setIsOpened(!isOpened)}>
+      <button className='button-with-dropdown' onClick={toggleOpened}>
         <img alt={title} src={icon} style={{ height: 20 }} />
 
         <Box marginEnd={1} marginStart={8}>
@@ -65,7 +78,7 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
     </div>
   ) : (
     <div className='button-with-dropdown-mobile-wrapper' ref={node}>
-      <button className='button-with-dropdown' onClick={() => setIsOpened(!isOpened)}>
+      <button className='button-with-dropdown' onClick={toggleOpened}>
         <img alt={title} src={icon} style={{ height: 20 }} />
 
         <Box marginEnd={1} marginStart={8}>
@@ -75,7 +88,7 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
         <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
       </button>
 
-      <Box className={dropdownClasses} borderRadius={5} borderStyle='shadow'>
+      <Box className={dropdownMobileClasses} borderRadius={5} borderStyle='shadow'>
         {sessions.map((menu, index) => (
           <Link className='button-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
             <Text size={18} weight='semi-bold'>
