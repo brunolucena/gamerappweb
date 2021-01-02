@@ -1,28 +1,27 @@
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import Box from 'Components/Box';
+import Heading from 'Components/Heading';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
+import { BannerModel } from 'Modules/Loja/Store/Ducks/Banner/model';
+import { formatCurrency } from 'Helpers/formatters';
+import { getProportions } from 'Helpers/functions';
+import { Link } from 'react-router-dom';
+import { loadBanners } from 'Modules/Loja/Store/Ducks/Banner';
+import { ReduxStore } from 'Store/Redux';
+import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { SizeMe } from 'react-sizeme';
+import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { getProportions } from 'Helpers/functions';
-import { useSelector, useDispatch } from 'react-redux';
-import { ReduxStore } from 'Store/Redux';
-import { loadBanners } from 'Modules/Loja/Store/Ducks/Banner';
-import { Link } from 'react-router-dom';
-
-export interface Item {
-  imageUrl: string;
-  sessionId: string;
-  storeProductId?: string;
-}
 
 interface Props {
   sessionId?: string;
   insideArrows?: boolean;
   itemWidth?: number;
-  items?: Item[];
+  items?: BannerModel[];
   itemsOnScreen?: number;
 }
 
@@ -32,6 +31,8 @@ const ContentSlider: React.FC<Props> = (props) => {
   const [itemWidth, setItemWidth] = useState(props.itemWidth);
   const [slideToShow, setSlideToShow] = useState(itemsOnScreen);
   const storeBanners = useSelector((state: ReduxStore) => state.storeBanners);
+
+  const bannersWithInfoEnabled = remoteConfig.getValue('banners_with_info_enabled').asBoolean();
 
   const arrowLeft = (
     <div className='arrow-container arrow-left-container'>
@@ -74,21 +75,55 @@ const ContentSlider: React.FC<Props> = (props) => {
           const arrayBanner = items ?? storeBanners.banners.filter((banner) => banner.sessionId === sessionId);
 
           const sliderItems = arrayBanner.map((item) => {
+            const hasBottomInfo = item.badgeText || item.price;
+
             const element = (
-              <div
+              <Box
+                borderTopLeftRadius={20}
+                borderTopRightRadius={20}
+                borderBottomLeftRadius={20}
+                borderBottomRightRadius={20}
+                height={proportions.height}
+                position='relative'
                 style={{
                   backgroundImage: `url('${item.imageUrl}')`,
                   backgroundPosition: 'center',
                   backgroundRepeat: 'none',
                   backgroundSize: 'cover',
-                  borderRadius: 20,
-                  height: proportions.height,
-                  width: proportions.width,
                 }}
-              />
+                width={proportions.width}
+              >
+                {bannersWithInfoEnabled && (
+                  <Box bottom={90} left={37} position='absolute'>
+                    {item.name && (
+                      <Heading color='white' size={44}>
+                        {item.name}
+                      </Heading>
+                    )}
+
+                    {hasBottomInfo && (
+                      <Box alignItems='center' display='flex' gap={18} marginTop={32}>
+                        {item.badgeText && (
+                          <Box className='badge'>
+                            <Heading color='white'>{item.badgeText}</Heading>
+                          </Box>
+                        )}
+
+                        {item.price && <Heading color='white'>{formatCurrency(item.price)}</Heading>}
+                      </Box>
+                    )}
+                  </Box>
+                )}
+              </Box>
             );
+
             return item.storeProductId || item.sessionId ? (
-              <Link to={item.storeProductId ? `/produto/${item.storeProductId}` : `/produtos/${item.sessionId}`}>{element}</Link>
+              <Link
+                to={item.storeProductId ? `/produto/${item.storeProductId}` : `/produtos/${item.sessionId}`}
+                style={{ textDecoration: 'none' }}
+              >
+                {element}
+              </Link>
             ) : (
               element
             );

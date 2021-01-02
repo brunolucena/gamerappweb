@@ -2,12 +2,13 @@ import Alarm from '@material-ui/icons/Alarm';
 import BackButton from 'Components/BackButton';
 import Box from 'Components/Box';
 import Container from 'Components/Container';
-import ContentSlider, { Item } from 'Components/ContentSlider';
+import ContentSlider from 'Components/ContentSlider';
 import Countdown from 'react-countdown';
 import Heading from 'Components/Heading';
 import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import Text from 'Components/Text';
+import { BannerModel } from 'Modules/Loja/Store/Ducks/Banner/model';
 import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
 import { logEvent } from 'Utils/Firebase';
@@ -43,7 +44,7 @@ const ProductDetails: React.FC = () => {
     title,
   } = storeProductDetails;
 
-  const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
+  const items: BannerModel[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   const onClick = () => {
     ReactGA.event({
