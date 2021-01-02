@@ -39,6 +39,10 @@ html {
     --white: #ffffff
   }
 
+a {
+  text-decoration: none;
+}
+
 .input-text {
     input {
         text-align: center;
