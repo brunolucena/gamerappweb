@@ -20,7 +20,6 @@ export const remoteConfig = firebase.remoteConfig();
 
 remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
 remoteConfig.defaultConfig = {
-  button_comprar_experiment: false,
   banners_with_info_enabled: false,
 };
 

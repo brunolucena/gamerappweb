@@ -1,21 +1,20 @@
 import Box from 'Components/Box';
+import ButtonWithDropdown from 'Components/ButtonWithDropdown';
 import Container from 'Components/Container';
 import cupom from './cupom.svg';
 import Hamburguer from 'Components/Hamburguer';
 import Heading from 'Components/Heading';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import logo from './logo.svg';
 import logoMobile from './logo-green.png';
 import playstation from './playstation.svg';
 import React, { useEffect, useState } from 'react';
 import Search from '@material-ui/icons/Search';
-import Text from 'Components/Text';
 import TextField from '@material-ui/core/TextField';
 import useIsMobile from 'Helpers/useIsMobile';
 import xbox from './xbox.svg';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { loadMenuConfiguration } from 'Modules/Loja/Store/Ducks/Configuration';
 import { ReduxStore } from 'Store/Redux';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,6 +26,7 @@ const XBOX_ID_SESSION = '25da08dd-cc54-4daa-a535-345c4afc38d0';
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const { menuSessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
@@ -54,6 +54,10 @@ const Header: React.FC = () => {
   useEffect(() => {
     dispatch(loadMenuConfiguration());
   }, [dispatch]);
+
+  useEffect(() => {
+    setMenuOpened(false);
+  }, [location]);
 
   return (
     <>
@@ -88,27 +92,14 @@ const Header: React.FC = () => {
 
             <Box className='menu-items'>
               {menuSessions.length > 0 && (
-                <button className='menu-item'>
-                  <img alt='Categorias' src={cupom} style={{ height: 20 }} />
-
-                  <Box marginEnd={1} marginStart={8}>
-                    <Heading size={20}>Categorias</Heading>
-                  </Box>
-
-                  <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
-
-                  <Box className='menu-item-dropdown' borderRadius={5} borderStyle='shadow'>
-                    {menuSessions.map((menu, index) => {
-                      return (
-                        <Link className='menu-item-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
-                          <Text size={18} weight='semi-bold'>
-                            {menu.title}
-                          </Text>
-                        </Link>
-                      );
-                    })}
-                  </Box>
-                </button>
+                <ButtonWithDropdown
+                  icon={cupom}
+                  sessions={menuSessions.map((menu) => ({
+                    ...menu,
+                    url: `/produtos/${menu.id}`,
+                  }))}
+                  title='Categorias'
+                />
               )}
 
               <Link className='menu-item is-link' to={`/produtos/${PLAYSTATION_ID_SESSION}`}>
@@ -136,29 +127,15 @@ const Header: React.FC = () => {
 
         <Box className={`menu-items-mobile ${menuOpened ? 'opened' : ''}`}>
           {menuSessions.length > 0 && (
-            <>
-              <button className='menu-item'>
-                <img alt='Categorias' src={cupom} style={{ height: 20 }} />
-
-                <Box marginEnd={1} marginStart={8}>
-                  <Heading size={20}>Categorias</Heading>
-                </Box>
-
-                <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
-              </button>
-
-              <Box className='menu-item-dropdown-mobile' borderRadius={5} borderStyle='shadow'>
-                {menuSessions.map((menu, index) => {
-                  return (
-                    <Link className='menu-item-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
-                      <Text size={18} weight='semi-bold'>
-                        {menu.title}
-                      </Text>
-                    </Link>
-                  );
-                })}
-              </Box>
-            </>
+            <ButtonWithDropdown
+              icon={cupom}
+              sessions={menuSessions.map((menu) => ({
+                ...menu,
+                url: `/produtos/${menu.id}`,
+              }))}
+              title='Categorias'
+              version='mobile'
+            />
           )}
 
           <Link className='menu-item is-link' to={`/produtos/${PLAYSTATION_ID_SESSION}`}>
