@@ -26,23 +26,23 @@ const Footer: React.FC = () => {
       <Box className='footer-container'>
         <Box direction='column' display='flex' gap={50}>
           <Link to='/'>
-            <Logo variant='block-green-gray' width={170} />
+            <Logo variant='block-green-gray' width={150} />
           </Link>
 
           <Box alignItems='center' display='flex' gap={10}>
-            <Facebook color='white' link='https://www.facebook.com/baixegamerapp' width={40} />
-            <Instagram color='white' link='https://www.instagram.com/baixegamerapp/' width={40} />
-            <Youtube color='white' link='https://www.youtube.com/channel/UCE426J_NLjT7BOBSxWuk0ig' width={40} />
-            <LinkedIn color='white' link='https://www.linkedin.com/company/gamerapp/' width={40} />
+            <Facebook color='white' link='https://www.facebook.com/baixegamerapp' width={30} />
+            <Instagram color='white' link='https://www.instagram.com/baixegamerapp/' width={30} />
+            <Youtube color='white' link='https://www.youtube.com/channel/UCE426J_NLjT7BOBSxWuk0ig' width={30} />
+            <LinkedIn color='white' link='https://www.linkedin.com/company/gamerapp/' width={30} />
           </Box>
 
           <a href='https://play.google.com/store/apps/details?id=com.weevolvegamerapp' rel='noopener noreferrer' target='_blank'>
-            <img alt='disponível no google play' src={DisponivelGooglePlay} style={{ width: 190 }} />
+            <img alt='disponível no google play' src={DisponivelGooglePlay} style={{ width: 150 }} />
           </a>
         </Box>
 
         <Box direction='column' display='flex' gap={40}>
-          <Heading color='white' size={28}>
+          <Heading color='white' size={20}>
             Acelerados por
           </Heading>
 
@@ -68,69 +68,53 @@ const Footer: React.FC = () => {
         </Box>
 
         <Box direction='column' display='flex' gap={25}>
-          <Heading color='white' size={28}>
+          <Heading color='white' size={20}>
             Menu
           </Heading>
 
           <Box direction='column' display='flex' gap={15}>
             <Link to='/'>
-              <Heading color='white' size={20} weight='normal'>
-                Home
-              </Heading>
+              <Text color='white'>Home</Text>
             </Link>
 
             {menuSessions.map((menu, index) => (
               <Link key={menu.id + index} to={`/produtos/${menu.id}`}>
-                <Heading color='white' size={20} weight='normal'>
-                  {menu.title}
-                </Heading>
+                <Text color='white'>{menu.title}</Text>
               </Link>
             ))}
 
             <Link to='/terms-of-use'>
-              <Heading color='white' size={20} weight='normal'>
-                Termos de Uso
-              </Heading>
+              <Text color='white'>Termos de Uso</Text>
             </Link>
 
             <Link to='/privacy-policy'>
-              <Heading color='white' size={20} weight='normal'>
-                Política de Privacidade
-              </Heading>
+              <Text color='white'>Política de Privacidade</Text>
             </Link>
           </Box>
         </Box>
 
         <Box direction='column' display='flex' gap={30}>
           <Box direction='column' display='flex' gap={15}>
-            <Heading color='white' size={28}>
+            <Heading color='white' size={20}>
               Contato
             </Heading>
 
             <Box direction='column' display='flex' gap={15}>
-              <Heading color='white' size={20} weight='normal'>
-                contato@gamerapp.com.br
-              </Heading>
+              <Text color='white'>contato@gamerapp.com.br</Text>
 
-              <Heading color='white' size={20} weight='normal'>
-                Whatsapp: (11) 97045-3206
-              </Heading>
+              <Text color='white'>Whatsapp: (11) 97045-3206</Text>
             </Box>
           </Box>
 
           <Box direction='column' display='flex' gap={15}>
-            <Heading color='white' size={28}>
+            <Heading color='white' size={20}>
               Suporte
             </Heading>
 
             <Box direction='column' display='flex' gap={15}>
-              <Heading color='white' size={20} weight='normal'>
-                suporte@gamerapp.com.br
-              </Heading>
+              <Text color='white'>suporte@gamerapp.com.br</Text>
 
-              <Heading color='white' size={20} weight='normal'>
-                Whatspp: (67) 99238-3662
-              </Heading>
+              <Text color='white'>Whatspp: (67) 99238-3662</Text>
             </Box>
           </Box>
         </Box>
