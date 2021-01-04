@@ -1,28 +1,32 @@
 import Alarm from '@material-ui/icons/Alarm';
 import BackButton from 'Components/BackButton';
 import Box from 'Components/Box';
-import Button from 'Components/Button';
 import Container from 'Components/Container';
-import ContentSlider, { Item } from 'Components/ContentSlider';
+import ContentSlider from 'Components/ContentSlider';
 import Countdown from 'react-countdown';
 import Heading from 'Components/Heading';
 import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
 import Text from 'Components/Text';
+import { BannerModel } from 'Modules/Loja/Store/Ducks/Banner/model';
 import { formatCurrency } from 'Helpers/formatters';
 import { loadProductDetails } from 'Modules/Loja/Store/Ducks/ProductDetails';
+import { logEvent } from 'Utils/Firebase';
 import { ReduxStore } from 'Store/Redux';
-import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetExperimentVariant } from 'Helpers/GoogleOptimize';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
-import { logEvent } from 'Utils/Firebase';
 
 const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
   const { storeProductDetails } = useSelector((state: ReduxStore) => state);
 
-  const buttonComprarExperimentEnabled = remoteConfig.getValue('button_comprar_experiment').asBoolean();
+  const { enabled: buttonComprarExperimentEnabled } = useGetExperimentVariant({
+    activationEvent: 'optimize.activate.button_comprar_experiment',
+    experimentId: 'zdECmV5gR62CkMfiw_zj0w',
+  });
 
   const buttonLabel = buttonComprarExperimentEnabled ? 'Ver no site' : 'Comprar';
 
@@ -40,10 +44,16 @@ const ProductDetails: React.FC = () => {
     title,
   } = storeProductDetails;
 
-  const items: Item[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
+  const items: BannerModel[] = images?.map((image) => ({ sessionId: '', imageUrl: image })) ?? [];
 
   const onClick = () => {
-    logEvent('button_comprar_click', {
+    ReactGA.event({
+      action: 'BUTTON_COMPRAR_CLICK',
+      category: 'PRODUCT',
+      label: buttonLabel,
+    });
+
+    logEvent('BUTTON_COMPRAR_CLICK', {
       label: buttonLabel,
       link,
       price: JSON.stringify(price),
@@ -55,6 +65,10 @@ const ProductDetails: React.FC = () => {
   useEffect(() => {
     dispatch(loadProductDetails({ id }));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    ReactGA.initialize('UA-156499346-1');
+  }, []);
 
   const contentslider = <ContentSlider insideArrows items={items} itemsOnScreen={1} />;
   const countdown = (
@@ -182,11 +196,11 @@ const ProductDetails: React.FC = () => {
                 {gameprice}
 
                 <Box marginTop={30} marginBottom={15}>
-                  <Button external onClick={onClick} to={link}>
+                  <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
                     <Heading align='center' className='button-text' color='white' size={20}>
                       {buttonLabel}
                     </Heading>
-                  </Button>
+                  </a>
                 </Box>
               </Box>
 

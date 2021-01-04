@@ -1,17 +1,18 @@
 export interface BannerModel {
-	name: string;
-	imageUrl: string;
-	storeProductId: string;
-	price: number;
-	oldPrice?: number;
-	offerValidUntil: Date;
-	sessionId: string;
+  badgeText?: string;
+  imageUrl: string;
+  name?: string;
+  offerValidUntil?: Date;
+  oldPrice?: number;
+  price?: number;
+  sessionId: string;
+  storeProductId?: string;
 }
 
 export interface LoadBannersRequest {
-	sessionId: string;
+  sessionId: string;
 }
 
 export interface LoadBannerResponse {
-	banners: BannerModel[];
+  banners: BannerModel[];
 }

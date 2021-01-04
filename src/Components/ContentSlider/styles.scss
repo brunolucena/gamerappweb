@@ -83,6 +83,15 @@
       }
     }
   }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: #0dac3d;
+  }
 }
 
 @media screen and (max-width: 1300px) {

@@ -11,33 +11,33 @@ export default class StringFormat {
     return parseFloat(String(value).replace('R$', '').replace(/(\.)/g, '').replace(',', '.').trim()).toFixed(2);
   }
 
-  static formatRateWithPoint(value){
-    return value && value.toString().replace('.',',');
+  static formatRateWithPoint(value) {
+    return value && value.toString().replace('.', ',');
   }
 
   static formatPhone(phone) {
-    const rawPhone = phone.replace(/\D/g, "");
+    const rawPhone = phone.replace(/\D/g, '');
 
     phone = rawPhone
-        .replace(/\D/g, "")
-        .replace(/(\d{10,11})(.*)/g, "$1")
-        .replace(/^(\d{2})(\d)/g, "($1)$2");
+      .replace(/\D/g, '')
+      .replace(/(\d{10,11})(.*)/g, '$1')
+      .replace(/^(\d{2})(\d)/g, '($1)$2');
 
     const regex = rawPhone.length < 11 ? /^(\(\d{2}\))(\d{4})(\d)/g : /^(\(\d{2}\))(\d{5})(\d)/g;
 
-    return phone.replace(regex, "$1 $2-$3");
-}
+    return phone.replace(regex, '$1 $2-$3');
+  }
 
-  static formatDateWithHiffen(value){
-    return value && value.toString().replace('-','/').replace('-','/');
+  static formatDateWithHiffen(value) {
+    return value && value.toString().replace('-', '/').replace('-', '/');
   }
 
   static formatDecimal(value) {
-    if(value){
-      value = value.replace(/\D/g, "");
-      value = value.replace(/(\d{2})(\d)/, "$1,$2");
-      value = value.replace(/(\d{2})(\d)/, "$1,$2");
-      value = value.replace(/([0-9]{2}\.[0-9]{2})(.*)/, "$1");
+    if (value) {
+      value = value.replace(/\D/g, '');
+      value = value.replace(/(\d{2})(\d)/, '$1,$2');
+      value = value.replace(/(\d{2})(\d)/, '$1,$2');
+      value = value.replace(/([0-9]{2}\.[0-9]{2})(.*)/, '$1');
       return value;
     }
   }
@@ -46,10 +46,15 @@ export default class StringFormat {
     try {
       value = value.toString().replace('.', ',');
       if (value.toLocaleString().indexOf(',') >= 0) {
-        return value.toString().split(/(?=(?:\d{3})+(?:,|$))/g).join('.');
-      }
-      else {
-        return value.toString().split(/(?=(?:\d{3})+(?:.|$))/g).join(',');
+        return value
+          .toString()
+          .split(/(?=(?:\d{3})+(?:,|$))/g)
+          .join('.');
+      } else {
+        return value
+          .toString()
+          .split(/(?=(?:\d{3})+(?:.|$))/g)
+          .join(',');
       }
     } catch (ex) {
       return 'erro';
@@ -57,10 +62,10 @@ export default class StringFormat {
   }
 
   static formatMaskCEP(value) {
-    if(value){
-      value = value.replace(/\D/g, "");
-      value = value.substring(0,5) + "-" + value.substring(5,10);
-      return value
+    if (value) {
+      value = value.replace(/\D/g, '');
+      value = value.substring(0, 5) + '-' + value.substring(5, 10);
+      return value;
     }
   }
 
@@ -68,10 +73,15 @@ export default class StringFormat {
     try {
       value = Math.abs(parseFloat(value)).toFixed(2).toString().replace('.', ',');
       if (value.toLocaleString().indexOf(',') >= 0) {
-        return value.toString().split(/(?=(?:\d{3})+(?:,|$))/g).join('.');
-      }
-      else {
-        return value.toString().split(/(?=(?:\d{3})+(?:.|$))/g).join(',');
+        return value
+          .toString()
+          .split(/(?=(?:\d{3})+(?:,|$))/g)
+          .join('.');
+      } else {
+        return value
+          .toString()
+          .split(/(?=(?:\d{3})+(?:.|$))/g)
+          .join(',');
       }
     } catch (ex) {
       return 'erro';
@@ -83,11 +93,11 @@ export default class StringFormat {
   }
 
   static formatCPF(cpf) {
-    cpf = cpf.replace(/\D/g, "");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1-$2");
-    cpf = cpf.replace(/([0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2})(.*)/, "$1");
+    cpf = cpf.replace(/\D/g, '');
+    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+    cpf = cpf.replace(/(\d{3})(\d)/, '$1-$2');
+    cpf = cpf.replace(/([0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2})(.*)/, '$1');
     return cpf;
   }
 
@@ -124,17 +134,16 @@ export default class StringFormat {
     return text;
   }
 
-  static encodingCardName(name){
-    if (name.indexOf('Refei') != -1) {
+  static encodingCardName(name) {
+    if (name.indexOf('Refei') !== -1) {
       return 'Refeição';
-    } else if (name.indexOf('Alim') != -1) {
+    } else if (name.indexOf('Alim') !== -1) {
       return 'Alimentação';
-    } else if (name.indexOf('Prem') != -1) {
+    } else if (name.indexOf('Prem') !== -1) {
       return 'Premiação';
-    } else if (name.indexOf('Mult') != -1) {
+    } else if (name.indexOf('Mult') !== -1) {
       return 'Multibenefício';
     }
     return name;
   }
-
 }

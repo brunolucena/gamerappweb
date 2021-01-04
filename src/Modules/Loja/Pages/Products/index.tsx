@@ -23,7 +23,7 @@ const Products: React.FC<Props> = ({ sessionId, title, searchText }) => {
   useEffect(() => {
     dispatch(loadBannersClear());
     dispatch(loadSessionClear());
-  }, [searchText || sessionId]);
+  }, [dispatch, searchText, sessionId]);
 
   useEffect(() => {
     if (searchTextParams) {

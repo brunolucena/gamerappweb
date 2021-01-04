@@ -1,7 +1,8 @@
 import AppRoutes from 'AppRoutes';
+import clsx from 'clsx';
 import GlobalStyles from './Styles/GlobalStyles';
 import mySaga from 'Store/Sagas';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import store, { sagaMiddleware } from 'Store/Redux/store';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -9,6 +10,7 @@ import { persistStore } from 'redux-persist';
 import { Provider } from 'react-redux';
 import { theme } from './Styles/MaterialTheme';
 import { ThemeProvider } from '@material-ui/core';
+import 'animate.css/animate.css';
 
 sagaMiddleware.run(mySaga);
 
@@ -21,13 +23,22 @@ const persistor = persistStore(store);
  */
 function Wrapper({ children }: any) {
   const location = useLocation();
+  const [loaded, setLoaded] = useState(false);
 
   // Scroll to top if path changes
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  return children;
+  useLayoutEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  const classes = clsx('app-wrapper', {
+    preload: !loaded,
+  });
+
+  return <div className={classes}>{children}</div>;
 }
 
 /**
