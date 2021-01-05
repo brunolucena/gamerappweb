@@ -21,21 +21,25 @@ interface Props {
 const SectionStore: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
   const { sessionId, title, isAllItems = true, isAllItemsBottom, searchText } = props;
-  const { items: itemSession, name, count } = useSelector((state: ReduxStore) => state.storeSession);
-  const { items: itemsSearch, loading } = useSelector((state: ReduxStore) => state.storeSearch);
+  const { count, items: itemSession, loading: loadingSession, name } = useSelector((state: ReduxStore) => state.storeSession);
+  const { items: itemsSearch, loading: loadingSearch } = useSelector((state: ReduxStore) => state.storeSearch);
   const [dateHours] = useState(moment());
   const [quantity, setQuantity] = useState(10);
+
+  const isSession = sessionId && !searchText;
 
   useEffect(() => {
     dispatch(loadSessionClear());
     dispatch(searchClear());
 
-    sessionId && !searchText && dispatch(loadSession({ sessionId: sessionId, quantity: quantity }));
-    !sessionId && searchText && dispatch(search({ searchText: searchText, quantity: 50, page: 1 }));
-  }, [dispatch, sessionId, searchText, quantity]);
+    isSession && dispatch(loadSession({ sessionId: sessionId ?? '', quantity: quantity }));
+    !isSession && dispatch(search({ searchText: searchText ?? '', quantity: 50, page: 1 }));
+  }, [dispatch, isSession, sessionId, searchText, quantity]);
+
+  const loading = isSession ? loadingSession : loadingSearch;
 
   const header = title || name || searchText;
-  const isEmpty = !loading && itemsSearch.length === 0;
+  const isEmpty = !loading && (isSession ? itemSession.length === 0 : itemsSearch.length === 0);
 
   return (
     <div className='containerSectionStore'>
