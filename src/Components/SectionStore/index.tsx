@@ -36,8 +36,6 @@ const SectionStore: React.FC<Props> = (props) => {
 
   const isEmpty = !loading && itemsSearch.length === 0;
 
-  console.log({ isEmpty });
-
   return (
     <div className='containerSectionStore'>
       {!isEmpty ? (
