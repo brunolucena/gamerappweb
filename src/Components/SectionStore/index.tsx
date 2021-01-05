@@ -96,7 +96,7 @@ const SectionStore: React.FC<Props> = (props) => {
         </>
       ) : (
         <div className='empty'>
-          <EmptyScreen text='404 - Houston, temos um problema nessa página!' />
+          <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />
         </div>
       )}
 

@@ -19,7 +19,7 @@ function StoureRoutes() {
         <Route path='/privacy-policy' render={() => <PrivacyPolicy />} />
         <Route path='/terms-of-use' render={() => <TermsOfUse />} />
         <Route exact path='/' render={() => <Home />} />
-        <Route render={() => <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />} />
+        <Route render={() => <EmptyScreen text='404 - Houston, temos um problema nessa página!' />} />
       </Switch>
     );
   };
