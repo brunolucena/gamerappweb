@@ -76,10 +76,11 @@
 @media screen and (max-width: 770px) {
   .containerSectionStore {
     > .body {
-      justify-content: center;
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(170px, 170px));
       gap: 10px;
-      display: grid;
+      justify-content: center;
+      padding: 10px 0;
     }
   }
 }
