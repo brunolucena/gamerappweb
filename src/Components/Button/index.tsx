@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Btn, BtnStyles } from './styles';
 
-type ButtonType = 'primary' | 'secondary';
+export type ButtonType = 'primary' | 'secondary' | 'clear';
 
 interface Props {
-  buttonType?: 'button' | 'submit' | 'reset';
+  type?: ButtonType;
   external?: boolean;
   onClick?: ((event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
   to?: string;
-  type?: string;
+  buttonType?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, type }) => {
-  const button = <BtnStyles type2={type || ''}>{children}</BtnStyles>;
+  const button = <BtnStyles type2={type}>{children}</BtnStyles>;
 
   return external ? (
     <a
@@ -30,7 +30,7 @@ const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, 
       {button}
     </Link>
   ) : (
-    <Btn type={buttonType} onClick={(event) => onClick && onClick(event)}>
+    <Btn onClick={(event) => onClick && onClick(event)} type={buttonType}>
       {button}
     </Btn>
   );
