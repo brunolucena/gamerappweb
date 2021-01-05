@@ -34,64 +34,61 @@ const SectionStore: React.FC<Props> = (props) => {
     !sessionId && searchText && dispatch(search({ searchText: searchText, quantity: 50, page: 1 }));
   }, [dispatch, sessionId, searchText, quantity]);
 
+  const header = title || name || searchText;
   const isEmpty = !loading && itemsSearch.length === 0;
 
   return (
     <div className='containerSectionStore'>
+      <div className='header'>
+        <p className='title'>{header}</p>
+
+        {isAllItems && (
+          <Link className='ver-tudo' to={`/produtos/${sessionId}`}>
+            Ver tudo
+          </Link>
+        )}
+      </div>
+
       {!isEmpty ? (
-        <>
-          <div className='header'>
-            {title && <p>{title}</p>}
+        <div className='body'>
+          {sessionId &&
+            itemSession &&
+            _.groupBy(itemSession, 'sessionId')[sessionId]?.map((item: any) => {
+              return (
+                <CardStore
+                  id={item.id}
+                  banner={item.imageUrl}
+                  title={item.name}
+                  discount={item.price?.discountPercent}
+                  value={item.price.price}
+                  oldPrice={item.price.oldPrice}
+                  platform={item.platforms}
+                  duration={item.offerValidUntil}
+                  pay={item.url}
+                  dateHourNow={dateHours}
+                />
+              );
+            })}
 
-            {name && !title && <p className='title'>{name}</p>}
-
-            {isAllItems && (
-              <Link className='ver-tudo' to={`/produtos/${sessionId}`}>
-                Ver tudo
-              </Link>
-            )}
-          </div>
-
-          <div className='body'>
-            {sessionId &&
-              itemSession &&
-              _.groupBy(itemSession, 'sessionId')[sessionId]?.map((item: any) => {
-                return (
-                  <CardStore
-                    id={item.id}
-                    banner={item.imageUrl}
-                    title={item.name}
-                    discount={item.price?.discountPercent}
-                    value={item.price.price}
-                    oldPrice={item.price.oldPrice}
-                    platform={item.platforms}
-                    duration={item.offerValidUntil}
-                    pay={item.url}
-                    dateHourNow={dateHours}
-                  />
-                );
-              })}
-
-            {searchText &&
-              itemsSearch &&
-              itemsSearch?.map((item: any) => {
-                return (
-                  <CardStore
-                    id={item.id}
-                    banner={item.imageUrl}
-                    title={item.name}
-                    discount={item.price?.discountPercent}
-                    value={item.price.price}
-                    platform={item.platforms}
-                    oldPrice={item.price.oldPrice}
-                    duration={item.offerValidUntil}
-                    pay={item.url}
-                    dateHourNow={dateHours}
-                  />
-                );
-              })}
-          </div>
-        </>
+          {searchText &&
+            itemsSearch &&
+            itemsSearch?.map((item: any) => {
+              return (
+                <CardStore
+                  id={item.id}
+                  banner={item.imageUrl}
+                  title={item.name}
+                  discount={item.price?.discountPercent}
+                  value={item.price.price}
+                  platform={item.platforms}
+                  oldPrice={item.price.oldPrice}
+                  duration={item.offerValidUntil}
+                  pay={item.url}
+                  dateHourNow={dateHours}
+                />
+              );
+            })}
+        </div>
       ) : (
         <div className='empty'>
           <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />
