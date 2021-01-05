@@ -1,21 +1,12 @@
-.content-slider-container + .containerSectionStore {
-  margin-top: 54px;
-}
-
 .containerSectionStore {
   width: 100%;
   padding: 10px 0px;
 
-  & + & {
-    margin-top: 20px;
-  }
-
   > .header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 10px 0px;
+    width: 100%;
 
     .title {
       text-align: center;
@@ -28,7 +19,12 @@
       line-height: 36px;
     }
 
-    > a.ver-tudo {
+    .link-container {
+      display: flex;
+      justify-self: flex-end;
+    }
+
+    a.ver-tudo {
       background: #fff;
       color: var(--color-green);
       padding: 10px 30px;
@@ -47,7 +43,7 @@
     grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
     gap: 35px;
     justify-content: center;
-    padding: 30px 0px;
+    padding-top: 20px;
   }
 
   .empty {

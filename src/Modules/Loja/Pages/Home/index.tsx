@@ -22,12 +22,14 @@ const Home: React.FC = () => {
   return (
     <div className='home-container'>
       <Container>
-        {feedSessions?.map((session: any) => (
-          <>
-            {session.type === 'Banner' && <ContentSlider sessionId={session.id} itemsOnScreen={1} />}
-            {session.type === 'Game' && <SectionStore sessionId={session.id} title={session.title} />}
-          </>
-        ))}
+        <div className='home-content'>
+          {feedSessions?.map((session: any) => (
+            <>
+              {session.type === 'Banner' && <ContentSlider sessionId={session.id} itemsOnScreen={1} />}
+              {session.type === 'Game' && <SectionStore sessionId={session.id} title={session.title} />}
+            </>
+          ))}
+        </div>
       </Container>
     </div>
   );

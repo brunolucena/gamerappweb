@@ -47,13 +47,17 @@ const SectionStore: React.FC<Props> = (props) => {
   return (
     <div className='containerSectionStore'>
       <div className='header'>
+        <div />
+
         <p className='title'>{header}</p>
 
-        {isAllItems && (
-          <Link className='ver-tudo' to={`/produtos/${sessionId}`}>
-            Ver tudo
-          </Link>
-        )}
+        <div className='link-container'>
+          {isAllItems && (
+            <Link className='ver-tudo' to={`/produtos/${sessionId}`}>
+              Ver tudo
+            </Link>
+          )}
+        </div>
       </div>
 
       {!isEmpty ? (
