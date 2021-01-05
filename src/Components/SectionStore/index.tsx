@@ -1,4 +1,5 @@
 import CardStore from 'Components/CardStore';
+import EmptyScreen from 'Modules/Loja/Components/EmptyScreen';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,6 @@ import { ReduxStore } from 'Store/Redux';
 import { search, searchClear } from 'Modules/Loja/Store/Ducks/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
-import EmptyScreen from 'Modules/Loja/Components/EmptyScreen';
 var _ = require('lodash');
 
 interface Props {
@@ -25,6 +25,7 @@ const SectionStore: React.FC<Props> = (props) => {
   const { items: itemsSearch, loading: loadingSearch } = useSelector((state: ReduxStore) => state.storeSearch);
   const [dateHours] = useState(moment());
   const [quantity, setQuantity] = useState(10);
+  const [loadingPage, setLoadingPage] = useState(true);
 
   const isSession = sessionId && !searchText;
 
@@ -34,12 +35,14 @@ const SectionStore: React.FC<Props> = (props) => {
 
     isSession && dispatch(loadSession({ sessionId: sessionId ?? '', quantity: quantity }));
     !isSession && dispatch(search({ searchText: searchText ?? '', quantity: 50, page: 1 }));
+
+    setLoadingPage(false);
   }, [dispatch, isSession, sessionId, searchText, quantity]);
 
   const loading = isSession ? loadingSession : loadingSearch;
 
   const header = title || name || searchText;
-  const isEmpty = !loading && (isSession ? itemSession.length === 0 : itemsSearch.length === 0);
+  const isEmpty = !loadingPage && !loading && (isSession ? itemSession.length === 0 : itemsSearch.length === 0);
 
   return (
     <div className='containerSectionStore'>
