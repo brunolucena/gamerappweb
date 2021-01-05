@@ -11,16 +11,16 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 
 interface Props {
-    banner: string;
-    title: string;
-    discount: any;
-    value: number;
-    oldPrice: number;
-    platform: any;
-    duration: any;
-    pay: string;
-    dateHourNow: any;
-    id: string;
+  banner: string;
+  title: string;
+  discount: any;
+  value: number;
+  oldPrice: number;
+  platform: any;
+  duration: any;
+  pay: string;
+  dateHourNow: any;
+  id: string;
 }
 
 const CardStore: React.FC<Props> = (props) => {
@@ -66,46 +66,46 @@ const CardStore: React.FC<Props> = (props) => {
           height: '114.75px',
         }}
       >
-        {
-            props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
-                <Grid container spacing={1} className="containerCountDown">
-                    <Grid item xs={10} md={10}>
-                        {countdown}
-                    </Grid>
-                </Grid>
-            )
-        }
-      </div>
-      <div className='body'>
-        <Grid container spacing={1}>
-          <Grid item xs={12} md={12}>
-            <p className='title'>{props.title}</p>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1} alignItems="center">
-          {moment(props.duration).isAfter(props.dateHourNow) && props.discount > 0 && (
-            <Grid item xs={6} md={6}>
-              <span className='badge --primary'>-{props.discount}%</span>
+        {props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
+          <Grid container spacing={1} className='containerCountDown'>
+            <Grid item xs={10} md={10}>
+              {countdown}
             </Grid>
-          )}
-          <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
-            <Text size={16} weight='semi-bold'>
-                {props.oldPrice ? <Text color='lightGray' lineThrough size={12}>R${StringFormat.formatToMonetary(props.oldPrice)}</Text> : ''}
-                R${StringFormat.formatToMonetary(props.value)}
-            </Text>
           </Grid>
-        </Grid>
+        )}
       </div>
-      <div className='footer'>
-        <Grid container spacing={1}>
+      <div className='content'>
+        <div className='body'>
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={12}>
+              <p className='title'>{props.title}</p>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1} alignItems='center'>
+            {moment(props.duration).isAfter(props.dateHourNow) && props.discount > 0 && (
+              <div className='discount-wrapper'>
+                <span className='badge --primary'>-{props.discount}%</span>
+              </div>
+            )}
+            <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
+              <Text className='price' weight='bold'>
+                {props.oldPrice ? (
+                  <Text color='lightGray' lineThrough size={12}>
+                    R${StringFormat.formatToMonetary(props.oldPrice)}
+                  </Text>
+                ) : (
+                  ''
+                )}
+                R${StringFormat.formatToMonetary(props.value)}
+              </Text>
+            </Grid>
+          </Grid>
+        </div>
+        <div className='footer'>
           {props?.platform?.map((plat: any) => {
-            return (
-              <Grid item xs={2} md={2}>
-                <IconPlatform name={plat.platformName} icon={plat.imageUrl} />
-              </Grid>
-            );
+            return <IconPlatform name={plat.platformName} icon={plat.imageUrl} />;
           })}
-        </Grid>
+        </div>
       </div>
     </Link>
   );

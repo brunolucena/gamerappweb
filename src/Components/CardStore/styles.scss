@@ -1,14 +1,16 @@
 .containerCardStore {
-  width: 204px;
-  min-height: 229.5px;
+  display: flex;
+  flex-direction: column;
+  max-width: 214px;
+  min-height: 230px;
   background-color: var(--white);
   border-radius: 8px;
-  margin-top: 1rem;
+  margin-top: 16px;
   border: 1px solid var(--white);
   text-decoration: none;
   color: #3c3c3c;
 
-  .containerCountDown{
+  .containerCountDown {
     height: 100%;
     display: flex;
     align-items: flex-end;
@@ -21,12 +23,29 @@
     cursor: pointer;
   }
 
-  > .body {
-    padding: 1rem;
+  .content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .body {
+    padding: 10px;
 
     .title {
-      margin-bottom: 0.7rem;
-      height: 38px;
+      font-size: 16px;
+      margin-bottom: 5px;
+      height: 25px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .discount-wrapper {
+      padding-left: 4px;
+      padding-right: 5px;
     }
 
     .badge {
@@ -39,10 +58,16 @@
         font-weight: 500;
       }
     }
+    .price {
+      font-size: 16px;
+    }
   }
 
-  > .footer {
-    padding: 0rem 1rem 0.5rem 1rem;
+  .footer {
+    gap: 10px;
+    display: flex;
+    padding-left: 10px;
+    padding-bottom: 15px;
 
     .duration {
       font-size: 12px;
@@ -50,7 +75,7 @@
   }
 }
 
-.backgroundTransparent{
+.backgroundTransparent {
   background-color: rgba(252, 252, 252, 0.8) !important;
 }
 
@@ -58,8 +83,11 @@
   .containerCardStore {
     width: 168px;
 
-    > .body{
-      padding: 0.5rem;
+    .body {
+      padding: 8px;
+      .price {
+        white-space: nowrap;
+      }
     }
   }
 }
@@ -67,5 +95,10 @@
 @media screen and (max-width: 321px) {
   .containerCardStore {
     width: 150px;
+    .body {
+      .title {
+        font-size: 15px;
+      }
+    }
   }
 }
