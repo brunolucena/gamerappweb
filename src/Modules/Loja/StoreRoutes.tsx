@@ -1,3 +1,4 @@
+import EmptyScreen from './Components/EmptyScreen';
 import Footer from './Components/Footer';
 import Header from '../../Components/Header';
 import Home from './Pages/Home';
@@ -17,7 +18,8 @@ function StoureRoutes() {
         <Route path='/produto/:id' render={() => <ProductDetails />} />
         <Route path='/privacy-policy' render={() => <PrivacyPolicy />} />
         <Route path='/terms-of-use' render={() => <TermsOfUse />} />
-        <Route path='/' render={() => <Home />} />
+        <Route exact path='/' render={() => <Home />} />
+        <Route render={() => <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />} />
       </Switch>
     );
   };
