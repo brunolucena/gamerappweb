@@ -29,13 +29,13 @@
     }
 
     > a.ver-tudo {
-      min-width: 105px;
       background: #fff;
       color: var(--color-green);
       padding: 10px 30px;
       border: 1px solid #cccccc;
       border-radius: 8px;
       font-weight: 600;
+      white-space: nowrap;
       text-decoration: none;
       text-align: center;
       cursor: pointer;
