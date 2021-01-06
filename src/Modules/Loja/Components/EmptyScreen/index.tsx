@@ -21,7 +21,7 @@ const EmptyScreen: React.FC<Props> = ({ text }) => {
   return (
     <Box className='empty-screen-wrapper'>
       <Container>
-        <Box alignItems='center' display='flex' justifyContent='center' gap={40}>
+        <Box className='empty-screen-content'>
           <Box>
             <img alt='Gamer Rex' className='gamer-rex' src={GamerRex} />
           </Box>
@@ -33,7 +33,7 @@ const EmptyScreen: React.FC<Props> = ({ text }) => {
               </Heading>
             </Box>
 
-            <Box alignItems='center' direction='column' display='flex'>
+            <Box className='buttons-desktop'>
               {menuSession && (
                 <Button to={`/produtos/${menuSession.id}`}>
                   <Text color='white' size={18}>
@@ -46,6 +46,20 @@ const EmptyScreen: React.FC<Props> = ({ text }) => {
                 <Text size={18}>Ir para home</Text>
               </Button>
             </Box>
+          </Box>
+
+          <Box className='buttons-mobile'>
+            {menuSession && (
+              <Button to={`/produtos/${menuSession.id}`}>
+                <Text color='white' size={18}>
+                  Ver {menuSession.title.toLowerCase()}
+                </Text>
+              </Button>
+            )}
+
+            <Button to='/' type='clear'>
+              <Text size={18}>Ir para home</Text>
+            </Button>
           </Box>
         </Box>
       </Container>
