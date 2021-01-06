@@ -1,21 +1,12 @@
-.content-slider-container + .containerSectionStore {
-  margin-top: 54px;
-}
-
 .containerSectionStore {
   width: 100%;
   padding: 10px 0px;
 
-  & + & {
-    margin-top: 20px;
-  }
-
   > .header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 10px 0px;
+    width: 100%;
 
     .title {
       text-align: center;
@@ -28,14 +19,19 @@
       line-height: 36px;
     }
 
-    > a.ver-tudo {
-      min-width: 105px;
+    .link-container {
+      display: flex;
+      justify-self: flex-end;
+    }
+
+    a.ver-tudo {
       background: #fff;
       color: var(--color-green);
       padding: 10px 30px;
       border: 1px solid #cccccc;
       border-radius: 8px;
       font-weight: 600;
+      white-space: nowrap;
       text-decoration: none;
       text-align: center;
       cursor: pointer;
@@ -44,9 +40,16 @@
 
   > .body {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(214px, 214px));
+    grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
     gap: 35px;
-    padding: 30px 0px;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   > .footer {
@@ -69,10 +72,11 @@
 @media screen and (max-width: 770px) {
   .containerSectionStore {
     > .body {
-      justify-content: center;
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(170px, 170px));
       gap: 10px;
-      display: grid;
+      justify-content: center;
+      padding: 10px 0;
     }
   }
 }

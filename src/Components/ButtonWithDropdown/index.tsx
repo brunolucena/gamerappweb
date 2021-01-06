@@ -39,7 +39,6 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
 
       // outside click
       setIsOpened(false);
-      setFadeOut(true);
     };
 
     document.addEventListener('mousedown', handleClick);
