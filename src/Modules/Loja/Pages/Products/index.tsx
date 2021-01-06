@@ -32,23 +32,24 @@ const Products: React.FC<Props> = ({ sessionId, title, searchText }) => {
   }, [searchTextParams]);
 
   return (
-    <div className='products-container'>
-      <Box position='absolute' top={110} bottom={5} left={0} right={0}>
+    <>
+      <Box paddingTop={5} position='absolute' top={110} bottom={5} left={0} right={0}>
         <BackButton fontSize={28} iconColor='#999' />
       </Box>
+      <div className='products-container'>
+        <Container>
+          <p>{title}</p>
 
-      <Container>
-        <p>{title}</p>
-
-        <SectionStore
-          sessionId={sessionId?.match.params.id}
-          searchText={searchTextParams}
-          title={title}
-          isAllItems={false}
-          isAllItemsBottom={true}
-        />
-      </Container>
-    </div>
+          <SectionStore
+            sessionId={sessionId?.match.params.id}
+            searchText={searchTextParams}
+            title={title}
+            isAllItems={false}
+            isAllItemsBottom={true}
+          />
+        </Container>
+      </div>
+    </>
   );
 };
 

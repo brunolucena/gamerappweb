@@ -48,6 +48,7 @@ const Header: React.FC = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
       handleNavigate();
+      setSearch('');
     }
   };
 

@@ -1,4 +1,5 @@
 import CardStore from 'Components/CardStore';
+import EmptyScreen from 'Modules/Loja/Components/EmptyScreen';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -20,32 +21,47 @@ interface Props {
 const SectionStore: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
   const { sessionId, title, isAllItems = true, isAllItemsBottom, searchText } = props;
-  const { items: itemSession, name, count } = useSelector((state: ReduxStore) => state.storeSession);
-  const { items: itemsSearch } = useSelector((state: ReduxStore) => state.storeSearch);
+  const { count, items: itemSession, loading: loadingSession, name } = useSelector((state: ReduxStore) => state.storeSession);
+  const { items: itemsSearch, loading: loadingSearch } = useSelector((state: ReduxStore) => state.storeSearch);
   const [dateHours] = useState(moment());
   const [quantity, setQuantity] = useState(10);
+  const [loadingPage, setLoadingPage] = useState(true);
+
+  const isSession = sessionId && !searchText;
 
   useEffect(() => {
     dispatch(loadSessionClear());
     dispatch(searchClear());
 
-    sessionId && !searchText && dispatch(loadSession({ sessionId: sessionId, quantity: quantity }));
-    !sessionId && searchText && dispatch(search({ searchText: searchText, quantity: 50, page: 1 }));
-  }, [dispatch, sessionId, searchText, quantity]);
+    isSession && dispatch(loadSession({ sessionId: sessionId ?? '', quantity: quantity }));
+    !isSession && dispatch(search({ searchText: searchText ?? '', quantity: 50, page: 1 }));
+
+    setLoadingPage(false);
+  }, [dispatch, isSession, sessionId, searchText, quantity]);
+
+  const loading = isSession ? loadingSession : loadingSearch;
+
+  const header = title || name || searchText;
+  const isEmpty = !loadingPage && !loading && (isSession ? itemSession.length === 0 : itemsSearch.length === 0);
 
   return (
     <div className='containerSectionStore'>
       <div className='header'>
-        {title && <p>{title}</p>}
-        {name && !title && <p className='title'>{name}</p>}
-        {isAllItems && (
-          <Link className='ver-tudo' to={`/produtos/${sessionId}`}>
-            Ver tudo
-          </Link>
-        )}
+        <div />
+
+        <p className='title'>{header}</p>
+
+        <div className='link-container'>
+          {isAllItems && (
+            <Link className='ver-tudo' to={`/produtos/${sessionId}`}>
+              Ver tudo
+            </Link>
+          )}
+        </div>
       </div>
-      <div className='body'>
-        <>
+
+      {!isEmpty ? (
+        <div className='body'>
           {sessionId &&
             itemSession &&
             _.groupBy(itemSession, 'sessionId')[sessionId]?.map((item: any) => {
@@ -64,6 +80,7 @@ const SectionStore: React.FC<Props> = (props) => {
                 />
               );
             })}
+
           {searchText &&
             itemsSearch &&
             itemsSearch?.map((item: any) => {
@@ -82,8 +99,13 @@ const SectionStore: React.FC<Props> = (props) => {
                 />
               );
             })}
-        </>
-      </div>
+        </div>
+      ) : (
+        <div className='empty'>
+          <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />
+        </div>
+      )}
+
       <div className='footer'>
         {isAllItemsBottom && count > quantity && (
           <>

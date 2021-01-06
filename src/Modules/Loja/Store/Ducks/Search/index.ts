@@ -50,7 +50,7 @@ export default function reducer(state = initialState, action: SessionActions): S
     case SEARCH:
       return {
         ...state,
-        loading: false,
+        loading: true,
         loaded: false,
       };
 
@@ -69,12 +69,12 @@ export default function reducer(state = initialState, action: SessionActions): S
         loaded: false,
       };
 
-      case SEARCH_CLEAR:
+    case SEARCH_CLEAR:
       return {
         ...state,
         loading: false,
         loaded: false,
-        items: []
+        items: [],
       };
 
     default:
