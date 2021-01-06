@@ -96,16 +96,20 @@ const CardStore: React.FC<Props> = (props) => {
                       </div>
                     )}
                     <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
-                      <Text className='price' weight='bold'>
-                        {props.oldPrice ? (
-                          <Text color='lightGray' lineThrough size={12}>
-                            R${StringFormat.formatToMonetary(props.oldPrice)}
-                          </Text>
-                        ) : (
-                          ''
-                        )}
-                        R${StringFormat.formatToMonetary(props.value)}
-                      </Text>
+                      {props.value ? (
+                        <Text className='price' weight='bold'>
+                          {props.oldPrice ? (
+                            <Text color='lightGray' lineThrough size={12}>
+                              R${StringFormat.formatToMonetary(props.oldPrice)}
+                            </Text>
+                          ) : (
+                            ''
+                          )}
+                          R${StringFormat.formatToMonetary(props.value)}
+                        </Text>
+                      ) : (
+                        <Text weight='bold'>Indisponível</Text>
+                      )}
                     </Grid>
                   </Grid>
                 </div>
