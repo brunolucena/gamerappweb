@@ -39,7 +39,6 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
 
       // outside click
       setIsOpened(false);
-      setFadeOut(true);
     };
 
     document.addEventListener('mousedown', handleClick);
@@ -66,7 +65,12 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
         <KeyboardArrowDown style={{ color: '#343434', fontSize: 24 }} />
       </button>
 
-      <Box className={dropdownClasses} borderRadius={5} borderStyle='shadow'>
+      <Box
+        className={dropdownClasses}
+        borderRadius={5}
+        borderStyle='shadow'
+        style={{ display: !isOpened && !fadeOut ? 'none' : 'block' }}
+      >
         {sessions.map((menu, index) => (
           <Link className='button-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
             <Text size={18} weight='semi-bold'>
