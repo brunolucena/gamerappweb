@@ -1,6 +1,7 @@
+import clsx from 'clsx';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Btn, BtnStyles } from './styles';
+import './styles.scss';
 
 export type ButtonType = 'primary' | 'secondary' | 'clear';
 
@@ -13,7 +14,13 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, type }) => {
-  const button = <BtnStyles type2={type}>{children}</BtnStyles>;
+  const classes = clsx('button', {
+    clear: type === 'clear',
+    primary: type === 'primary',
+    secondary: type === 'secondary',
+  });
+
+  const button = <div className={classes}>{children}</div>;
 
   return external ? (
     <a
@@ -30,9 +37,9 @@ const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, 
       {button}
     </Link>
   ) : (
-    <Btn onClick={(event) => onClick && onClick(event)} type={buttonType}>
+    <button className='button-container' onClick={(event) => onClick && onClick(event)} type={buttonType}>
       {button}
-    </Btn>
+    </button>
   );
 };
 
