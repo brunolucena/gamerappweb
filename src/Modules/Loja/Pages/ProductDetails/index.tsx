@@ -146,7 +146,11 @@ const ProductDetails: React.FC = () => {
           </Box>
         )}
 
-        <Heading className='price'>{formatCurrency(price.price)}</Heading>
+        {price.price ? (
+          <Heading className='price'>{formatCurrency(price.price)}</Heading>
+        ) : (
+          <Text weight='bold'>Indisponível</Text>
+        )}
       </Box>
     </Box>
   );
@@ -188,20 +192,22 @@ const ProductDetails: React.FC = () => {
                 {countdown}
 
                 <Box marginBottom={8} marginTop={26}>
-                  <Heading>{title}</Heading>
+                  <Heading size={28}>{title}</Heading>
                 </Box>
 
                 {description && <Text color='gray'>{description}</Text>}
 
                 {gameprice}
 
-                <Box marginTop={30} marginBottom={15}>
-                  <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
-                    <Heading align='center' className='button-text' color='white' size={20}>
-                      {buttonLabel}
-                    </Heading>
-                  </a>
-                </Box>
+                {price.price && (
+                  <Box marginTop={30} marginBottom={15}>
+                    <a className='link-button' href={link} onClick={onClick} rel='noopener noreferrer' target='_blank'>
+                      <Heading align='center' className='button-text' color='white' size={20}>
+                        {buttonLabel}
+                      </Heading>
+                    </a>
+                  </Box>
+                )}
               </Box>
 
               <Box
