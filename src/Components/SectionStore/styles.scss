@@ -5,6 +5,8 @@
   > .header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
     padding: 10px 0px;
     width: 100%;
 
@@ -77,6 +79,26 @@
       gap: 10px;
       justify-content: center;
       padding: 10px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .containerSectionStore {
+    > .header {
+      grid-template-columns: 1fr 1fr;
+
+      > * {
+        &:first-child {
+          display: none;
+        }
+      }
+
+      .title {
+        font-size: 22px;
+        line-height: 26px;
+        text-align: left;
+      }
     }
   }
 }
