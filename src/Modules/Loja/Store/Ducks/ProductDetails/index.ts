@@ -56,7 +56,7 @@ export default function reducer(state = initialState, action: ProductDetailsActi
     case LOAD_PRODUCT_DETAILS:
       return {
         ...initialState,
-        loading: false,
+        loading: true,
       };
 
     case LOAD_PRODUCT_DETAILS_SUCCESS:
