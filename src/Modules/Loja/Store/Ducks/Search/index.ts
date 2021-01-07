@@ -66,7 +66,7 @@ export default function reducer(state = initialState, action: SessionActions): S
       return {
         ...state,
         loading: false,
-        loaded: false,
+        loaded: true,
       };
 
     case SEARCH_CLEAR:

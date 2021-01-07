@@ -21,11 +21,15 @@ interface Props {
 const SectionStore: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
   const { sessionId, title, isAllItems = true, isAllItemsBottom, searchText } = props;
-  const { count, items: itemSession, loading: loadingSession, name } = useSelector((state: ReduxStore) => state.storeSession);
-  const { items: itemsSearch, loading: loadingSearch } = useSelector((state: ReduxStore) => state.storeSearch);
+  const { count, items: itemSession, loaded: loadedSession, loading: loadingSession, name } = useSelector(
+    (state: ReduxStore) => state.storeSession
+  );
+  const { items: itemsSearch, loaded: loadedSearch, loading: loadingSearch } = useSelector(
+    (state: ReduxStore) => state.storeSearch
+  );
   const [dateHours] = useState(moment());
-  const [quantity, setQuantity] = useState(10);
   const [loadingPage, setLoadingPage] = useState(true);
+  const [quantity, setQuantity] = useState(10);
 
   const isSession = sessionId && !searchText;
 
@@ -39,12 +43,15 @@ const SectionStore: React.FC<Props> = (props) => {
     setLoadingPage(false);
   }, [dispatch, isSession, sessionId, searchText, quantity]);
 
-  const loading = isSession ? loadingSession : loadingSearch;
+  const loaded = isSession ? loadedSession : loadedSearch;
+  const loading = loadingPage || (isSession ? loadingSession : loadingSearch) || !loaded;
 
   const header = title || name || searchText;
-  const isEmpty = !loadingPage && !loading && (isSession ? itemSession.length === 0 : itemsSearch.length === 0);
+  const isEmpty = loaded && (isSession ? itemSession.length === 0 : itemsSearch.length === 0);
 
-  return (
+  return loading ? (
+    <div className='containerSectionStore loading'></div>
+  ) : (
     <div className='containerSectionStore'>
       <div className='header'>
         <div />
@@ -108,11 +115,9 @@ const SectionStore: React.FC<Props> = (props) => {
 
       <div className='footer'>
         {isAllItemsBottom && count > quantity && (
-          <>
-            <button type='button' onClick={() => setQuantity(quantity + 10)}>
-              Ver mais
-            </button>
-          </>
+          <button type='button' onClick={() => setQuantity(quantity + 10)}>
+            Ver mais
+          </button>
         )}
       </div>
     </div>
