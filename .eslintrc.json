@@ -24,6 +24,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "multiline-ternary": "off",
     "react/jsx-uses-react": "off",
     "react/prop-types": [
       2,
