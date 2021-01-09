@@ -45,7 +45,7 @@
       "error",
       {
         "ignoreCase": false,
-        "ignoreDeclarationSort": false,
+        "ignoreDeclarationSort": true,
         "ignoreMemberSort": false,
         "allowSeparatedGroups": false
       }
