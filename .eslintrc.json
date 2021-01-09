@@ -24,6 +24,10 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
     "multiline-ternary": "off",
     "react/jsx-uses-react": "off",
     "react/prop-types": [
@@ -43,12 +47,6 @@
         "ignoreCase": false,
         "ignoreDeclarationSort": false,
         "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": [
-          "none",
-          "all",
-          "multiple",
-          "single"
-        ],
         "allowSeparatedGroups": false
       }
     ]
