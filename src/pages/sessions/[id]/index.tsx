@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { loadSession } from 'lib/configurations';
 import Head from 'next/head';
 import Layout from 'components/Layout';
@@ -66,20 +66,7 @@ export default function Post({ session }: Props) {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: any[] = [{
-    params: {
-      id: 'a256e43d-a587-4540-9053-e53f683b70ac',
-    },
-  }]
-
-  return {
-    paths,
-    fallback: true,
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const session = await loadSession({ sessionId: typeof params?.id === 'string' ? params.id : '' });
 
   return {

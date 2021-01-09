@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { loadBanners } from 'lib/configurations';
 import Head from 'next/head';
 import Layout from 'components/Layout';
@@ -42,16 +42,7 @@ export default function Post({ banner }: Props) {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: any[] = []
-
-  return {
-    paths,
-    fallback: true,
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const banner = await loadBanners({ sessionId: typeof params?.id === 'string' ? params.id : '' })
 
   return {
