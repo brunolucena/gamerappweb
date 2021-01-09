@@ -67,7 +67,11 @@ export default function Post({ session }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: any[] = []
+  const paths: any[] = [{
+    params: {
+      id: 'a256e43d-a587-4540-9053-e53f683b70ac',
+    },
+  }]
 
   return {
     paths,
