@@ -31,6 +31,13 @@ export default function Home({ allPostsData, feedSessions }: Props) {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
+        <meta
+          key="og-description"
+          property="og:description"
+          content="GamerApp é uma comunidade e loja de jogos digitais. Encontre amigos, veja conteúdo, troque informações, compre seus jogos preferidos e muito mais."
+        />
+        <meta key="og-image" property="og:image" content="https://www.gamerapp.com.br/media-gamerapp.png" />
       </Head>
 
       <section className={utilStyles.headingMd}>
@@ -63,9 +70,11 @@ export default function Home({ allPostsData, feedSessions }: Props) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Feed Sessions</h2>
         <ul className={utilStyles.list}>
-          {feedSessions.map(({ id, title }) => (
+          {feedSessions.map(({ id, title, type }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={type === 'Game' ? `/sessions/${id}` : `/banners/${id}`}>
+                {title}
+              </Link>
               <br />
               {id}
             </li>

@@ -64,11 +64,59 @@ export async function loadConfiguration() {
     },
   );
 
-  const res = await client.get('https://gamerapp-api-dev.azurewebsites.net/StoreProduct/Config/v1?isFeedSession=true');
+  const res = await client.get('/StoreProduct/Config/v1?isFeedSession=true');
 
   try {
     return res.data.sessions;
   } catch {
     return [];
+  }
+}
+
+export async function loadBanners({ sessionId }: { sessionId: string }) {
+  const client = getClient('', 'production');
+
+  client.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      const { response } = error;
+      const { data } = response;
+
+      return Promise.reject(data || response || error);
+    },
+  );
+
+  const res = await client.get(`/Banner/${sessionId}/v1`);
+
+  try {
+    return res.data;
+  } catch {
+    return {};
+  }
+}
+
+export async function loadSession({ sessionId, quantity }: { sessionId: string, quantity?: number }) {
+  const client = getClient('', 'production');
+
+  client.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      const { response } = error;
+      const { data } = response;
+
+      return Promise.reject(data || response || error);
+    },
+  );
+
+  const res = await client.get(`/Session/${sessionId}/v1?quantity=${quantity ?? 20}`);
+
+  try {
+    return res.data;
+  } catch {
+    return {};
   }
 }
