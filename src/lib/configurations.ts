@@ -64,9 +64,9 @@ export async function loadConfiguration() {
     },
   );
 
-  const res = await client.get('/StoreProduct/Config/v1?isFeedSession=true');
-
   try {
+    const res = await client.get('/StoreProduct/Config/v1?isFeedSession=true');
+
     return res.data.sessions;
   } catch {
     return [];
@@ -88,9 +88,9 @@ export async function loadBanners({ sessionId }: { sessionId: string }) {
     },
   );
 
-  const res = await client.get(`/Banner/${sessionId}/v1`);
-
   try {
+    const res = await client.get(`/Banner/${sessionId}/v1`);
+
     return res.data;
   } catch {
     return {};
@@ -112,9 +112,9 @@ export async function loadSession({ sessionId, quantity }: { sessionId: string, 
     },
   );
 
-  const res = await client.get(`/Session/${sessionId}/v1?quantity=${quantity ?? 20}`);
-
   try {
+    const res = await client.get(`/Session/${sessionId}/v1?quantity=${quantity ?? 20}`);
+
     return res.data;
   } catch {
     return {};
