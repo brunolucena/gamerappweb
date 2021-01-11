@@ -1,6 +1,6 @@
 import axios, { ResponseType } from 'axios';
 
-export type UrlApis = '' | 'development' | 'local' | 'postman' | 'viacep' | 'paypal';
+export type UrlApis = '' | 'production' | 'development' | 'local' | 'postman' | 'viacep' | 'paypal';
 export type Environments = any;
 
 function getClient(client: UrlApis, environment: Environments) {
