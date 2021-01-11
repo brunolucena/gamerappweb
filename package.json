@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "npm run build && next export -o _static"
+    "dev": "cross-env NODE_ENV=development next dev",
+    "build": "cross-env NODE_ENV=production next build",
+    "start": "cross-env NODE_ENV=production next start",
+    "export": "cross-env NODE_ENV=production npm run build && next export -o _static"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -24,6 +24,7 @@
     "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@typescript-eslint/parser": "^4.12.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.17.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
