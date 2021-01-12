@@ -11,7 +11,8 @@ import Search from '@material-ui/icons/Search';
 import styles from './styles.module.scss';
 import TextField from '@material-ui/core/TextField';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const PLAYSTATION_ID_SESSION = process.env.PLAYSTATION_ID_SESSION;
 const XBOX_ID_SESSION = process.env.XBOX_ID_SESSION;
@@ -21,18 +22,19 @@ interface Props {
 }
 
 export default function Header({ menuSessions = [] }: Props) {
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-  // const location = useLocation();
+  const router = useRouter();
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
 
   const handleNavigate = () => {
+    console.log('search', search)
     if (search) {
-      // history.push({
-      //   pathname: '/pesquisar',
-      //   search: `?search=${search}`,
-      // });
+      router.push({
+        pathname: '/pesquisar',
+        query: { search },
+      });
+
+      setSearch('');
     }
   };
 
@@ -43,17 +45,12 @@ export default function Header({ menuSessions = [] }: Props) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
       handleNavigate();
-      setSearch('');
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(loadMenuConfiguration());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   setMenuOpened(false);
-  // }, [location]);
+  useEffect(() => {
+    setMenuOpened(false);
+  }, [router.pathname]);
 
   return (
     <>
@@ -147,8 +144,9 @@ export default function Header({ menuSessions = [] }: Props) {
 
           <Link href={`/produtos/${PLAYSTATION_ID_SESSION}`}>
             <a className={`${styles['menu-item']} ${styles['is-link']}`}>
-
-              <Image alt='Playstation' src="/images/header/playstation.svg" height={20} priority width="100%" />
+              <Box height={20} position="relative" width={25}>
+                <Image alt='Playstation' src="/images/header/playstation.svg" priority objectFit="contain" layout="fill" />
+              </Box>
 
               <Box marginEnd={1} marginStart={8}>
                 <Heading size={20}>Playstation</Heading>
@@ -158,8 +156,9 @@ export default function Header({ menuSessions = [] }: Props) {
 
           <Link href={`/produtos/${XBOX_ID_SESSION}`}>
             <a className={`${styles['menu-item']} ${styles['is-link']}`}>
-
-              <Image alt='Xbox' src="/images/header/xbox.svg" height={20} priority width="100%" />
+              <Box height={20} position="relative" width={25}>
+                <Image alt='Xbox' src="/images/header/xbox.svg" priority objectFit="contain" layout="fill" />
+              </Box>
 
               <Box marginEnd={1} marginStart={8}>
                 <Heading size={20}>Xbox</Heading>
@@ -169,7 +168,7 @@ export default function Header({ menuSessions = [] }: Props) {
         </Box>
       </div>
 
-      <Box className={`${styles['search-text-container']} ${styles['search-text-container-mobile']}`}>
+      <Box className={`${styles['search-text-container']} ${styles['search-text-container-mobile']} search-text-container`}>
         <TextField
           InputProps={{
             endAdornment: (

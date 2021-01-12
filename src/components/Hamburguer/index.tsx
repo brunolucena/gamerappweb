@@ -7,18 +7,16 @@ interface Props {
 }
 
 const Hamburguer: React.FC<Props> = ({ opened, toggleOpened }) => {
-  const classes = clsx(styles['hamburguer-container'], {
-    opened: styles.opened,
-  });
+  const classes = clsx(styles['hamburguer-container'], opened && styles.opened);
 
   return (
     <div
       className={classes}
       onClick={toggleOpened}
     >
-      <span className="line"></span>
-      <span className="line"></span>
-      <span className="line"></span>
+      <span className={styles.line} />
+      <span className={styles.line} />
+      <span className={styles.line} />
     </div>
   );
 };
