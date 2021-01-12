@@ -5,12 +5,10 @@ import styles from './styles.module.scss';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 
 interface Props {
-  sessions: ConfigurationModel[];
+  sessions?: ConfigurationModel[];
 }
 
-const Home: React.FC<Props> = ({ sessions }) => {
-  console.log({ sessions });
-
+export default function Home({ sessions }: Props) {
   return (
     <div className={styles['home-container']}>
       <Container>
@@ -25,6 +23,4 @@ const Home: React.FC<Props> = ({ sessions }) => {
       </Container>
     </div>
   );
-};
-
-export default Home;
+}

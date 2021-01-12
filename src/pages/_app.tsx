@@ -5,7 +5,9 @@ import { ThemeProvider } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import 'styles/globals.scss';
+import 'styles/header.scss';
 import 'components/Styles/index.scss';
+import 'animate.css/animate.css';
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -22,9 +24,11 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <ThemeProvider theme={theme}>
-    <Component {...pageProps} />
-  </ThemeProvider>
+  return (
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }
 
 export default App;

@@ -15,6 +15,16 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 20px;
+
+    .logo-link {
+      img.logoDesktop {
+        display: block;
+      }
+
+      img.logoMobile {
+        display: none;
+      }
+    }
   }
 
   .menu-items {
@@ -87,6 +97,8 @@
   margin-inline-start: 20px;
 
   fieldset {
+    display: none;
+
     border: none;
   }
 
@@ -156,7 +168,7 @@
     }
 
     .header-content {
-      grid-template-areas: 'logo hamburguer' 'pesquisar pesquisar';
+      grid-template-areas: "logo hamburguer" "pesquisar pesquisar";
       gap: 0;
     }
 
@@ -194,6 +206,24 @@
       .menu-item {
         width: 100%;
         padding: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search-text-container {
+    .container-header {
+      .logo-link {
+        grid-area: logo;
+
+        img.logoDesktop {
+          display: none;
+        }
+
+        img.logoMobile {
+          display: block;
+        }
       }
     }
   }

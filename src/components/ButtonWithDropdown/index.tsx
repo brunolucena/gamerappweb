@@ -2,33 +2,27 @@ import Box from 'components/Box';
 import clsx from 'clsx';
 import Heading from 'components/Heading';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import styles from './styles.module.scss';
 import Text from 'components/Text';
-import { ConfigurationModelWithUrl } from 'Modules/Loja/Store/Ducks/Configuration/model';
-import { Link } from 'react-router-dom';
-import './styles.scss';
+import { ConfigurationModelWithUrl } from 'modules/Loja/Lib/Configuration/models';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   icon?: string;
-  sessions: ConfigurationModelWithUrl[];
+  sessions?: ConfigurationModelWithUrl[];
   title: string;
   version?: 'desktop' | 'mobile';
 }
 
-const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 'desktop' }) => {
+const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions = [], title, version = 'desktop' }) => {
   const node = useRef<HTMLDivElement>(null);
   const [fadeOut, setFadeOut] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
 
-  const dropdownClasses = clsx('button-dropdown', 'animate__animated', 'animate__faster', {
-    opened: isOpened,
-    animate__fadeInDown: isOpened,
-    animate__fadeOutUp: fadeOut && !isOpened,
-  });
+  const dropdownClasses = clsx(styles['button-dropdown'], 'animate__animated', 'animate__faster', isOpened && styles.opened, isOpened && 'animate__fadeInDown', (fadeOut && !isOpened) && 'animate__fadeOutUp');
 
-  const dropdownMobileClasses = clsx('button-dropdown', {
-    opened: isOpened,
-  });
+  const dropdownMobileClasses = clsx(styles['button-dropdown'], isOpened && styles.opened);
 
   useEffect(() => {
     const handleClick = (e: any) => {
@@ -54,8 +48,8 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
   };
 
   return version === 'desktop' ? (
-    <div className='button-with-dropdown-wrapper' ref={node}>
-      <button className='button-with-dropdown' onClick={toggleOpened}>
+    <div className={styles['button-with-dropdown-wrapper']} ref={node}>
+      <button className={styles['button-with-dropdown']} onClick={toggleOpened}>
         <img alt={title} src={icon} style={{ height: 20 }} />
 
         <Box marginEnd={1} marginStart={8}>
@@ -71,18 +65,20 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
         borderStyle='shadow'
         style={{ display: !isOpened && !fadeOut ? 'none' : 'block' }}
       >
-        {sessions.map((menu, index) => (
-          <Link className='button-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
-            <Text size={18} weight='semi-bold'>
-              {menu.title}
-            </Text>
+        {sessions?.map((menu, index) => (
+          <Link key={menu.id + index} href={`/produtos/${menu.id}`}>
+            <a className={styles['button-dropdown-item']}>
+              <Text size={18} weight='semi-bold'>
+                {menu.title}
+              </Text>
+            </a>
           </Link>
         ))}
       </Box>
     </div>
   ) : (
-      <div className='button-with-dropdown-mobile-wrapper' ref={node}>
-        <button className='button-with-dropdown' onClick={toggleOpened}>
+      <div className={styles['button-with-dropdown-mobile-wrapper']} ref={node}>
+        <button className={styles['button-with-dropdown']} onClick={toggleOpened}>
           <img alt={title} src={icon} style={{ height: 20 }} />
 
           <Box marginEnd={1} marginStart={8}>
@@ -93,11 +89,13 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions, title, version = 
         </button>
 
         <Box className={dropdownMobileClasses} borderRadius={5} borderStyle='shadow'>
-          {sessions.map((menu, index) => (
-            <Link className='button-dropdown-item' key={menu.id + index} to={`/produtos/${menu.id}`}>
-              <Text size={18} weight='semi-bold'>
-                {menu.title}
-              </Text>
+          {sessions?.map((menu, index) => (
+            <Link key={menu.id + index} href={`/produtos/${menu.id}`}>
+              <a className={styles['button-dropdown-item']}>
+                <Text size={18} weight='semi-bold'>
+                  {menu.title}
+                </Text>
+              </a>
             </Link>
           ))}
         </Box>

@@ -6,9 +6,8 @@ import { Link } from 'react-router-dom';
 import { loadSession, loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
 import { ReduxStore } from 'Store/Redux';
 import { search, searchClear } from 'Modules/Loja/Store/Ducks/Search';
-import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
-var _ = require('lodash');
+const _ = require('lodash');
 
 interface Props {
   sessionId?: string;
@@ -18,14 +17,13 @@ interface Props {
   searchText?: string | null;
 }
 
-const SectionStore: React.FC<Props> = (props) => {
-  const dispatch = useDispatch();
-  const { sessionId, title, isAllItems = true, isAllItemsBottom, searchText } = props;
+const SectionStore: React.FC<Props> = ({ sessionId, title, isAllItems = true, isAllItemsBottom, searchText }) => {
+  // const dispatch = useDispatch();
   const { count, items: itemSession, loaded: loadedSession, loading: loadingSession, name } = useSelector(
-    (state: ReduxStore) => state.storeSession
+    (state: ReduxStore) => state.storeSession,
   );
   const { items: itemsSearch, loaded: loadedSearch, loading: loadingSearch } = useSelector(
-    (state: ReduxStore) => state.storeSearch
+    (state: ReduxStore) => state.storeSearch,
   );
   const [dateHours] = useState(moment());
   const [loadingPage, setLoadingPage] = useState(true);

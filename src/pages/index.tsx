@@ -1,17 +1,18 @@
 import Head from 'next/head';
 import HomeLoja from 'modules/Loja/Pages/Home';
 import Layout, { siteTitle } from 'modules/Loja/Components/Layout';
-import { GetStaticProps } from 'next';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
-import { loadConfiguration } from 'modules/Loja/Lib/Configuration';
+import { GetStaticProps } from 'next';
+import { loadConfiguration, loadMenuConfiguration } from 'modules/Loja/Lib/Configuration';
 
 interface Props {
+  menuSessions: ConfigurationModel[];
   sessions: ConfigurationModel[];
 }
 
-export default function Home({ sessions }: Props) {
+export default function Home({ menuSessions, sessions }: Props) {
   return (
-    <Layout>
+    <Layout menuSessions={menuSessions}>
       <Head>
         <title>{siteTitle}</title>
         <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
@@ -30,6 +31,7 @@ export default function Home({ sessions }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const request = await loadConfiguration();
+  const requestMenu = await loadMenuConfiguration();
 
   if (!request.success) {
     return {
@@ -40,6 +42,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
+      menuSessions: requestMenu.data.sessions,
       sessions: request.data.sessions,
     },
     revalidate: 1,

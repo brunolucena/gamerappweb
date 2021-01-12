@@ -1,4 +1,5 @@
 import Box from 'components/Box';
+import ButtonWithDropdown from 'components/ButtonWithDropdown';
 import Container from 'components/Container';
 import Hamburguer from 'components/Hamburguer';
 import Heading from 'components/Heading';
@@ -6,24 +7,25 @@ import IconButton from '@material-ui/core/IconButton';
 import Image from 'next/image';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Link from 'next/link';
+import Search from '@material-ui/icons/Search';
+import styles from './styles.module.scss';
 import TextField from '@material-ui/core/TextField';
-import useIsMobile from 'helpers/useIsMobile';
+import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { useState } from 'react';
-import './styles.scss';
-// import ButtonWithDropdown from 'components/ButtonWithDropdown';
-// import Search from '@material-ui/icons/Search';
 
-const PLAYSTATION_ID_SESSION = 'a063ba2f-6b73-4484-92eb-5691a175f8b0';
-const XBOX_ID_SESSION = '25da08dd-cc54-4daa-a535-345c4afc38d0';
+const PLAYSTATION_ID_SESSION = process.env.PLAYSTATION_ID_SESSION;
+const XBOX_ID_SESSION = process.env.XBOX_ID_SESSION;
 
-const Header: React.FC = () => {
+interface Props {
+  menuSessions?: ConfigurationModel[];
+}
+
+export default function Header({ menuSessions = [] }: Props) {
   // const dispatch = useDispatch();
   // const history = useHistory();
   // const location = useLocation();
-  // const { menuSessions } = useSelector((state: ReduxStore) => state.storeConfiguration);
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
-  const isMobile = useIsMobile();
 
   const handleNavigate = () => {
     if (search) {
@@ -55,30 +57,30 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className='container-header'>
+      <div className={styles['container-header']}>
         <Container>
-          <Box className='header-content'>
+          <Box className={styles['header-content']}>
             <Link href='/'>
-              <a className="logo-link">
-                <Image alt='Logo GamerApp' height="100%" priority src={isMobile ? '/header/logo-green.png' : '/header/logo.svg'} width={103} />
+              <a className={styles['logo-link']}>
+                <img alt='Logo GamerApp' className={styles.logoDesktop} height="100%" src='/images/header/logo.svg' width={103} />
+                <img alt='Logo GamerApp' className={styles.logoMobile} height="100%" src='/images/header/logo-green.png' width={103} />
               </a>
             </Link>
 
-            <Box className='search-text-container'>
+            <Box className={`${styles['search-text-container']} search-text-container`}>
               <TextField
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
-                      <Box className='icon-container'>
+                      <Box className={styles['icon-container']}>
                         <IconButton onClick={handleNavigate}>
-                          todo icon
-                          {/* <Search style={{ color: '#0dac3d', fontSize: 32 }} /> */}
+                          <Search style={{ color: '#0dac3d', fontSize: 32 }} />
                         </IconButton>
                       </Box>
                     </InputAdornment>
                   ),
                 }}
-                className='search-field'
+                className={styles['search-field']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 placeholder='Pesquise no GamerApp'
@@ -87,22 +89,23 @@ const Header: React.FC = () => {
               />
             </Box>
 
-            <Box className='menu-items'>
-              {/* {menuSessions.length > 0 && (
+            <Box className={styles['menu-items']}>
+              {menuSessions?.length > 0 && (
                 <ButtonWithDropdown
-                  icon={cupom}
+                  icon='/images/header/cupom.svg'
                   sessions={menuSessions.map((menu) => ({
                     ...menu,
                     url: `/produtos/${menu.id}`,
                   }))}
                   title='Categorias'
                 />
-              )} */}
+              )}
 
               <Link href={`/produtos/${PLAYSTATION_ID_SESSION}`}>
-                <a className='menu-item is-link'>
-
-                  <Image alt='Playstation' src="/header/playstation.svg" height={20} priority width="100%" />
+                <a className={`${styles['menu-item']} ${styles['is-link']}`}>
+                  <Box height={20} position="relative" width={25}>
+                    <Image alt='Playstation' src="/images/header/playstation.svg" priority objectFit="contain" layout="fill" />
+                  </Box>
 
                   <Box marginEnd={1} marginStart={8}>
                     <Heading size={20}>Playstation</Heading>
@@ -111,8 +114,10 @@ const Header: React.FC = () => {
               </Link>
 
               <Link href={`/produtos/${XBOX_ID_SESSION}`}>
-                <a className='menu-item is-link'>
-                  <Image alt='Xbox' src="/header/xbox.svg" height={20} priority width="100%" />
+                <a className={`${styles['menu-item']} ${styles['is-link']}`}>
+                  <Box height={20} position="relative" width={25}>
+                    <Image alt='Xbox' src="/images/header/xbox.svg" priority objectFit="contain" layout="fill" />
+                  </Box>
 
                   <Box marginEnd={1} marginStart={8}>
                     <Heading size={20}>Xbox</Heading>
@@ -121,16 +126,16 @@ const Header: React.FC = () => {
               </Link>
             </Box>
 
-            <Box className='hamburguer-wrapper'>
+            <Box className={styles['hamburguer-wrapper']}>
               <Hamburguer opened={menuOpened} toggleOpened={() => setMenuOpened(!menuOpened)} />
             </Box>
           </Box>
         </Container>
 
-        <Box className={`menu-items-mobile ${menuOpened ? 'opened' : ''}`}>
-          {/* {menuSessions.length > 0 && (
+        <Box className={`${styles['menu-items-mobile']} ${menuOpened ? styles.opened : ''}`}>
+          {menuSessions.length > 0 && (
             <ButtonWithDropdown
-              icon={cupom}
+              icon='/images/header/cupom.svg'
               sessions={menuSessions.map((menu) => ({
                 ...menu,
                 url: `/produtos/${menu.id}`,
@@ -138,12 +143,12 @@ const Header: React.FC = () => {
               title='Categorias'
               version='mobile'
             />
-          )} */}
+          )}
 
           <Link href={`/produtos/${PLAYSTATION_ID_SESSION}`}>
-            <a className='menu-item is-link'>
+            <a className={`${styles['menu-item']} ${styles['is-link']}`}>
 
-              <Image alt='Playstation' src="/header/playstation.svg" height={20} priority width="100%" />
+              <Image alt='Playstation' src="/images/header/playstation.svg" height={20} priority width="100%" />
 
               <Box marginEnd={1} marginStart={8}>
                 <Heading size={20}>Playstation</Heading>
@@ -152,9 +157,9 @@ const Header: React.FC = () => {
           </Link>
 
           <Link href={`/produtos/${XBOX_ID_SESSION}`}>
-            <a className='menu-item is-link'>
+            <a className={`${styles['menu-item']} ${styles['is-link']}`}>
 
-              <Image alt='Xbox' src="/header/xbox.svg" height={20} priority width="100%" />
+              <Image alt='Xbox' src="/images/header/xbox.svg" height={20} priority width="100%" />
 
               <Box marginEnd={1} marginStart={8}>
                 <Heading size={20}>Xbox</Heading>
@@ -164,21 +169,20 @@ const Header: React.FC = () => {
         </Box>
       </div>
 
-      <Box className='search-text-container search-text-container-mobile'>
+      <Box className={`${styles['search-text-container']} ${styles['search-text-container-mobile']}`}>
         <TextField
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
-                <Box className='icon-container'>
+                <Box className={styles['icon-container']}>
                   <IconButton onClick={handleNavigate}>
-                    todo icon
-                    {/* <Search style={{ color: '#0dac3d', fontSize: 32 }} /> */}
+                    <Search style={{ color: '#0dac3d', fontSize: 32 }} />
                   </IconButton>
                 </Box>
               </InputAdornment>
             ),
           }}
-          className='search-field'
+          className={styles['search-field']}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder='Pesquise no GamerApp'
@@ -188,6 +192,4 @@ const Header: React.FC = () => {
       </Box>
     </>
   );
-};
-
-export default Header;
+}

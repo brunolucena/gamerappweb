@@ -9,10 +9,11 @@ interface Props {
 const useIsMobile = (props?: Props) => {
   const mobileSize = props?.mobileSize ?? MOBILE_SIZE;
 
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 100);
 
   useEffect(() => {
-    const handleWindowSizeChange = () => setWidth(window.innerWidth);
+    const handleWindowSizeChange = () => setWidth(window?.innerWidth);
+
     window.addEventListener('resize', handleWindowSizeChange);
 
     return () => window.removeEventListener('resize', handleWindowSizeChange);

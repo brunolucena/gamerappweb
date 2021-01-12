@@ -3,17 +3,20 @@ import Facebook from 'components/SocialMedia/Facebook';
 import Heading from 'components/Heading';
 import Image from 'next/image';
 import Instagram from 'components/SocialMedia/Instagram';
+import Link from 'next/link';
 import LinkedIn from 'components/SocialMedia/LinkedIn';
 import Logo from 'components/Logo';
 import styles from './styles.module.scss';
 import Text from 'components/Text';
 import Youtube from 'components/SocialMedia/Youtube';
-import Link from 'next/link';
+import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 
-const Footer: React.FC = () => {
-  // const { menuSessions: menuSessionsRedux } = useSelector((state: ReduxStore) => state.storeConfiguration);
+interface Props {
+  menuSessions?: ConfigurationModel[];
+}
 
-  // const menuSessions = menuSessionsRedux.slice(0, 2);
+export default function Footer(props: Props) {
+  const menuSessions = props.menuSessions?.slice(0, 2) ?? [];
 
   return (
     <Box className={styles['footer-wrapper']}>
@@ -75,13 +78,13 @@ const Footer: React.FC = () => {
               </a>
             </Link>
 
-            {/* {menuSessions.map((menu, index) => (
+            {menuSessions.map((menu, index) => (
               <Link key={menu.id + index} href={`/produtos/${menu.id}`}>
                 <a>
                   <Text color='white'>{menu.title}</Text>
                 </a>
               </Link>
-            ))} */}
+            ))}
 
             <Link href='/terms-of-use'>
               <a>
@@ -131,6 +134,4 @@ const Footer: React.FC = () => {
       </Box>
     </Box>
   );
-};
-
-export default Footer;
+}
