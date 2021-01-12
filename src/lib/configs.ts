@@ -12,4 +12,6 @@ const configs = {
   },
 }[env];
 
+export const SITE_TITLE = 'GamerApp - Comunidade e Loja de Jogos Digitais';
+
 export default configs;

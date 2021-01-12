@@ -4,8 +4,6 @@ import Header from 'modules/Loja/Components/Header';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { NextPage } from 'next';
 
-export const siteTitle = 'Next.js Sample Website'
-
 interface Props {
   hasFooter?: boolean;
   hasHeader?: boolean;
@@ -15,10 +13,6 @@ interface Props {
 const Layout: NextPage<Props> = ({ children, hasFooter = true, hasHeader = true, menuSessions }) => {
   return (
     <div>
-      <Head>
-        <title>GamerApp - Comunidade e Loja de Jogos Digitais</title>
-      </Head>
-
       {hasHeader && <Header menuSessions={menuSessions} />}
 
       <main>{children}</main>

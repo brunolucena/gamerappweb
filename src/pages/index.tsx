@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import HomeLoja from 'modules/Loja/Pages/Home';
-import Layout, { siteTitle } from 'modules/Loja/Components/Layout';
+import Layout from 'modules/Loja/Components/Layout';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { GetStaticProps } from 'next';
 import { loadConfiguration, loadMenuConfiguration } from 'modules/Loja/Lib/Configuration';
+import { SITE_TITLE } from 'lib/configs';
 
 interface Props {
   menuSessions: ConfigurationModel[];
@@ -14,7 +15,7 @@ export default function Home({ menuSessions, sessions }: Props) {
   return (
     <Layout menuSessions={menuSessions}>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{SITE_TITLE}</title>
         <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
         <meta
           key="og-description"
