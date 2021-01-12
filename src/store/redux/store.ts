@@ -3,6 +3,7 @@ import mySaga from 'store/sagas';
 import reducers, { ReduxStore } from './';
 import { createWrapper } from 'next-redux-wrapper';
 import { env } from 'lib/configs';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import {
   Middleware,
   Store,
@@ -38,6 +39,8 @@ export const makeStore = () => {
 
   return store;
 }
+
+export const useTypedSelector: TypedUseSelectorHook<ReduxStore> = useSelector;
 
 // @ts-ignore
 export const wrapper = createWrapper<ReduxStore>(makeStore, { debug: env !== 'production' })

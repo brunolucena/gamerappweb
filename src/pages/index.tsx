@@ -14,6 +14,7 @@ interface Props {
 export default function Home({ sessions }: Props) {
   return (
     <Layout>
+      asdasd
       <Head>
         <title>{SITE_TITLE}</title>
         <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
@@ -41,6 +42,8 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
 
   // @ts-ignore
   await store.sagaTask.toPromise();
+
+  console.log({ store: store.getState().configuration.feedSessions })
 
   return {
     props: {},
