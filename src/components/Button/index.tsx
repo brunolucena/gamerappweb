@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link;
 import './styles.scss';
 
 export type ButtonType = 'primary' | 'secondary' | 'clear';
@@ -33,14 +32,16 @@ const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, 
       {button}
     </a>
   ) : to ? (
-    <Link onClick={() => onClick && onClick()} to={to} style={{ textAlign: 'center', textDecoration: 'none' }}>
-      {button}
+    <Link href={to}>
+      <a onClick={() => onClick && onClick()} style={{ textAlign: 'center', textDecoration: 'none' }}>
+        {button}
+      </a>
     </Link>
   ) : (
-    <button className='button-container' onClick={(event) => onClick && onClick(event)} type={buttonType}>
-      {button}
-    </button>
-  );
+        <button className='button-container' onClick={(event) => onClick && onClick(event)} type={buttonType}>
+          {button}
+        </button>
+      );
 };
 
 export default Button;
