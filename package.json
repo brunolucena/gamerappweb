@@ -9,6 +9,8 @@
     "export": "cross-env NODE_ENV=production npm run build && next export -o _static"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",

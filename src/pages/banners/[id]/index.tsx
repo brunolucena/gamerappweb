@@ -1,25 +1,27 @@
-import { GetServerSideProps } from 'next';
-import { loadBanners } from 'lib/configurations';
 import Head from 'next/head';
-import Layout from 'components/Layout';
-import utilStyles from 'styles/utils.module.scss'
+import Layout from 'modules/Loja/Components/Layout';
+import utilStyles from 'styles/utils.module.scss';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { loadBanners } from 'modules/Loja/Lib/Banner';
 
-export interface BannerModel {
-  badgeText?: string;
-  imageUrl: string;
-  name?: string;
-  offerValidUntil?: Date;
-  oldPrice?: number;
-  price?: number;
-  sessionId: string;
-  storeProductId?: string;
+export const getServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+  const bannerRequest = await loadBanners({ sessionId: typeof params?.id === 'string' ? params.id : '' })
+
+  if (!bannerRequest.success) {
+    return {
+      notFound: true,
+      props: {},
+    }
+  }
+
+  return {
+    props: {
+      banner: bannerRequest.data.banners[0],
+    },
+  }
 }
 
-interface Props {
-  banner?: BannerModel;
-}
-
-export default function Post({ banner }: Props) {
+export default function Post({ banner }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <Layout>
       <Head>
@@ -40,14 +42,4 @@ export default function Post({ banner }: Props) {
       <img alt={`Banner ${banner?.name}`} src={banner?.imageUrl} />
     </Layout>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const banner = await loadBanners({ sessionId: typeof params?.id === 'string' ? params.id : '' })
-
-  return {
-    props: {
-      banner: banner.banners[0],
-    },
-  }
 }

@@ -1,42 +1,12 @@
-import { GetServerSideProps } from 'next';
-import { loadSession } from 'lib/configurations';
 import Head from 'next/head';
-import Layout from 'components/Layout';
-import utilStyles from 'styles/utils.module.scss'
-
-interface PriceItem {
-  discount: number;
-  discountPercent: number;
-  oldPrice: number;
-  price: number;
-}
-
-interface ProductItem {
-  sessionId: string;
-  name: string;
-  id: string;
-  imageUrl: string;
-  price: PriceItem;
-  oldPrice?: number;
-  isSteam: boolean;
-  discount: number;
-  isUplay: boolean;
-  isOrigin: boolean;
-  mac: boolean;
-  windows: boolean;
-  linux: boolean;
-  offerValidUntil?: Date;
-  url: string;
-}
-
-interface Session {
-  items: ProductItem[];
-  count: number;
-  name: string;
-}
+import Layout from 'modules/Loja/Components/Layout';
+import utilStyles from 'styles/utils.module.scss';
+import { GetServerSideProps } from 'next';
+import { loadSession } from 'modules/Loja/Lib/Session';
+import { Session } from 'modules/Loja/Lib/Session/models';
 
 interface Props {
-  session?: Session;
+  session: Session;
 }
 
 export default function Post({ session }: Props) {
@@ -67,11 +37,18 @@ export default function Post({ session }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const session = await loadSession({ sessionId: typeof params?.id === 'string' ? params.id : '' });
+  const request = await loadSession({ sessionId: typeof params?.id === 'string' ? params.id : '' });
+
+  if (!request.success) {
+    return {
+      notFound: true,
+      props: {},
+    }
+  }
 
   return {
     props: {
-      session,
+      session: request.data,
     },
   }
 }
