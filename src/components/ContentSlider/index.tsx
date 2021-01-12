@@ -62,7 +62,7 @@ const ContentSlider: React.FC<Props> = (props) => {
   //   }
   // }, [setSlideToShow, itemWidth]);
 
-  return <div>oi</div>
+  return <div>oig</div>
 
   // return (
   //   <div className={`content-slider-container ${insideArrows ? 'inside-arrows' : ''}`} id='content-slider-container'>
