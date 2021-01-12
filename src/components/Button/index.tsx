@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import Link from 'next/link;
-import './styles.scss';
+import Link from 'next/link';
+// import './styles.scss';
 
 export type ButtonType = 'primary' | 'secondary' | 'clear';
 

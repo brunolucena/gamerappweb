@@ -1,4 +1,3 @@
-import React from 'react';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 interface Props {

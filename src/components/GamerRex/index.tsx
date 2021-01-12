@@ -1,9 +1,5 @@
-import React from 'react';
-import RexSrc from './rex.png';
-import { Rex } from './styles';
-
 const GamerRex: React.FC = () => {
-  return <Rex src={RexSrc} />;
+  return <img height={200} src="/images/gamer-rex/rex.png" />;
 };
 
 export default GamerRex;

@@ -9,6 +9,9 @@ import 'styles/globals.scss';
 import 'styles/header.scss';
 import 'components/Styles/index.scss';
 import 'animate.css/animate.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 interface Props extends AppProps {
   store: any;
 }

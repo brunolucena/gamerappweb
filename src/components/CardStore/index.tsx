@@ -2,15 +2,14 @@ import Alarm from '@material-ui/icons/Alarm';
 import Box from 'components/Box';
 import Countdown from 'react-countdown';
 import IconPlatform from 'components/IconsPlatform';
+import Link from 'next/link';
 import moment from 'moment';
-import React from 'react';
-import StringFormat from 'Utils/StringFormat';
+import StringFormat from 'helpers/StringFormat';
 import Text from 'components/Text';
-import { getProportions } from 'Helpers/functions';
+import { getProportions } from 'helpers/functions';
 import { Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { SizeMe } from 'react-sizeme';
-import './styles.scss';
+// import './styles.scss';
 
 interface Props {
   banner: string;
@@ -55,74 +54,76 @@ const CardStore: React.FC<Props> = (props) => {
   );
 
   return (
-    <Link className='containerCardStore' to={`/produto/${id}`}>
-      <SizeMe>
-        {({ size }) => {
-          const proportions = getProportions({ width: size.width ?? 200 }, '16x9');
+    <Link href={`/produto/${id}`}>
+      <a className='containerCardStore'>
+        <SizeMe>
+          {({ size }) => {
+            const proportions = getProportions({ width: size.width ?? 200 }, '16x9');
 
-          return (
-            <>
-              <div
-                className='banner'
-                style={{
-                  backgroundImage: `url(${props.banner})`,
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'none',
-                  backgroundSize: 'cover',
-                  borderRadius: '8px 8px 0px 0px',
-                  width: '100%',
-                  height: proportions.height,
-                }}
-              >
-                {props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
-                  <Grid container spacing={1} className='containerCountDown'>
-                    <Grid item xs={10} md={10}>
-                      {countdown}
+            return (
+              <>
+                <div
+                  className='banner'
+                  style={{
+                    backgroundImage: `url(${props.banner})`,
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'none',
+                    backgroundSize: 'cover',
+                    borderRadius: '8px 8px 0px 0px',
+                    width: '100%',
+                    height: proportions.height,
+                  }}
+                >
+                  {props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
+                    <Grid container spacing={1} className='containerCountDown'>
+                      <Grid item xs={10} md={10}>
+                        {countdown}
+                      </Grid>
                     </Grid>
-                  </Grid>
-                )}
-              </div>
-              <div className='content'>
-                <div className='body'>
-                  <Grid container spacing={1}>
-                    <Grid item xs={12} md={12}>
-                      <p className='title'>{props.title}</p>
+                  )}
+                </div>
+                <div className='content'>
+                  <div className='body'>
+                    <Grid container spacing={1}>
+                      <Grid item xs={12} md={12}>
+                        <p className='title'>{props.title}</p>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                  <Grid container spacing={1} alignItems='center'>
-                    {moment(props.duration).isAfter(props.dateHourNow) && props.discount > 0 && (
-                      <div className='discount-wrapper'>
-                        <span className='badge --primary'>-{props.discount}%</span>
-                      </div>
-                    )}
-                    <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
-                      {props.value ? (
-                        <Text className='price' weight='bold'>
-                          {props.oldPrice ? (
-                            <Text color='lightGray' lineThrough size={12}>
-                              R${StringFormat.formatToMonetary(props.oldPrice)}
-                            </Text>
-                          ) : (
-                              ''
-                            )}
+                    <Grid container spacing={1} alignItems='center'>
+                      {moment(props.duration).isAfter(props.dateHourNow) && props.discount > 0 && (
+                        <div className='discount-wrapper'>
+                          <span className='badge --primary'>-{props.discount}%</span>
+                        </div>
+                      )}
+                      <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
+                        {props.value ? (
+                          <Text className='price' weight='bold'>
+                            {props.oldPrice ? (
+                              <Text color='lightGray' lineThrough size={12}>
+                                R${StringFormat.formatToMonetary(props.oldPrice)}
+                              </Text>
+                            ) : (
+                                ''
+                              )}
                           R${StringFormat.formatToMonetary(props.value)}
-                        </Text>
-                      ) : (
-                          <Text weight='bold'>Indisponível</Text>
-                        )}
+                          </Text>
+                        ) : (
+                            <Text weight='bold'>Indisponível</Text>
+                          )}
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </div>
+                  <div className='footer'>
+                    {props?.platform?.map((plat: any) => {
+                      return <IconPlatform name={plat.platformName} icon={plat.imageUrl} />;
+                    })}
+                  </div>
                 </div>
-                <div className='footer'>
-                  {props?.platform?.map((plat: any) => {
-                    return <IconPlatform name={plat.platformName} icon={plat.imageUrl} />;
-                  })}
-                </div>
-              </div>
-            </>
-          );
-        }}
-      </SizeMe>
+              </>
+            );
+          }}
+        </SizeMe>
+      </a>
     </Link>
   );
 };
