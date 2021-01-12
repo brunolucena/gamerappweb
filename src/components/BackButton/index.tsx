@@ -1,7 +1,6 @@
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 interface Props {
   fontSize?: number;
@@ -10,13 +9,13 @@ interface Props {
 }
 
 const BackButton: React.FC<Props> = ({ fontSize = 24, iconColor, to }) => {
-  const history = useHistory();
+  const router = useRouter();
 
   function onClick() {
     if (to) {
-      history.push(to);
+      router.push(to);
     } else {
-      history.goBack();
+      router.back();
     }
   }
 
