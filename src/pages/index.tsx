@@ -2,18 +2,18 @@ import Head from 'next/head';
 import HomeLoja from 'modules/Loja/Pages/Home';
 import Layout from 'modules/Loja/Components/Layout';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
-import { GetStaticProps } from 'next';
-import { loadConfiguration, loadMenuConfiguration } from 'modules/Loja/Lib/Configuration';
+import { END } from 'redux-saga';
+import { loadConfiguration, loadMenuConfiguration } from 'modules/Loja/Store/Configuration';
 import { SITE_TITLE } from 'lib/configs';
+import { wrapper } from 'store/redux/store';
 
 interface Props {
-  menuSessions: ConfigurationModel[];
   sessions: ConfigurationModel[];
 }
 
-export default function Home({ menuSessions, sessions }: Props) {
+export default function Home({ sessions }: Props) {
   return (
-    <Layout menuSessions={menuSessions}>
+    <Layout>
       <Head>
         <title>{SITE_TITLE}</title>
         <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
@@ -30,22 +30,20 @@ export default function Home({ menuSessions, sessions }: Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const request = await loadConfiguration();
-  const requestMenu = await loadMenuConfiguration();
-
-  if (!request.success) {
-    return {
-      notFound: true,
-      props: {},
-    }
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  if (!store.getState().configuration.loaded) {
+    store.dispatch(loadMenuConfiguration());
   }
+
+  store.dispatch(loadConfiguration());
+
+  store.dispatch(END);
+
+  // @ts-ignore
+  await store.sagaTask.toPromise();
 
   return {
-    props: {
-      menuSessions: requestMenu.data.sessions,
-      sessions: request.data.sessions,
-    },
+    props: {},
     revalidate: 1,
   }
-}
+})

@@ -1,19 +1,12 @@
 import Head from 'next/head';
-import HomeLoja from 'modules/Loja/Pages/Home';
 import Layout from 'modules/Loja/Components/Layout';
 import { SITE_TITLE } from 'lib/configs';
-import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 // import { GetStaticProps } from 'next';
 // import { loadConfiguration, loadMenuConfiguration } from 'modules/Loja/Lib/Configuration';
 
-interface Props {
-  menuSessions: ConfigurationModel[];
-  sessions: ConfigurationModel[];
-}
-
-export default function Pesquisar({ menuSessions, sessions }: Props) {
+export default function Pesquisar() {
   return (
-    <Layout menuSessions={menuSessions}>
+    <Layout>
       <Head>
         <title>Pesquisar - {SITE_TITLE}</title>
       </Head>

@@ -1,10 +1,19 @@
-import Api from 'lib/Api';
-import { BaseResponse } from 'lib/Api/models';
+import Api from 'store/Api';
+import { BaseResponse } from 'store/Api/models';
+import { LOAD_CONFIGURATION, LOAD_MENU_CONFIGURATION } from 'modules/Loja/Store/Configuration';
 import { LoadConfigurationResponse } from './models';
 
 export async function loadConfiguration(): Promise<BaseResponse<LoadConfigurationResponse>> {
   try {
-    const res = await Api({ method: 'GET', url: '/StoreProduct/Config/v1?isFeedSession=true' });
+    const res = await Api({
+      payload: {
+        request: {
+          method: 'GET',
+          url: '/StoreProduct/Config/v1?isFeedSession=true',
+        },
+      },
+      type: LOAD_CONFIGURATION,
+    });
 
     return {
       success: true,
@@ -20,7 +29,15 @@ export async function loadConfiguration(): Promise<BaseResponse<LoadConfiguratio
 
 export async function loadMenuConfiguration(): Promise<BaseResponse<LoadConfigurationResponse>> {
   try {
-    const res = await Api({ method: 'GET', url: '/StoreProduct/Config/v1?isMenuSession=true' });
+    const res = await Api({
+      payload: {
+        request: {
+          method: 'GET',
+          url: '/StoreProduct/Config/v1?isMenuSession=true',
+        },
+      },
+      type: LOAD_MENU_CONFIGURATION,
+    });
 
     return {
       success: true,

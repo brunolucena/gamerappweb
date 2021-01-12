@@ -4,12 +4,17 @@ import { theme } from 'styles/MaterialTheme';
 import { ThemeProvider } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { wrapper } from 'store/redux/store';
 import 'styles/globals.scss';
 import 'styles/header.scss';
 import 'components/Styles/index.scss';
 import 'animate.css/animate.css';
+interface Props extends AppProps {
+  store: any;
+}
 
-function App({ Component, pageProps }: AppProps) {
+function App(props: Props) {
+  const { Component, pageProps } = props;
   const router = useRouter()
 
   useEffect(() => {
@@ -22,7 +27,7 @@ function App({ Component, pageProps }: AppProps) {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [router.events])
+  }, [router.events]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -31,4 +36,4 @@ function App({ Component, pageProps }: AppProps) {
   )
 }
 
-export default App;
+export default wrapper.withRedux(App);

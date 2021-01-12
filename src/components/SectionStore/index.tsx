@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loadSession, loadSessionClear } from 'Modules/Loja/Store/Ducks/Session';
-import { ReduxStore } from 'Store/Redux';
+import { ReduxStore } from 'store/redux';
 import { search, searchClear } from 'Modules/Loja/Store/Ducks/Search';
 import './styles.scss';
 const _ = require('lodash');

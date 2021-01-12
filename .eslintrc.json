@@ -28,6 +28,7 @@
       "error",
       "always-multiline"
     ],
+    "generator-star-spacing": "off",
     "multiline-ternary": "off",
     "react/jsx-uses-react": "off",
     "react/prop-types": [

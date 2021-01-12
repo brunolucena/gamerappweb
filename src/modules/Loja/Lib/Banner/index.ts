@@ -1,10 +1,18 @@
-import Api from 'lib/Api';
-import { BaseResponse } from 'lib/Api/models';
+import Api from 'store/Api';
+import { BaseResponse } from 'store/Api/models';
 import { LoadBannerResponse, LoadBannersRequest } from './models';
 
 export async function loadBanners({ sessionId }: LoadBannersRequest): Promise<BaseResponse<LoadBannerResponse>> {
   try {
-    const res = await Api({ method: 'GET', url: `/Banner/${sessionId}/v1` });
+    const res = await Api({
+      payload: {
+        request: {
+          method: 'GET',
+          url: `/Banner/${sessionId}/v1`,
+        },
+      },
+      type: 'LOAD_BANNER',
+    });
 
     return {
       success: true,

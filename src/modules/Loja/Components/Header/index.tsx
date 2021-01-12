@@ -10,24 +10,21 @@ import Link from 'next/link';
 import Search from '@material-ui/icons/Search';
 import styles from './styles.module.scss';
 import TextField from '@material-ui/core/TextField';
-import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { ReduxStore } from 'store/redux';
 
 const PLAYSTATION_ID_SESSION = process.env.PLAYSTATION_ID_SESSION;
 const XBOX_ID_SESSION = process.env.XBOX_ID_SESSION;
 
-interface Props {
-  menuSessions?: ConfigurationModel[];
-}
-
-export default function Header({ menuSessions = [] }: Props) {
+export default function Header() {
   const router = useRouter();
+  const { menuSessions } = useSelector((state: ReduxStore) => state.configuration);
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
 
   const handleNavigate = () => {
-    console.log('search', search)
     if (search) {
       router.push({
         pathname: '/pesquisar',

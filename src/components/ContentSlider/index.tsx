@@ -9,7 +9,7 @@ import { formatCurrency } from 'Helpers/formatters';
 import { getProportions } from 'Helpers/functions';
 import { Link } from 'react-router-dom';
 import { loadBanners } from 'Modules/Loja/Store/Ducks/Banner';
-import { ReduxStore } from 'Store/Redux';
+import { ReduxStore } from 'store/redux';
 import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import { SizeMe } from 'react-sizeme';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import configs from 'lib/configs';
-import { ApiRequest } from './models';
+import { Action } from 'store/models/ReduxModels';
 
-async function Api({ method, url, data }: ApiRequest) {
+async function Api(action: Action<any>) {
+  const { data, method, url } = action.payload.request;
+
   const client = axios.create({
     baseURL: configs.apiUrl,
     responseType: 'json',
