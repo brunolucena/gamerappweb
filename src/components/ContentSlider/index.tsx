@@ -1,4 +1,3 @@
-// import { remoteConfig } from 'Utils/Firebase/init-firebase';
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Box from 'components/Box';
@@ -9,6 +8,7 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 import { BannerModel } from 'modules/Loja/Store/Banner/models';
 import { formatCurrency } from 'helpers/formatters';
+import { remoteConfig } from 'lib/Firebase/init-firebase';
 
 interface Props {
   insideArrows?: boolean;
@@ -16,13 +16,12 @@ interface Props {
   slidesToShow?: number;
 }
 
-const ContentSlider: React.FC<Props> = ({
+export default function ContentSlider({
   insideArrows,
   items,
   slidesToShow = 1,
-}) => {
-  // const bannersWithInfoEnabled = remoteConfig.getValue('banners_with_info_enabled').asBoolean();
-  const bannersWithInfoEnabled = false;
+}: React.PropsWithChildren<Props>) {
+  const bannersWithInfoEnabled = remoteConfig?.getValue('banners_with_info_enabled').asBoolean();
 
   const arrowLeft = (
     <div className={styles['arrow-container']}>
@@ -90,8 +89,8 @@ const ContentSlider: React.FC<Props> = ({
         </a>
       </Link>
     ) : (
-        element
-      );
+      element
+    );
   });
 
   if (sliderItems.length < slidesToShow) {
@@ -127,6 +126,4 @@ const ContentSlider: React.FC<Props> = ({
       </div>
     </div>
   );
-};
-
-export default ContentSlider;
+}
