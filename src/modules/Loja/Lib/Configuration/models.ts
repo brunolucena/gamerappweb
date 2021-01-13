@@ -1,8 +1,8 @@
 export interface ConfigurationModel {
-  title: string;
-  id: string;
-  type: string;
   count: number;
+  id: string;
+  title: string;
+  type: string;
 }
 
 export interface ConfigurationModelWithUrl extends ConfigurationModel {

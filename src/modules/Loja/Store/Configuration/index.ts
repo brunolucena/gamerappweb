@@ -4,31 +4,12 @@ import {
   BaseResponse,
   Hydrate,
 } from 'store/models/ReduxModels';
-import { ConfigurationModel, LoadConfigurationRequest, LoadConfigurationResponse } from './model';
+import { ConfigurationModel, LoadConfigurationRequest, LoadConfigurationResponse } from './models';
 import { HYDRATE } from 'next-redux-wrapper';
-
-export const LOAD_CONFIGURATION = 'LOAD_CONFIGURATION';
-export const LOAD_CONFIGURATION_SUCCESS = 'LOAD_CONFIGURATION_SUCCESS';
-export const LOAD_CONFIGURATION_FAILURE = 'LOAD_CONFIGURATION_FAILURE';
 
 export const LOAD_MENU_CONFIGURATION = 'LOAD_MENU_CONFIGURATION';
 export const LOAD_MENU_CONFIGURATION_SUCCESS = 'LOAD_MENU_CONFIGURATION_SUCCESS';
 export const LOAD_MENU_CONFIGURATION_FAILURE = 'LOAD_MENU_CONFIGURATION_FAILURE';
-
-export interface LoadConfiguration {
-  type: typeof LOAD_CONFIGURATION;
-  payload: ActionPayload<LoadConfigurationRequest>;
-}
-
-export interface LoadConfigurationSuccess {
-  type: typeof LOAD_CONFIGURATION_SUCCESS;
-  payload: BaseResponse<LoadConfigurationResponse>;
-}
-
-export interface LoadConfigurationFailure {
-  type: typeof LOAD_CONFIGURATION_FAILURE;
-  payload: BaseErrorResponse;
-}
 
 export interface LoadMenuConfiguration {
   type: typeof LOAD_MENU_CONFIGURATION;
@@ -45,61 +26,38 @@ export interface LoadMenuConfigurationFailure {
   payload: BaseErrorResponse;
 }
 
-export type ConfigurationActions =
+export type Actions =
   | Hydrate
-  | LoadConfiguration
-  | LoadConfigurationFailure
-  | LoadConfigurationSuccess
   | LoadMenuConfiguration
   | LoadMenuConfigurationFailure
   | LoadMenuConfigurationSuccess;
 
-export interface ConfigurationState {
+export interface State {
   error: string;
   loaded: boolean;
   loading: boolean;
-  feedSessions: ConfigurationModel[];
   menuSessions: ConfigurationModel[];
 }
 
-export const initialState: ConfigurationState = {
+export const initialState: State = {
   error: '',
   loaded: false,
+  loadedMenu: false,
   loading: false,
-  feedSessions: [],
+  loadingMenu: false,
   menuSessions: [],
 };
 
-export default function reducer(state = initialState, action: ConfigurationActions): ConfigurationState {
+export default function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case HYDRATE: {
       return { ...state, ...action.payload.configuration }
     }
 
-    case LOAD_CONFIGURATION:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-      };
-    case LOAD_CONFIGURATION_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        feedSessions: action.payload.data.sessions,
-      };
-    case LOAD_CONFIGURATION_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-      };
-
     case LOAD_MENU_CONFIGURATION:
       return {
         ...state,
-        loading: false,
+        loading: true,
         loaded: false,
       };
     case LOAD_MENU_CONFIGURATION_SUCCESS:
@@ -119,18 +77,6 @@ export default function reducer(state = initialState, action: ConfigurationActio
     default:
       return state;
   }
-}
-
-export function loadConfiguration(): LoadConfiguration {
-  return {
-    type: LOAD_CONFIGURATION,
-    payload: {
-      request: {
-        method: 'GET',
-        url: '/StoreProduct/Config/v1?isFeedSession=true',
-      },
-    },
-  };
 }
 
 export function loadMenuConfiguration(): LoadMenuConfiguration {

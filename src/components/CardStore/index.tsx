@@ -3,41 +3,49 @@ import Box from 'components/Box';
 import Countdown from 'react-countdown';
 import IconPlatform from 'components/IconsPlatform';
 import Link from 'next/link';
-import moment from 'moment';
-import StringFormat from 'helpers/StringFormat';
 import Text from 'components/Text';
-import { getProportions } from 'helpers/functions';
+import moment from 'moment';
+import styles from './styles.module.scss';
 import { Grid } from '@material-ui/core';
+import { ProductPlatform } from 'modules/Loja/Store/ProductDetails/model';
 import { SizeMe } from 'react-sizeme';
-// import './styles.scss';
+import { formatCurrency } from 'helpers/formatters';
+import { getProportions } from 'helpers/functions';
 
 interface Props {
   banner: string;
-  title: string;
-  discount: any;
-  value: number;
-  oldPrice: number;
-  platform: any;
-  duration: any;
-  pay: string;
-  dateHourNow: any;
+  dateHourNow: moment.Moment;
+  discount: number | null;
+  duration?: Date | string;
   id: string;
+  oldPrice: number;
+  platforms?: ProductPlatform[];
+  title: string;
+  value: number;
 }
 
-const CardStore: React.FC<Props> = (props) => {
-  const { id } = props;
-
+const CardStore: React.FC<Props> = ({
+  banner,
+  dateHourNow,
+  discount,
+  duration,
+  id,
+  oldPrice,
+  platforms,
+  title,
+  value,
+}) => {
   const countdown = (
     <Countdown
-      date={props.duration}
+      date={duration}
       renderer={({ completed, formatted }) => {
         const { days, hours, minutes, seconds } = formatted;
 
         return (
           !completed && (
-            <Box className='countdown backgroundTransparent'>
-              <Box className='alarm-wrapper'>
-                <Box className='alarm'>
+            <Box className={styles['countdown backgroundTransparent']}>
+              <Box className={styles['alarm-wrapper']}>
+                <Box className={styles.alarm}>
                   <Alarm style={{ color: '#0dac3d', fontSize: 22 }} />
                 </Box>
               </Box>
@@ -55,7 +63,7 @@ const CardStore: React.FC<Props> = (props) => {
 
   return (
     <Link href={`/produto/${id}`}>
-      <a className='containerCardStore'>
+      <a className={styles.containerCardStore}>
         <SizeMe>
           {({ size }) => {
             const proportions = getProportions({ width: size.width ?? 200 }, '16x9');
@@ -63,9 +71,9 @@ const CardStore: React.FC<Props> = (props) => {
             return (
               <>
                 <div
-                  className='banner'
+                  className={styles.banner}
                   style={{
-                    backgroundImage: `url(${props.banner})`,
+                    backgroundImage: `url(${banner})`,
                     backgroundPosition: 'center',
                     backgroundRepeat: 'none',
                     backgroundSize: 'cover',
@@ -74,38 +82,40 @@ const CardStore: React.FC<Props> = (props) => {
                     height: proportions.height,
                   }}
                 >
-                  {props.duration && moment(props.duration).isAfter(props.dateHourNow) && (
-                    <Grid container spacing={1} className='containerCountDown'>
+                  {duration && moment(duration).isAfter(dateHourNow) && (
+                    <Grid container spacing={1} className={styles.containerCountDown}>
                       <Grid item xs={10} md={10}>
                         {countdown}
                       </Grid>
                     </Grid>
                   )}
                 </div>
-                <div className='content'>
-                  <div className='body'>
+                <div className={styles.content}>
+                  <div className={styles.body}>
                     <Grid container spacing={1}>
                       <Grid item xs={12} md={12}>
-                        <p className='title'>{props.title}</p>
+                        <p className={styles.title}>{title}</p>
                       </Grid>
                     </Grid>
+
                     <Grid container spacing={1} alignItems='center'>
-                      {moment(props.duration).isAfter(props.dateHourNow) && props.discount > 0 && (
-                        <div className='discount-wrapper'>
-                          <span className='badge --primary'>-{props.discount}%</span>
+                      {(moment(duration).isAfter(dateHourNow) && discount && discount > 0) && (
+                        <div className={styles['discount-wrapper']}>
+                          <span className={`${styles.badge} ${styles['--primary']}`}>-{discount}%</span>
                         </div>
                       )}
-                      <Grid item xs={props.discount > 0 ? 6 : 12} md={props.discount > 0 ? 6 : 12}>
-                        {props.value ? (
-                          <Text className='price' weight='bold'>
-                            {props.oldPrice ? (
+
+                      <Grid item xs={discount && discount > 0 ? 6 : 12} md={discount && discount > 0 ? 6 : 12}>
+                        {value ? (
+                          <Text className={styles.price} weight='bold'>
+                            {oldPrice ? (
                               <Text color='lightGray' lineThrough size={12}>
-                                R${StringFormat.formatToMonetary(props.oldPrice)}
+                                {formatCurrency(oldPrice)}
                               </Text>
                             ) : (
                                 ''
                               )}
-                          R${StringFormat.formatToMonetary(props.value)}
+                            {formatCurrency(value)}
                           </Text>
                         ) : (
                             <Text weight='bold'>Indisponível</Text>
@@ -113,10 +123,8 @@ const CardStore: React.FC<Props> = (props) => {
                       </Grid>
                     </Grid>
                   </div>
-                  <div className='footer'>
-                    {props?.platform?.map((plat: any) => {
-                      return <IconPlatform name={plat.platformName} icon={plat.imageUrl} />;
-                    })}
+                  <div className={styles.footer}>
+                    {platforms?.map(platform => (<IconPlatform name={platform.platformName} icon={platform.imageUrl} />))}
                   </div>
                 </div>
               </>

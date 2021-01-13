@@ -3,8 +3,10 @@ import HomeLoja from 'modules/Loja/Pages/Home';
 import Layout from 'modules/Loja/Components/Layout';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { END } from 'redux-saga';
-import { loadConfiguration, loadMenuConfiguration } from 'modules/Loja/Store/Configuration';
 import { SITE_TITLE } from 'lib/configs';
+import { loadConfiguration } from 'modules/Loja/Lib/Configuration';
+import { loadMenuConfiguration } from 'modules/Loja/Store/Configuration';
+import { loadSession } from 'modules/Loja/Store/Session';
 import { wrapper } from 'store/redux/store';
 
 interface Props {
@@ -14,7 +16,6 @@ interface Props {
 export default function Home({ sessions }: Props) {
   return (
     <Layout>
-      asdasd
       <Head>
         <title>{SITE_TITLE}</title>
         <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
@@ -31,22 +32,27 @@ export default function Home({ sessions }: Props) {
   )
 }
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  if (!store.getState().configuration.loaded) {
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  const { success, data } = await loadConfiguration();
+  const { loaded } = store.getState().configuration;
+
+  if (!loaded) {
     store.dispatch(loadMenuConfiguration());
   }
 
-  store.dispatch(loadConfiguration());
+  if (success && data.sessions?.length > 0) {
+    data.sessions.forEach(({ id }) => {
+      store.dispatch(loadSession({ sessionId: id, quantity: 20 }));
+    });
+  }
 
   store.dispatch(END);
-
   // @ts-ignore
   await store.sagaTask.toPromise();
 
-  console.log({ store: store.getState().configuration.feedSessions })
-
   return {
-    props: {},
-    revalidate: 1,
+    props: {
+      sessions: data.sessions,
+    },
   }
 })

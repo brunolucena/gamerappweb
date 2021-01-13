@@ -1,7 +1,9 @@
-import configurationSaga from './Configuration/sagas';
+import configurationSagas from './Configuration/sagas';
+import sessionSagas from './Session/sagas';
 
 const storeSagas = [
-  ...configurationSaga,
+  ...configurationSagas,
+  ...sessionSagas,
 ];
 
 export default storeSagas;

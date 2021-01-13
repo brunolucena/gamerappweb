@@ -1,32 +1,32 @@
-import configuration, { ConfigurationState } from 'modules/Loja/Store/Configuration';
-// import config, { State as ConfigState } from './Ducks/configDuck';
-// import login, { State as LoginState } from 'Modules/Account/Store/Ducks/loginDuck';
-// import storeBanners, { BannersState } from 'Modules/Loja/Store/Ducks/Banner';
-// import storeProductDetails, { ProductDetailsState } from 'Modules/Loja/Store/Ducks/ProductDetails';
-// import storeSearch, { SearchState } from 'Modules/Loja/Store/Ducks/Search';
-// import storeSession, { SessionState } from 'Modules/Loja/Store/Ducks/Session';
-// import storeSessionDetails, { SessionDetailsState } from 'Modules/Loja/Store/Ducks/SessionDetails';
+// import login, { State as LoginState } from 'modules/Account/Store/Login';
+// import storeBanners, { BannersState } from 'modules/Loja/Store/Banner';
+// import storeProductDetails, { ProductDetailsState } from 'modules/Loja/Store/ProductDetails';
+// import storeSearch, { SearchState } from 'modules/Loja/Store/Search';
+// import storeSessionDetails, { SessionDetailsState } from 'modules/Loja/Store/SessionDetails';
+import configuration, { State as ConfigurationState } from 'modules/Loja/Store/Configuration';
+import session, { State as SessionState } from 'modules/Loja/Store/Session';
 
 export interface ReduxStore {
   // config: ConfigState;
   // login: LoginState;
   // storeBanners: BannersState;
-  configuration: ConfigurationState;
   // storeProductDetails: ProductDetailsState;
   // storeSearch: SearchState;
   // storeSession: SessionState;
   // storeSessionDetails: SessionDetailsState;
+  session: SessionState,
+  configuration: ConfigurationState;
 }
 
 const reducers: any = {
   // config,
   // login,
   // storeBanners,
-  configuration,
   // storeProductDetails,
   // storeSearch,
-  // storeSession,
   // storeSessionDetails,
+  configuration,
+  session,
 };
 
 export default reducers;
