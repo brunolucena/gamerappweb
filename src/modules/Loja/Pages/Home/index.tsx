@@ -29,6 +29,8 @@ export default function Home({ sessions }: Props) {
                 <SectionStore
                   count={count}
                   key={session.id + index}
+                  id={session.id}
+                  isAllItems
                   items={items}
                   name={session.title ?? name}
                 />

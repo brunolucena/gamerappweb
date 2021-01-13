@@ -14,5 +14,8 @@ export function logEvent(
   },
   options?: firebase.analytics.AnalyticsCallOptions,
 ) {
-  firebase.analytics().logEvent(eventName, eventParams, options);
+  try {
+    firebase.analytics().logEvent(eventName, eventParams, options);
+  } catch {
+  }
 }
