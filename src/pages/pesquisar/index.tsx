@@ -7,17 +7,16 @@ import { logEvent } from 'lib/Firebase';
 import { search } from 'modules/Loja/Store/Search';
 import { SITE_TITLE } from 'lib/configs';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useTypedSelector, wrapper } from 'store/redux/store';
 
-interface Props {
-  search: string;
-}
-
-export default function Pesquisar({ search }: Props) {
+export default function Pesquisar() {
   const { count, items } = useTypedSelector(state => state.search);
+  const router = useRouter();
+  const { search } = router.query
 
   useEffect(() => {
-    if (search) {
+    if (search && typeof search === 'string') {
       event({
         action: 'search',
         category: 'engagement',
@@ -33,7 +32,7 @@ export default function Pesquisar({ search }: Props) {
         <title>Pesquisar - {SITE_TITLE}</title>
       </Head>
 
-      <Products count={count} items={items} title={search} />
+      <Products count={count} items={items} title={typeof search === 'string' ? search : 'Pesquisar'} />
     </Layout>
   )
 }
@@ -45,11 +44,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ query, sto
     // @ts-ignore
     await store.sagaTask.toPromise();
 
-    return {
-      props: {
-        search: query.search,
-      },
-    };
+    return;
   }
 
   return {
