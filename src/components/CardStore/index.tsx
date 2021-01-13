@@ -3,14 +3,14 @@ import Box from 'components/Box';
 import Countdown from 'react-countdown';
 import IconPlatform from 'components/IconsPlatform';
 import Link from 'next/link';
-import Text from 'components/Text';
 import moment from 'moment';
 import styles from './styles.module.scss';
-import { Grid } from '@material-ui/core';
-import { ProductPlatform } from 'modules/Loja/Store/ProductDetails/models';
-import { SizeMe } from 'react-sizeme';
+import Text from 'components/Text';
 import { formatCurrency } from 'helpers/formatters';
 import { getProportions } from 'helpers/functions';
+import { Grid } from '@material-ui/core';
+import { ProductPlatform } from 'modules/Loja/Lib/ProductDetails/models';
+import { SizeMe } from 'react-sizeme';
 
 interface Props {
   banner: string;

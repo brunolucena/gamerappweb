@@ -2,7 +2,8 @@ export const env = process.env.NODE_ENV || 'development';
 
 const configs = {
   development: {
-    apiUrl: 'https://gamerapp-api-dev.azurewebsites.net',
+    // apiUrl: 'https://gamerapp-api-dev.azurewebsites.net',
+    apiUrl: 'https://gamerapp-api.azurewebsites.net',
   },
   test: {
     apiUrl: 'https://gamerapp-api-dev.azurewebsites.net',

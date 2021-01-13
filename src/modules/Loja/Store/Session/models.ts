@@ -1,4 +1,8 @@
-import { ProductPlatform } from '../ProductDetails/models';
+export interface ProductPlatform {
+  id: string;
+  imageUrl: string;
+  platformName: string;
+}
 
 export interface PriceItem {
   discount: number;
