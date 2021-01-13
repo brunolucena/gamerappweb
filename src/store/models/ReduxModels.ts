@@ -1,4 +1,5 @@
 import { HYDRATE } from 'next-redux-wrapper';
+import { REHYDRATE } from 'redux-persist';
 
 export interface PayloadError {
   data: string;
@@ -85,5 +86,10 @@ export interface BaseErrorResponse {
 
 export interface Hydrate {
   type: typeof HYDRATE;
+  payload: any;
+}
+
+export interface Rehydrate {
+  type: typeof REHYDRATE;
   payload: any;
 }
