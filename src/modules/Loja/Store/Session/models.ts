@@ -11,6 +11,7 @@ export interface ProductItem {
   discount: number | null;
   id: string;
   imageUrl: string;
+  isAvailable: boolean;
   name: string;
   offerValidUntil?: Date | string;
   platforms?: ProductPlatform[];

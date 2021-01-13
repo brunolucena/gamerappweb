@@ -18,23 +18,25 @@ interface Props {
   discount: number | null;
   duration?: Date | string;
   id: string;
+  isAvailable: boolean;
   oldPrice: number;
   platforms?: ProductPlatform[];
   title: string;
   value: number;
 }
 
-const CardStore: React.FC<Props> = ({
+function CardStore({
   banner,
   dateHourNow,
   discount,
   duration,
   id,
+  isAvailable,
   oldPrice,
   platforms,
   title,
   value,
-}) => {
+}: React.PropsWithChildren<Props>) {
   const countdown = (
     <Countdown
       date={duration}
@@ -106,25 +108,36 @@ const CardStore: React.FC<Props> = ({
                       )}
 
                       <Grid item xs={discount && discount > 0 ? 6 : 12} md={discount && discount > 0 ? 6 : 12}>
-                        {value ? (
+                        {isAvailable ? (
                           <Text className={styles.price} weight='bold'>
-                            {oldPrice ? (
-                              <Text color='lightGray' lineThrough size={12}>
-                                {formatCurrency(oldPrice)}
-                              </Text>
-                            ) : (
-                                ''
-                              )}
-                            {formatCurrency(value)}
+                            {value
+                              ? <>
+                                {oldPrice ? (
+                                  <Text color='lightGray' lineThrough size={12}>
+                                    {formatCurrency(oldPrice)}
+                                  </Text>
+                                ) : (
+                                  ''
+                                )}
+                                {formatCurrency(value)}
+                              </>
+                              : <span>Gratuito</span>
+                            }
                           </Text>
                         ) : (
-                            <Text weight='bold'>Indisponível</Text>
-                          )}
+                          <Text weight='bold'>Indisponível</Text>
+                        )}
                       </Grid>
                     </Grid>
                   </div>
                   <div className={styles.footer}>
-                    {platforms?.map(platform => (<IconPlatform name={platform.platformName} icon={platform.imageUrl} />))}
+                    {platforms?.map((platform, index) => (
+                      <IconPlatform
+                        key={platform.id + index}
+                        name={platform.platformName}
+                        icon={platform.imageUrl}
+                      />
+                    ))}
                   </div>
                 </div>
               </>
@@ -134,6 +147,6 @@ const CardStore: React.FC<Props> = ({
       </a>
     </Link>
   );
-};
+}
 
 export default CardStore;
