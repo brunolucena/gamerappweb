@@ -31,14 +31,6 @@
     "generator-star-spacing": "off",
     "multiline-ternary": "off",
     "react/jsx-uses-react": "off",
-    "react/prop-types": [
-      2,
-      {
-        "ignore": [
-          "children"
-        ]
-      }
-    ],
     "react/react-in-jsx-scope": "off",
     "semi": "off",
     "space-before-function-paren": "off",
