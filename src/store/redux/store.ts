@@ -55,6 +55,7 @@ export const makeStore = (initialState: any) => {
   } else {
     store = createStore(
       combineReducers(reducers),
+      initialState,
       bindMiddleware([sagaMiddleware]),
     );
   }
