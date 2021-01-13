@@ -37,12 +37,12 @@ function App(props: Props) {
   }, [router.events]);
 
   return (
-    <ThemeProvider theme={theme}>
-      {/* @ts-ignore */}
-      <PersistGate persistor={store.__PERSISTOR} loading={null}>
+    // @ts-ignore
+    <PersistGate persistor={store.__PERSISTOR} loading={null}>
+      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-      </PersistGate>
-    </ThemeProvider>
+      </ThemeProvider>
+    </PersistGate>
   )
 }
 

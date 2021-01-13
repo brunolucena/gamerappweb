@@ -6,6 +6,7 @@ import {
   BaseResponse,
   Rehydrate,
 } from 'store/models/ReduxModels';
+import { HYDRATE } from 'next-redux-wrapper';
 
 export const LOAD_MENU_CONFIGURATION = 'LOAD_MENU_CONFIGURATION';
 export const LOAD_MENU_CONFIGURATION_SUCCESS = 'LOAD_MENU_CONFIGURATION_SUCCESS';
@@ -27,6 +28,7 @@ export interface LoadMenuConfigurationFailure {
 }
 
 export type Actions =
+  | Hydrate
   | Rehydrate
   | LoadMenuConfiguration
   | LoadMenuConfigurationFailure
@@ -36,6 +38,7 @@ export interface State {
   error: string;
   loaded: boolean;
   loading: boolean;
+  hydrated: boolean;
   menuSessions: ConfigurationModel[];
 }
 
@@ -43,11 +46,22 @@ export const initialState: State = {
   error: '',
   loaded: false,
   loading: false,
+  hydrated: false,
   menuSessions: [],
 };
 
 export default function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
+    case HYDRATE: {
+      if (state.hydrated) {
+        return {
+          ...state,
+        }
+      }
+
+      return { ...state, ...action.payload.configuration, hydrated: true }
+    }
+
     case REHYDRATE: {
       const data = action.payload;
 
