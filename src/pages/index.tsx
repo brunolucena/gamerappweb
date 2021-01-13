@@ -34,12 +34,9 @@ export default function HomePage({ sessions }: Props) {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
-  const { success, data } = await loadConfiguration();
-  const { loaded } = store.getState().configuration;
+  store.dispatch(loadMenuConfiguration());
 
-  if (!loaded) {
-    store.dispatch(loadMenuConfiguration());
-  }
+  const { success, data } = await loadConfiguration();
 
   if (success && data.sessions?.length > 0) {
     data.sessions.forEach(({ id, type }) => {

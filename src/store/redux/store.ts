@@ -3,6 +3,7 @@ import mySaga from 'store/sagas';
 import reducers, { ReduxStore } from './';
 import { createWrapper } from 'next-redux-wrapper';
 import { env } from 'lib/configs';
+import { persistStore } from 'redux-persist';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import {
   Middleware,
@@ -27,13 +28,36 @@ const bindMiddleware = (middleware: Middleware[]) => {
   return applyMiddleware(...middleware)
 }
 
-export const makeStore = () => {
+export const makeStore = (initialState: any) => {
+  let store;
+
   const sagaMiddleware = createSagaMiddleware()
 
-  const store = createStore(
-    combineReducers(reducers),
-    bindMiddleware([sagaMiddleware]),
-  );
+  const isClient = typeof window !== 'undefined';
+
+  if (isClient) {
+    const { persistCombineReducers } = require('redux-persist');
+    const storage = require('redux-persist/lib/storage').default;
+
+    const persistConfig = {
+      key: 'gamerappweb',
+      storage,
+    };
+
+    store = createStore(
+      persistCombineReducers(persistConfig, reducers),
+      initialState,
+      bindMiddleware([sagaMiddleware]),
+    );
+
+    // @ts-ignore
+    store.__PERSISTOR = persistStore(store);
+  } else {
+    store = createStore(
+      combineReducers(reducers),
+      bindMiddleware([sagaMiddleware]),
+    );
+  }
 
   (store as StoreWithSaga).sagaTask = sagaMiddleware.run(mySaga)
 
