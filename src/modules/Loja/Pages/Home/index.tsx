@@ -37,7 +37,7 @@ export default function Home({ sessions }: Props) {
 
             const items = getBannersBySectionId(bannerRedux, session.id);
 
-            return <ContentSlider key={session.id + index} items={items} itemsOnScreen={1} />;
+            return <ContentSlider key={session.id + index} items={items} slidesToShow={1} />;
           })}
         </div>
       </Container>
