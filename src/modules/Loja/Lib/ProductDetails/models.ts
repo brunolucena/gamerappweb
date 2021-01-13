@@ -17,6 +17,7 @@ export interface ProductModel {
   description: string;
   id: string;
   images: string[] | null;
+  isAvailable: boolean;
   link: string;
   offerValidUntil?: Date;
   platforms: ProductPlatform[];

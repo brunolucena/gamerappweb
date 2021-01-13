@@ -18,7 +18,7 @@ interface Props {
   name: string;
 }
 
-const SectionStore: React.FC<Props> = ({ count, id, isAllItems, isAllItemsBottom, items, name }) => {
+export default function SectionStore({ count, id, isAllItems, isAllItemsBottom, items, name }: React.PropsWithChildren<Props>) {
   const [dateHours] = useState(moment());
 
   const isEmpty = items.length === 0;
@@ -52,6 +52,7 @@ const SectionStore: React.FC<Props> = ({ count, id, isAllItems, isAllItemsBottom
               discount={item.price?.discountPercent}
               duration={item.offerValidUntil}
               id={item.id}
+              isAvailable={item.isAvailable}
               key={item.id + index}
               oldPrice={item.price.oldPrice}
               platforms={item.platforms}
@@ -61,10 +62,10 @@ const SectionStore: React.FC<Props> = ({ count, id, isAllItems, isAllItemsBottom
           ))}
         </div>
       ) : (
-          <div className={styles.empty}>
-            <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />
-          </div>
-        )}
+        <div className={styles.empty}>
+          <EmptyScreen text='Puxa, não achei nenhum resultado nesta busca =/' />
+        </div>
+      )}
 
       <div className={styles.footer}>
         {isAllItemsBottom && hasMoreItems && (
@@ -73,7 +74,6 @@ const SectionStore: React.FC<Props> = ({ count, id, isAllItems, isAllItemsBottom
           </button>
         )}
       </div>
-    </div>)
-};
-
-export default SectionStore;
+    </div>
+  )
+}

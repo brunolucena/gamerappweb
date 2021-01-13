@@ -2,17 +2,16 @@ import Box from 'components/Box';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import Heading from 'components/Heading';
-import Text from 'components/Text';
 import styles from './styles.module.scss';
-import { ReduxStore } from 'store/redux';
-import { useSelector } from 'react-redux';
+import Text from 'components/Text';
+import { useTypedSelector } from 'store/redux/store';
 
 interface Props {
   text: string;
 }
 
-const EmptyScreen: React.FC<Props> = ({ text }) => {
-  const { menuSessions: menuSessionsRedux } = useSelector((state: ReduxStore) => state.configuration);
+export default function EmptyScreen({ text }: React.PropsWithChildren<Props>) {
+  const { menuSessions: menuSessionsRedux } = useTypedSelector(state => state.configuration);
 
   const menuSession = menuSessionsRedux.find((menu) => menu.title === 'Promoções') ?? menuSessionsRedux[0];
 
@@ -24,7 +23,7 @@ const EmptyScreen: React.FC<Props> = ({ text }) => {
             <img alt='Gamer Rex' className={styles['gamer-rex']} src='/images/gamer-rex/gamer-rex.svg' />
           </Box>
 
-          <Box alignItems='center' direction='column' display='flex' gap={40}>
+          <Box alignItems='center' direction='column' display='flex' gap={25}>
             <Box className={styles.balloon}>
               <Heading size={28} weight='bold'>
                 {text}
@@ -63,6 +62,4 @@ const EmptyScreen: React.FC<Props> = ({ text }) => {
       </Container>
     </Box>
   );
-};
-
-export default EmptyScreen;
+}

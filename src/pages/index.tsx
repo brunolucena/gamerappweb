@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import HomeLoja from 'modules/Loja/Pages/Home';
+import Home from 'modules/Loja/Pages/Home';
 import Layout from 'modules/Loja/Components/Layout';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { END } from 'redux-saga';
@@ -14,7 +14,7 @@ interface Props {
   sessions: ConfigurationModel[];
 }
 
-export default function Home({ sessions }: Props) {
+export default function HomePage({ sessions }: Props) {
   return (
     <Layout>
       <Head>
@@ -28,7 +28,7 @@ export default function Home({ sessions }: Props) {
         <meta key="og-image" property="og:image" content="https://www.gamerapp.com.br/images/seo/media-gamerapp.png" />
       </Head>
 
-      <HomeLoja sessions={sessions} />
+      <Home sessions={sessions} />
     </Layout>
   )
 }

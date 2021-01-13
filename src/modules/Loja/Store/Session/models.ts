@@ -1,4 +1,8 @@
-import { ProductPlatform } from '../ProductDetails/models';
+export interface ProductPlatform {
+  id: string;
+  imageUrl: string;
+  platformName: string;
+}
 
 export interface PriceItem {
   discount: number;
@@ -11,6 +15,7 @@ export interface ProductItem {
   discount: number | null;
   id: string;
   imageUrl: string;
+  isAvailable: boolean;
   name: string;
   offerValidUntil?: Date | string;
   platforms?: ProductPlatform[];
