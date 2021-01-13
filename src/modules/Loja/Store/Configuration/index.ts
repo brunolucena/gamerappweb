@@ -62,20 +62,20 @@ export default function reducer(state = initialState, action: Actions): State {
       return { ...state, ...action.payload.configuration, hydrated: true }
     }
 
-    case REHYDRATE: {
-      const data = action.payload;
+    // case REHYDRATE: {
+    //   const data = action.payload;
 
-      if (data) {
-        return {
-          ...state,
-          ...data.configuration,
-        }
-      }
+    //   if (data) {
+    //     return {
+    //       ...state,
+    //       ...data.configuration,
+    //     }
+    //   }
 
-      return {
-        ...state,
-      }
-    }
+    //   return {
+    //     ...state,
+    //   }
+    // }
 
     case LOAD_MENU_CONFIGURATION:
       return {
