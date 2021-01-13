@@ -1,7 +1,16 @@
-import { NextPage } from 'next';
+import EmptyScreen from 'modules/Loja/Components/EmptyScreen';
+import Head from 'next/head';
+import Layout from 'modules/Loja/Components/Layout';
+import { SITE_TITLE } from 'lib/configs';
 
-const Custom404: NextPage = () => {
-  return <h1>404 - Page Not Found</h1>
+export default function Custom404() {
+  return (
+    <Layout>
+      <Head>
+        <title>404 - {SITE_TITLE}</title>
+      </Head>
+
+      <EmptyScreen text="404 - Houston, temos um problema nessa página!" />
+    </Layout>
+  )
 }
-
-export default Custom404
