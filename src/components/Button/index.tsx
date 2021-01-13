@@ -1,23 +1,24 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-// import './styles.scss';
+import styles from './styles.module.scss';
 
 export type ButtonType = 'primary' | 'secondary' | 'clear';
 
 interface Props {
-  type?: ButtonType;
+  buttonType?: 'button' | 'submit' | 'reset';
   external?: boolean;
   onClick?: ((event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
   to?: string;
-  buttonType?: 'button' | 'submit' | 'reset';
+  type?: ButtonType;
 }
 
 const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, type }) => {
-  const classes = clsx('button', {
-    clear: type === 'clear',
-    primary: type === 'primary',
-    secondary: type === 'secondary',
-  });
+  const classes = clsx(
+    styles.button,
+    type === 'clear' && styles.clear,
+    type === 'primary' && styles.primary,
+    type === 'secondary' && styles.secondary,
+  );
 
   const button = <div className={classes}>{children}</div>;
 
@@ -38,7 +39,7 @@ const Button: React.FC<Props> = ({ buttonType, children, external, onClick, to, 
       </a>
     </Link>
   ) : (
-        <button className='button-container' onClick={(event) => onClick && onClick(event)} type={buttonType}>
+        <button className={styles['button-container']} onClick={(event) => onClick && onClick(event)} type={buttonType}>
           {button}
         </button>
       );
