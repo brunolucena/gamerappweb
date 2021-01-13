@@ -68,7 +68,7 @@ function CardStore({
       <a className={styles.containerCardStore}>
         <SizeMe>
           {({ size }) => {
-            const proportions = getProportions({ width: size.width ?? 200 }, '16x9');
+            const proportions = getProportions({ width: size.width ?? 200 }, '2x1');
 
             return (
               <>
