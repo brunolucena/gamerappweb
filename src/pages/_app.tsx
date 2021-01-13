@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { wrapper } from 'store/redux/store';
+import 'styles/content-slider.scss';
 import 'styles/globals.scss';
 import 'styles/header.scss';
 import 'components/Styles/index.scss';

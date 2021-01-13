@@ -42,9 +42,7 @@ export interface State {
 export const initialState: State = {
   error: '',
   loaded: false,
-  loadedMenu: false,
   loading: false,
-  loadingMenu: false,
   menuSessions: [],
 };
 

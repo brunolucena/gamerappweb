@@ -44,14 +44,11 @@
       }
     }
   }
-  .arrow-container {
-    cursor: pointer;
-  }
 
   .slick-slider {
     .slick-next:before,
     .slick-prev:before {
-      content: '';
+      content: "";
     }
   }
 
@@ -82,15 +79,6 @@
         }
       }
     }
-  }
-
-  .badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 20px;
-    border-radius: 10px;
-    background-color: #0dac3d;
   }
 }
 

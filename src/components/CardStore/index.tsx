@@ -7,7 +7,7 @@ import Text from 'components/Text';
 import moment from 'moment';
 import styles from './styles.module.scss';
 import { Grid } from '@material-ui/core';
-import { ProductPlatform } from 'modules/Loja/Store/ProductDetails/model';
+import { ProductPlatform } from 'modules/Loja/Store/ProductDetails/models';
 import { SizeMe } from 'react-sizeme';
 import { formatCurrency } from 'helpers/formatters';
 import { getProportions } from 'helpers/functions';

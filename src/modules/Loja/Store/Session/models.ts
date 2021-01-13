@@ -1,4 +1,4 @@
-import { ProductPlatform } from '../ProductDetails/model';
+import { ProductPlatform } from '../ProductDetails/models';
 
 export interface PriceItem {
   discount: number;

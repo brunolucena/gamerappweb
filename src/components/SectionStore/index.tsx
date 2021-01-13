@@ -6,33 +6,23 @@ import EmptyScreen from 'modules/Loja/Components/EmptyScreen';
 import Link from 'next/link';
 import moment from 'moment';
 import styles from './styles.module.scss';
-import { ConfigurationModel } from 'modules/Loja/Store/Configuration/models';
-import { ReduxStore } from 'store/redux';
-import { getSessionItemBySessionId } from 'modules/Loja/Store/Session';
+import { ProductItem } from 'modules/Loja/Store/Session/models';
 import { useState } from 'react';
-import { useTypedSelector } from 'store/redux/store';
 
 interface Props {
+  count: number;
+  id?: string;
   isAllItems?: boolean;
   isAllItemsBottom?: boolean;
-  session: ConfigurationModel;
+  items: ProductItem[];
+  name: string;
 }
 
-const SectionStore: React.FC<Props> = ({ isAllItems, session }) => {
-  const { id, title } = session;
-
-  const { session: sessionRedux } = useTypedSelector((state: ReduxStore) => state);
-
-  // const { count, name } = sessionRedux;
-  const { name } = sessionRedux;
-
-  const items = getSessionItemBySessionId(sessionRedux, id);
-
+const SectionStore: React.FC<Props> = ({ count, id, isAllItems, isAllItemsBottom, items, name }) => {
   const [dateHours] = useState(moment());
 
-  const header = title ?? name;
   const isEmpty = items.length === 0;
-  // const hasMoreItems = count > items.length;
+  const hasMoreItems = count > items.length;
 
   return (
     <div className={styles.containerSectionStore}>
@@ -40,7 +30,7 @@ const SectionStore: React.FC<Props> = ({ isAllItems, session }) => {
         {/* essa div vazia é necessária pra fazer o layout */}
         <div />
 
-        <p className={styles.title}>{header}</p>
+        <p className={styles.title}>{name}</p>
 
         <div className={styles['link-container']}>
           {isAllItems && (
@@ -76,13 +66,13 @@ const SectionStore: React.FC<Props> = ({ isAllItems, session }) => {
           </div>
         )}
 
-      {/* <div className={styles.footer}>
+      <div className={styles.footer}>
         {isAllItemsBottom && hasMoreItems && (
           <button type='button'>
             Ver mais
           </button>
         )}
-      </div> */}
+      </div>
     </div>)
 };
 

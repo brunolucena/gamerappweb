@@ -8,6 +8,7 @@ import { loadConfiguration } from 'modules/Loja/Lib/Configuration';
 import { loadMenuConfiguration } from 'modules/Loja/Store/Configuration';
 import { loadSession } from 'modules/Loja/Store/Session';
 import { wrapper } from 'store/redux/store';
+import { loadBanners } from 'modules/Loja/Store/Banner';
 
 interface Props {
   sessions: ConfigurationModel[];
@@ -41,8 +42,12 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) =
   }
 
   if (success && data.sessions?.length > 0) {
-    data.sessions.forEach(({ id }) => {
-      store.dispatch(loadSession({ sessionId: id, quantity: 20 }));
+    data.sessions.forEach(({ id, type }) => {
+      if (type === 'Banner') {
+        store.dispatch(loadBanners({ sessionId: id }));
+      } else if (type === 'Game') {
+        store.dispatch(loadSession({ sessionId: id, quantity: 20 }));
+      }
     });
   }
 
