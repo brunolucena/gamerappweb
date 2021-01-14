@@ -9,6 +9,6 @@ export function useMenuSessions() {
   return {
     data: data?.sessions ?? [],
     isLoading: !error && !data,
-    isError: error,
+    isError: !!error,
   };
 }
