@@ -2,7 +2,7 @@ import Footer from 'modules/Loja/Components/Footer';
 import Head from 'next/head';
 import Header from 'modules/Loja/Components/Header';
 import styles from './styles.module.scss';
-import { SITE_TITLE } from 'lib/configs';
+import { SITE_TITLE, environment } from 'lib/configs';
 
 interface Props {
   hasFooter?: boolean;
@@ -15,7 +15,7 @@ export default function Layout({ children, hasFooter = true, hasHeader = true }:
   return (
     <>
       <Head>
-        <title>{SITE_TITLE}</title>
+        <title>{environment !== 'production' ? environment + ' - ' : ''}{SITE_TITLE}</title>
 
         <meta name="google-site-verification" content="fH4mZpnIvqiMTArcxl91r0WskryaZ4dEuhXGXvmUy7s" />
         <meta key="title" name="title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />

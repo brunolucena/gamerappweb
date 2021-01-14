@@ -1,4 +1,4 @@
-export const env = process.env.NODE_ENV || 'development';
+export const environment = process.env.NODE_ENV || 'development';
 
 const configs = {
   development: {
@@ -11,7 +11,7 @@ const configs = {
   production: {
     apiUrl: 'https://gamerapp-api.azurewebsites.net',
   },
-}[env];
+}[environment];
 
 export const SITE_TITLE = 'GamerApp - Comunidade e Loja de Jogos Digitais';
 

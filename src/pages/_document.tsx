@@ -1,3 +1,6 @@
+import { environment } from 'lib/configs';
+import { Fragment } from 'react';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 import Document, {
   Head,
   Html,
@@ -6,9 +9,31 @@ import Document, {
 } from 'next/document';
 
 export default class MyDocument extends Document {
-  render() {
-    const environment = process.env.NODE_ENV;
+  static async getInitialProps(ctx: any) {
+    // Render app and page and get the context of the page with collected side effects.
+    const sheets = new ServerStyleSheets();
+    const originalRenderPage = ctx.renderPage;
 
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App: any) => (props: any) => sheets.collect(<App {...props} />),
+      });
+
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return {
+      ...initialProps,
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: (
+        <Fragment>
+          {initialProps.styles}
+          {sheets.getStyleElement()}
+        </Fragment>
+      ),
+    };
+  }
+
+  render() {
     return (
       <Html>
         <Head>
