@@ -11,10 +11,11 @@ interface Props {
 }
 
 export default function ProductDetailsPage({ productDetails }: Props) {
+  const domain = process.env.DOMAIN;
   const firstImage = productDetails.images ? productDetails.images[0] : null;
 
   const description = productDetails.description ? `${productDetails.description} - GamerApp` : SITE_TITLE;
-  const image = firstImage ?? 'https://www.gamerapp.com.br/media-gamerapp.png';
+  const image = firstImage ?? `${domain}/images/seo/media-gamerapp.png`;
   const title = `${productDetails.title} - GamerApp`;
 
   return (
@@ -49,7 +50,7 @@ export default function ProductDetailsPage({ productDetails }: Props) {
 
       <ProductDetails productDetails={productDetails} />
     </Layout>
-  )
+  );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ params }) => {
@@ -68,12 +69,12 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ params }) 
   if (notFound) {
     return {
       notFound,
-    }
+    };
   }
 
   return {
     props: {
       productDetails: data,
     },
-  }
-})
+  };
+});
