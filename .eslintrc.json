@@ -32,7 +32,7 @@
     "multiline-ternary": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "semi": "off",
+    "semi": ["error", "always"],
     "space-before-function-paren": "off",
     "sort-imports": [
       "error",
