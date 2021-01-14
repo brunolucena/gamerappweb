@@ -1,3 +1,4 @@
+import { environment } from 'lib/configs';
 import Document, {
   Head,
   Html,
@@ -7,8 +8,6 @@ import Document, {
 
 export default class MyDocument extends Document {
   render() {
-    const environment = process.env.NODE_ENV;
-
     return (
       <Html>
         <Head>

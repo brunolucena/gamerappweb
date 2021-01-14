@@ -2,7 +2,7 @@ import createSagaMiddleware from 'redux-saga';
 import mySaga from 'store/sagas';
 import reducers, { ReduxStore } from './';
 import { createWrapper } from 'next-redux-wrapper';
-import { env } from 'lib/configs';
+import { environment } from 'lib/configs';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import {
   Middleware,
@@ -19,7 +19,7 @@ export interface StoreWithSaga extends Store<{ readonly [$CombinedState]?: undef
 }
 
 const bindMiddleware = (middleware: Middleware[]) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (environment !== 'production') {
     const { composeWithDevTools } = require('redux-devtools-extension');
 
     return composeWithDevTools(applyMiddleware(...middleware));
@@ -67,4 +67,4 @@ export const makeStore = () => {
 export const useTypedSelector: TypedUseSelectorHook<ReduxStore> = useSelector;
 
 // @ts-ignore
-export const wrapper = createWrapper<ReduxStore>(makeStore, { debug: env !== 'production' });
+export const wrapper = createWrapper<ReduxStore>(makeStore, { debug: environment !== 'production' });
