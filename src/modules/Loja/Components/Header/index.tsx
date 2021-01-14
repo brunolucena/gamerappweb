@@ -47,7 +47,7 @@ export default function Header() {
 
   useEffect(() => {
     setMenuOpened(false);
-  }, [router.pathname]);
+  }, [router.asPath]);
 
   return (
     <>

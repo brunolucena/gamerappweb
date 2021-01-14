@@ -15,7 +15,7 @@ interface Props {
   version?: 'desktop' | 'mobile';
 }
 
-const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions = [], title, version = 'desktop' }) => {
+export default function ButtonWithDropdown({ icon, sessions = [], title, version = 'desktop' }: React.PropsWithChildren<Props>) {
   const node = useRef<HTMLDivElement>(null);
   const [fadeOut, setFadeOut] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -67,7 +67,7 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions = [], title, versi
       >
         {sessions?.map((menu, index) => (
           <Link key={menu.id + index} href={`/produtos/${menu.id}`}>
-            <a className={styles['button-dropdown-item']}>
+            <a className={styles['button-dropdown-item']} onClick={toggleOpened}>
               <Text size={18} weight='semi-bold'>
                 {menu.title}
               </Text>
@@ -91,7 +91,7 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions = [], title, versi
         <Box className={dropdownMobileClasses} borderRadius={5} borderStyle='shadow'>
           {sessions?.map((menu, index) => (
             <Link key={menu.id + index} href={`/produtos/${menu.id}`}>
-              <a className={styles['button-dropdown-item']}>
+              <a className={styles['button-dropdown-item']} onClick={toggleOpened}>
                 <Text size={18} weight='semi-bold'>
                   {menu.title}
                 </Text>
@@ -100,7 +100,5 @@ const ButtonWithDropdown: React.FC<Props> = ({ icon, sessions = [], title, versi
           ))}
         </Box>
       </div>
-    );
-};
-
-export default ButtonWithDropdown;
+  );
+}
