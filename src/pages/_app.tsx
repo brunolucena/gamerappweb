@@ -1,4 +1,5 @@
 import * as gtag from 'lib/gtag';
+import LoadingScreen from 'components/LoadingScreen';
 import { AppProps } from 'next/app';
 import { PersistGate } from 'redux-persist/integration/react';
 import { theme } from 'styles/MaterialTheme';
@@ -37,7 +38,7 @@ function App(props: Props) {
   }, [router.events]);
 
   return (
-    <PersistGate persistor={(store as any).__persistor} loading={<div>Loading</div>}>
+    <PersistGate persistor={(store as any).__persistor} loading={<LoadingScreen />}>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
