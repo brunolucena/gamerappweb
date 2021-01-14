@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useStore } from 'react-redux';
 import { wrapper } from 'store/redux/store';
-import 'styles/preload.scss';
 import 'styles/globals.scss';
 import 'styles/header.scss';
 import 'components/Styles/index.scss';
