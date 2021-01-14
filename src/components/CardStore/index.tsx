@@ -45,7 +45,7 @@ function CardStore({
 
         return (
           !completed && (
-            <Box className={styles['countdown backgroundTransparent']}>
+            <Box className={`${styles.countdown} ${styles.backgroundTransparent}`}>
               <Box className={styles['alarm-wrapper']}>
                 <Box className={styles.alarm}>
                   <Alarm style={{ color: '#0dac3d', fontSize: 22 }} />
@@ -85,11 +85,9 @@ function CardStore({
                   }}
                 >
                   {duration && moment(duration).isAfter(dateHourNow) && (
-                    <Grid container spacing={1} className={styles.containerCountDown}>
-                      <Grid item xs={10} md={10}>
-                        {countdown}
-                      </Grid>
-                    </Grid>
+                    <Box className={styles.containerCountDown}>
+                      {countdown}
+                    </Box>
                   )}
                 </div>
                 <div className={styles.content}>
@@ -125,7 +123,7 @@ function CardStore({
                             }
                           </Text>
                         ) : (
-                          <Text weight='bold'>Indisponível</Text>
+                            <Text weight='bold'>Indisponível</Text>
                         )}
                       </Grid>
                     </Grid>
