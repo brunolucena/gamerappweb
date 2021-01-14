@@ -1,5 +1,4 @@
 import { ConfigurationModel, LoadConfigurationRequest, LoadConfigurationResponse } from './models';
-import { REHYDRATE } from 'redux-persist';
 import {
   ActionPayload,
   BaseErrorResponse,
@@ -28,7 +27,6 @@ export interface LoadMenuConfigurationFailure {
 }
 
 export type Actions =
-  | Hydrate
   | Rehydrate
   | LoadMenuConfiguration
   | LoadMenuConfigurationFailure
@@ -61,21 +59,6 @@ export default function reducer(state = initialState, action: Actions): State {
 
       return { ...state, ...action.payload.configuration, hydrated: true }
     }
-
-    // case REHYDRATE: {
-    //   const data = action.payload;
-
-    //   if (data) {
-    //     return {
-    //       ...state,
-    //       ...data.configuration,
-    //     }
-    //   }
-
-    //   return {
-    //     ...state,
-    //   }
-    // }
 
     case LOAD_MENU_CONFIGURATION:
       return {

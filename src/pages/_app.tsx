@@ -1,11 +1,9 @@
 import * as gtag from 'lib/gtag';
 import { AppProps } from 'next/app';
-import { PersistGate } from 'redux-persist/integration/react';
 import { theme } from 'styles/MaterialTheme';
 import { ThemeProvider } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useStore } from 'react-redux';
 import { wrapper } from 'store/redux/store';
 import 'styles/content-slider.scss';
 import 'styles/globals.scss';
@@ -22,7 +20,6 @@ interface Props extends AppProps {
 function App(props: Props) {
   const { Component, pageProps } = props;
   const router = useRouter();
-  const store = useStore();
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -37,12 +34,9 @@ function App(props: Props) {
   }, [router.events]);
 
   return (
-    // @ts-ignore
-    <PersistGate persistor={store.__PERSISTOR} loading={null}>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </PersistGate>
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
   )
 }
 
