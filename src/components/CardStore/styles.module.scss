@@ -9,10 +9,25 @@
   text-decoration: none;
   color: #3c3c3c;
 
+  .banner {
+    position: relative;
+    border-radius: 8px 8px 0px 0px;
+    width: 100%;
+    padding-top: 50%;
+
+    img {
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+    }
+  }
+
   .containerCountDown {
-    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     display: flex;
     align-items: flex-end;
+    height: 100%;
     padding: 5px;
   }
 
@@ -101,8 +116,6 @@
     }
   }
 }
-
-
 
 .countdown {
   align-items: center;
