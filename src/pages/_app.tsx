@@ -1,6 +1,5 @@
 import * as gtag from 'lib/gtag';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LoadingScreen from 'components/LoadingScreen';
 import { AppProps } from 'next/app';
 import { PersistGate } from 'redux-persist/integration/react';
 import { theme } from 'styles/MaterialTheme';
@@ -56,7 +55,7 @@ function App(props: Props) {
   );
 
   return isServer ? myApp : (
-    <PersistGate persistor={(store as any).__persistor} loading={<LoadingScreen />}>
+    <PersistGate persistor={(store as any).__persistor} loading={null}>
       {/* Precisa renderizar desse jeito se não dá um problema com o PersistGate e a tela não carrega corretamente */}
       {() => myApp}
     </PersistGate>
