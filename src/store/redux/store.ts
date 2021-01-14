@@ -45,7 +45,7 @@ export const makeStore = () => {
     const persistConfig = {
       key: 'gamerappweb',
       storage,
-      whitelist: ['configuration'], // make sure it does not clash with server keys
+      whitelist: [], // make sure it does not clash with server keys
     };
 
     const persistedReducer = persistCombineReducers(persistConfig, reducers);
