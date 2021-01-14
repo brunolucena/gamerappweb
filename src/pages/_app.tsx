@@ -37,7 +37,13 @@ function App(props: Props) {
     };
   }, [router.events]);
 
-  return (
+  const isServer = typeof window === 'undefined';
+
+  return isServer ? (
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  ) : (
     <PersistGate persistor={(store as any).__persistor} loading={<LoadingScreen />}>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />

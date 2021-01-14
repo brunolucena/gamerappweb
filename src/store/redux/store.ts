@@ -27,7 +27,7 @@ const bindMiddleware = (middleware: Middleware[]) => {
   return applyMiddleware(...middleware);
 };
 
-export const makeStore = (initialState: any) => {
+export const makeStore = () => {
   let store: any;
   const sagaMiddleware = createSagaMiddleware();
   const isServer = typeof window === 'undefined';
