@@ -14,27 +14,23 @@ export default class MyDocument extends Document {
     const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App: any) => (props: any) => sheets.collect(<App {...props} />),
+      });
+
     const initialProps = await Document.getInitialProps(ctx);
 
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App: any) => (props: any) =>
-            sheets.collect(<App {...props} />),
-        });
-
-      return {
-        ...initialProps,
-        styles: (
-          <Fragment>
-            {initialProps.styles}
-            {sheets.getStyleElement()}
-          </Fragment>
-        ),
-      };
-    } catch {
-      return initialProps;
-    }
+    return {
+      ...initialProps,
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: (
+        <Fragment>
+          {initialProps.styles}
+          {sheets.getStyleElement()}
+        </Fragment>
+      ),
+    };
   }
 
   render() {
