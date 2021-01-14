@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { fetcher } from 'store/Api';
 import { LoadConfigurationResponse } from './models';
 
-export function useMenuConfiguration() {
+export function useMenuSessions() {
   const { data, error } = useSWR<LoadConfigurationResponse>(`${configs.apiUrl}/StoreProduct/Config/v1?isMenuSession=true`, fetcher);
 
   return {

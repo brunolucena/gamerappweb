@@ -4,16 +4,16 @@ import Container from 'components/Container';
 import Heading from 'components/Heading';
 import styles from './styles.module.scss';
 import Text from 'components/Text';
-import { useTypedSelector } from 'store/redux/store';
+import { useMenuSessions } from 'modules/Loja/Store/Configuration/swr';
 
 interface Props {
   text: string;
 }
 
 export default function EmptyScreen({ text }: React.PropsWithChildren<Props>) {
-  const { menuSessions: menuSessionsRedux } = useTypedSelector(state => state.configuration);
+  const { data: menuSessions } = useMenuSessions();
 
-  const menuSession = menuSessionsRedux.find((menu) => menu.title === 'Promoções') ?? menuSessionsRedux[0];
+  const menuSession = menuSessions.find((menu) => menu.title === 'Promoções') ?? menuSessions[0];
 
   return (
     <Box className={styles['empty-screen-wrapper']}>

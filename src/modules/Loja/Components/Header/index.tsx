@@ -11,7 +11,7 @@ import Search from '@material-ui/icons/Search';
 import styles from './styles.module.scss';
 import TextField from '@material-ui/core/TextField';
 import { useEffect, useState } from 'react';
-import { useMenuConfiguration } from 'modules/Loja/Store/Configuration/swr';
+import { useMenuSessions } from 'modules/Loja/Store/Configuration/swr';
 import { useRouter } from 'next/router';
 
 const PLAYSTATION_ID_SESSION = process.env.NEXT_PUBLIC_PLAYSTATION_ID_SESSION;
@@ -19,7 +19,7 @@ const XBOX_ID_SESSION = process.env.NEXT_PUBLIC_XBOX_ID_SESSION;
 
 export default function Header() {
   const router = useRouter();
-  const { data: menuSessions } = useMenuConfiguration();
+  const { data: menuSessions } = useMenuSessions();
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
 
