@@ -9,13 +9,12 @@ import Logo from 'components/Logo';
 import styles from './styles.module.scss';
 import Text from 'components/Text';
 import Youtube from 'components/SocialMedia/Youtube';
-import { ReduxStore } from 'store/redux';
-import { useSelector } from 'react-redux';
+import { useMenuSessions } from 'modules/Loja/Store/Configuration/swr';
 
 export default function Footer() {
-  const { menuSessions: menuSessionsRedux } = useSelector((state: ReduxStore) => state.configuration);
+  const { data } = useMenuSessions();
 
-  const menuSessions = menuSessionsRedux.slice(0, 2);
+  const menuSessions = data.slice(0, 2);
 
   return (
     <Box className={styles['footer-wrapper']}>
