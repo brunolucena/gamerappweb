@@ -15,8 +15,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ReduxStore } from 'store/redux';
 
-const PLAYSTATION_ID_SESSION = process.env.PLAYSTATION_ID_SESSION;
-const XBOX_ID_SESSION = process.env.XBOX_ID_SESSION;
+const PLAYSTATION_ID_SESSION = process.env.NEXT_PUBLIC_PLAYSTATION_ID_SESSION;
+const XBOX_ID_SESSION = process.env.NEXT_PUBLIC_XBOX_ID_SESSION;
 
 export default function Header() {
   const router = useRouter();
