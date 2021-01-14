@@ -8,10 +8,10 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useStore } from 'react-redux';
 import { wrapper } from 'store/redux/store';
-import 'styles/content-slider.scss';
 import 'styles/globals.scss';
 import 'styles/header.scss';
 import 'components/Styles/index.scss';
+import 'styles/content-slider.scss';
 import 'animate.css/animate.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -45,9 +45,11 @@ function App(props: Props) {
     </ThemeProvider>
   ) : (
     <PersistGate persistor={(store as any).__persistor} loading={<LoadingScreen />}>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      {() => (
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      )}
     </PersistGate>
   );
 }

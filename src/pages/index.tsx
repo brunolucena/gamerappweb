@@ -3,7 +3,6 @@ import Layout from 'modules/Loja/Components/Layout';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { END } from 'redux-saga';
 import { loadConfiguration } from 'modules/Loja/Lib/Configuration';
-import { loadMenuConfiguration } from 'modules/Loja/Store/Configuration';
 import { loadSession } from 'modules/Loja/Store/Session';
 import { wrapper } from 'store/redux/store';
 import { loadBanners } from 'modules/Loja/Store/Banner';
@@ -21,8 +20,6 @@ export default function HomePage({ sessions }: Props) {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
-  store.dispatch(loadMenuConfiguration());
-
   const { success, data } = await loadConfiguration();
 
   if (success && data.sessions?.length > 0) {

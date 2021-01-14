@@ -10,17 +10,16 @@ import Link from 'next/link';
 import Search from '@material-ui/icons/Search';
 import styles from './styles.module.scss';
 import TextField from '@material-ui/core/TextField';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { ReduxStore } from 'store/redux';
+import { useMenuConfiguration } from 'modules/Loja/Store/Configuration/swr';
+import { useRouter } from 'next/router';
 
 const PLAYSTATION_ID_SESSION = process.env.NEXT_PUBLIC_PLAYSTATION_ID_SESSION;
 const XBOX_ID_SESSION = process.env.NEXT_PUBLIC_XBOX_ID_SESSION;
 
 export default function Header() {
   const router = useRouter();
-  const { menuSessions } = useSelector((state: ReduxStore) => state.configuration);
+  const { data: menuSessions } = useMenuConfiguration();
   const [menuOpened, setMenuOpened] = useState(false);
   const [search, setSearch] = useState('');
 

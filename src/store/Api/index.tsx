@@ -2,6 +2,8 @@ import axios from 'axios';
 import configs from 'lib/configs';
 import { Action } from 'store/models/ReduxModels';
 
+export const fetcher = (url: string) => axios.get(url).then(res => res.data);
+
 async function Api(action: Action<any>) {
   const { data, method, url } = action.payload.request;
 
