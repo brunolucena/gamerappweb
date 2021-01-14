@@ -1,4 +1,5 @@
 import * as gtag from 'lib/gtag';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import LoadingScreen from 'components/LoadingScreen';
 import { AppProps } from 'next/app';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -37,19 +38,27 @@ function App(props: Props) {
     };
   }, [router.events]);
 
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles && jssStyles.parentElement) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   const isServer = typeof window === 'undefined';
 
-  return isServer ? (
+  const myApp = (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Component {...pageProps} />
     </ThemeProvider>
-  ) : (
+  );
+
+  return isServer ? myApp : (
     <PersistGate persistor={(store as any).__persistor} loading={<LoadingScreen />}>
-      {() => (
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      )}
+      {/* Precisa renderizar desse jeito se não dá um problema com o PersistGate e a tela não carrega corretamente */}
+      {() => myApp}
     </PersistGate>
   );
 }

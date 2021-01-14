@@ -1,4 +1,5 @@
 import { environment } from 'lib/configs';
+import { Fragment } from 'react';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import Document, {
   Head,
@@ -25,10 +26,10 @@ export default class MyDocument extends Document {
       return {
         ...initialProps,
         styles: (
-          <>
+          <Fragment>
             {initialProps.styles}
             {sheets.getStyleElement()}
-          </>
+          </Fragment>
         ),
       };
     } catch {
