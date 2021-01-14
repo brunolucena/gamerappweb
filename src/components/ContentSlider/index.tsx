@@ -1,10 +1,11 @@
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Box from 'components/Box';
+import clsx from 'clsx';
 import Heading from 'components/Heading';
+import Image from 'next/image';
 import Link from 'next/link';
 import Slider from 'react-slick';
-import clsx from 'clsx';
 import styles from './styles.module.scss';
 import { BannerModel } from 'modules/Loja/Store/Banner/models';
 import { formatCurrency } from 'helpers/formatters';
@@ -41,21 +42,9 @@ export default function ContentSlider({
     const hasBottomInfo = item.badgeText || item.price;
 
     const element = (
-      <Box
-        borderTopLeftRadius={20}
-        borderTopRightRadius={20}
-        borderBottomLeftRadius={20}
-        borderBottomRightRadius={20}
-        position='relative'
-        style={{
-          backgroundImage: `url('${item.imageUrl}')`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'none',
-          backgroundSize: 'cover',
-          paddingTop: '50%',
-        }}
-        width="100%"
-      >
+      <Box className={styles.itemContainer}>
+        <Image alt={`Banner ${item.badgeText} - ${item.name}`} src={item.imageUrl} layout="fill" objectFit="cover" />
+
         {bannersWithInfoEnabled && (
           <Box bottom={90} left={37} position='absolute'>
             {item.name && (

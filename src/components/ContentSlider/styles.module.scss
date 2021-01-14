@@ -8,3 +8,13 @@
     background-color: #0dac3d;
   }
 }
+
+.itemContainer {
+  position: relative;
+  padding-top: 50%;
+  border-radius: 20px;
+
+  * {
+    border-radius: inherit;
+  }
+}
