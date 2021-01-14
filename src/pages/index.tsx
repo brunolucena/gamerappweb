@@ -1,9 +1,7 @@
-import Head from 'next/head';
 import Home from 'modules/Loja/Pages/Home';
 import Layout from 'modules/Loja/Components/Layout';
 import { ConfigurationModel } from 'modules/Loja/Lib/Configuration/models';
 import { END } from 'redux-saga';
-import { SITE_TITLE } from 'lib/configs';
 import { loadConfiguration } from 'modules/Loja/Lib/Configuration';
 import { loadMenuConfiguration } from 'modules/Loja/Store/Configuration';
 import { loadSession } from 'modules/Loja/Store/Session';
@@ -17,17 +15,6 @@ interface Props {
 export default function HomePage({ sessions }: Props) {
   return (
     <Layout>
-      <Head>
-        <title>{SITE_TITLE}</title>
-        <meta key="og-title" property="og:title" content="GamerApp - Comunidade e Loja de Jogos Digitais" />
-        <meta
-          key="og-description"
-          property="og:description"
-          content="GamerApp é uma comunidade e loja de jogos digitais. Encontre amigos, veja conteúdo, troque informações, compre seus jogos preferidos e muito mais."
-        />
-        <meta key="og-image" property="og:image" content="https://www.gamerapp.com.br/images/seo/media-gamerapp.png" />
-      </Head>
-
       <Home sessions={sessions} />
     </Layout>
   );
