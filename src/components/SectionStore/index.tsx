@@ -75,5 +75,5 @@ export default function SectionStore({ count, id, isAllItems, isAllItemsBottom, 
         )}
       </div>
     </div>
-  )
+  );
 }
