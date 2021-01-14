@@ -1,4 +1,5 @@
 import { environment } from 'lib/configs';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 import Document, {
   Head,
   Html,
@@ -7,6 +8,34 @@ import Document, {
 } from 'next/document';
 
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx: any) {
+    // Render app and page and get the context of the page with collected side effects.
+    const sheets = new ServerStyleSheets();
+    const originalRenderPage = ctx.renderPage;
+
+    const initialProps = await Document.getInitialProps(ctx);
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App: any) => (props: any) =>
+            sheets.collect(<App {...props} />),
+        });
+
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheets.getStyleElement()}
+          </>
+        ),
+      };
+    } catch {
+      return initialProps;
+    }
+  }
+
   render() {
     return (
       <Html>
