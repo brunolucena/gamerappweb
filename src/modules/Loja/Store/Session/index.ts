@@ -50,7 +50,7 @@ export const initialState: State = {
 export default function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case HYDRATE: {
-      return { ...state, ...action.payload.session }
+      return { ...state, ...action.payload.session };
     }
 
     case LOAD_SESSION:

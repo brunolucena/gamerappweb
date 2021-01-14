@@ -30,7 +30,7 @@ export default function HomePage({ sessions }: Props) {
 
       <Home sessions={sessions} />
     </Layout>
-  )
+  );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
@@ -56,5 +56,5 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) =
     props: {
       sessions: data.sessions,
     },
-  }
-})
+  };
+});
