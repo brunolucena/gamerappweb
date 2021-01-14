@@ -45,9 +45,11 @@ function App(props: Props) {
     </ThemeProvider>
   ) : (
     <PersistGate persistor={(store as any).__persistor} loading={<LoadingScreen />}>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      {() => (
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      )}
     </PersistGate>
   );
 }
