@@ -8,6 +8,7 @@ import Document, {
 export default class MyDocument extends Document {
   render() {
     const environment = process.env.NODE_ENV;
+    const domain = process.env.DOMAIN;
 
     return (
       <Html>
@@ -57,7 +58,7 @@ export default class MyDocument extends Document {
             property="og:description"
             content="GamerApp é uma comunidade e loja de jogos digitais. Encontre amigos, veja conteúdo, troque informações, compre seus jogos preferidos e muito mais."
           />
-          <meta key="og-image" property="og:image" content="https://www.gamerapp.com.br/media-gamerapp.png" />
+          <meta key="og-image" property="og:image" content={`${domain}/images/seo/media-gamerapp.png`} />
 
           {/* Twitter */}
           <meta property="twitter:card" content="summary_large_image" />
@@ -68,7 +69,7 @@ export default class MyDocument extends Document {
             property="twitter:description"
             content="GamerApp é uma comunidade e loja de jogos digitais. Encontre amigos, veja conteúdo, troque informações, compre seus jogos preferidos e muito mais."
           />
-          <meta key="twitter-image" property="twitter:image" content="https://www.gamerapp.com.br/media-gamerapp.png" />
+          <meta key="twitter-image" property="twitter:image" content={`${domain}/images/seo/media-gamerapp.png`} />
         </Head>
 
         <body>
@@ -77,6 +78,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
