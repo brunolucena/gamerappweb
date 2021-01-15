@@ -45,6 +45,10 @@ export default function ContentSlider({
       <Box className={styles.itemContainer}>
         <Image alt={`Banner ${item.badgeText} - ${item.name}`} src={item.imageUrl} layout="fill" objectFit="cover" />
 
+        <Box position="absolute" top={0} bottom={0} right={0} left={0} style={{ backgroundColor: 'blue' }} zIndex={-1}>
+          Teste
+        </Box>
+
         {bannersWithInfoEnabled && (
           <Box bottom={90} left={37} position='absolute'>
             {item.name && (
@@ -93,7 +97,7 @@ export default function ContentSlider({
       <div style={{ position: 'relative', width: '100%', paddingTop: '50%' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
           <Slider
-            autoplay
+            // autoplay
             autoplaySpeed={3000}
             centerPadding='0'
             dots
