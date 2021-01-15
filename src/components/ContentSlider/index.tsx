@@ -97,7 +97,7 @@ export default function ContentSlider({
       <div style={{ position: 'relative', width: '100%', paddingTop: '50%' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
           <Slider
-            // autoplay
+            autoplay
             autoplaySpeed={3000}
             centerPadding='0'
             dots
