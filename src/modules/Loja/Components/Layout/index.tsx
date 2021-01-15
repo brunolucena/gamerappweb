@@ -55,6 +55,12 @@ export default function Layout({ children, hasFooter = true, hasHeader = true }:
       <div>
         {hasHeader && <Header />}
 
+        <link itemProp="thumbnailUrl" href={`${domain}/images/seo/media-gamerapp.png`} />
+
+        <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject">
+          <link itemProp="url" href={`${domain}/images/seo/media-gamerapp.png`} />
+        </span>
+
         <main className={styles.mainContainer}>{children}</main>
 
         {hasFooter && <Footer />}
