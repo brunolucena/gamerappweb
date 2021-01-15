@@ -12,5 +12,5 @@ export default function Custom404() {
 
       <EmptyScreen text="404 - Houston, temos um problema nessa página!" />
     </Layout>
-  )
+  );
 }
