@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Heading from 'components/Heading';
 import Image from 'next/image';
 import Link from 'next/link';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Slider from 'react-slick';
 import styles from './styles.module.scss';
 import { BannerModel } from 'modules/Loja/Store/Banner/models';
@@ -44,6 +45,9 @@ export default function ContentSlider({
     const element = (
       <Box className={styles.itemContainer}>
         <Image alt={`Banner ${item.badgeText} - ${item.name}`} src={item.imageUrl} layout="fill" objectFit="cover" />
+        <Box position="absolute" top={0} bottom={0} right={0} left={0} backgroundColor="#dcdcdc" display="flex" alignItems="center" justifyContent="center" zIndex={-1}>
+          <Skeleton variant="rect" width="100%" height="100%" />
+        </Box>
 
         {bannersWithInfoEnabled && (
           <Box bottom={90} left={37} position='absolute'>
