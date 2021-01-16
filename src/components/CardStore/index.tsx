@@ -4,8 +4,6 @@ import Countdown from 'react-countdown';
 import IconPlatform from 'components/IconsPlatform';
 import Image from 'next/image';
 import Link from 'next/link';
-// import LoopIcon from '@material-ui/icons/Loop';
-// import Logo from '../Logo';
 import moment from 'moment';
 import Skeleton from '@material-ui/lab/Skeleton';
 import styles from './styles.module.scss';
@@ -71,12 +69,7 @@ function CardStore({
         <div className={styles.banner}>
           <Image alt={title} src={banner} layout="fill" objectFit="cover"/>
             <Box position="absolute" top={0} bottom={0} right={0} left={0} style={{ backgroundColor: '#dcdcdc' }} borderTopLeftRadius={8} borderTopRightRadius={8} display="flex" alignItems="center" justifyContent="center" zIndex={0}>
-                <Skeleton variant="rect" width="100%" height="100%"/>
-
-              {/* <Logo variant="inline-green"/> */}
-              {/* <img height={65} src="/images/gamer-rex/gamer-rex.svg"/> */}
-              {/* <LoopIcon/> */}
-
+              <Skeleton variant="rect" width="100%" height="100%"/>
             </Box>
           {duration && moment(duration).isAfter(dateHourNow) && (
             <Box className={styles.containerCountDown}>

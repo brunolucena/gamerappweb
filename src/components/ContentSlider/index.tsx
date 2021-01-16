@@ -5,8 +5,6 @@ import clsx from 'clsx';
 import Heading from 'components/Heading';
 import Image from 'next/image';
 import Link from 'next/link';
-// import LoopIcon from '@material-ui/icons/Loop';
-// import Logo from '../Logo';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Slider from 'react-slick';
 import styles from './styles.module.scss';
@@ -49,9 +47,6 @@ export default function ContentSlider({
         <Image alt={`Banner ${item.badgeText} - ${item.name}`} src={item.imageUrl} layout="fill" objectFit="cover" />
         <Box position="absolute" top={0} bottom={0} right={0} left={0} style={{ backgroundColor: '#dcdcdc' }} display="flex" alignItems="center" justifyContent="center" zIndex={-1}>
           <Skeleton variant="rect" width="100%" height="100%" />
-          {/* <Logo variant="inline-green"/> */}
-          {/* <img height={150} src="/images/gamer-rex/gamer-rex.svg"/> */}
-          {/* <LoopIcon/> */}
         </Box>
 
         {bannersWithInfoEnabled && (
