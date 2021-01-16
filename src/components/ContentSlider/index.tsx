@@ -45,7 +45,7 @@ export default function ContentSlider({
     const element = (
       <Box className={`${styles.itemContainer} itemContainer`}>
         <Image alt={`Banner ${item.badgeText} - ${item.name}`} src={item.imageUrl} layout="fill" objectFit="cover" />
-          <Box position="absolute" top={0} bottom={0} right={0} left={0} backgroundColor="#dcdcdc" borderTopLeftRadius={20} borderTopRightRadius={20} zIndex={-1}>
+          <Box position="absolute" top={0} bottom={0} right={0} left={0} backgroundColor="#dcdcdc" zIndex={-1}>
             <Skeleton animation="wave" variant="rect" width="100%" height="100%" />
           </Box>
 
