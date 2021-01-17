@@ -69,7 +69,7 @@ function CardStore({
         <div className={styles.banner}>
           <Image alt={title} src={banner} layout="fill" objectFit="cover"/>
             <Box position="absolute" top={0} bottom={0} right={0} left={0} backgroundColor="#dcdcdc" borderTopLeftRadius={8} borderTopRightRadius={8} zIndex={0}>
-              <Skeleton animation="wave" variant="rect" width="100%" height="100%"/>
+              <Skeleton variant="rect" width="100%" height="100%"/>
             </Box>
           {duration && moment(duration).isAfter(dateHourNow) && (
             <Box className={styles.containerCountDown}>
