@@ -43,7 +43,7 @@ export default function ContentSlider({
     const hasBottomInfo = item.badgeText || item.price;
 
     const element = (
-      <Box className={`${styles.itemContainer} itemContainer`}>
+      <Box className={styles.itemContainer}>
         <Image alt={`Banner ${item.badgeText} - ${item.name}`} src={item.imageUrl} layout="fill" objectFit="cover" />
           <Box position="absolute" top={0} bottom={0} right={0} left={0} backgroundColor="#dcdcdc" zIndex={-1}>
             <Skeleton variant="rect" width="100%" height="100%" />
